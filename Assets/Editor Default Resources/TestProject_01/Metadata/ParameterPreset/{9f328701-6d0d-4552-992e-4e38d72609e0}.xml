@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{9f328701-6d0d-4552-992e-4e38d72609e0}">
+		<property name="name">
+			<value>VolumeTrack</value>
+		</property>
+		<relationship name="folder">
+			<destination>{ff9e71e3-ec6d-43d8-84ac-255902bd2ac8}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{07c4522c-0fa7-47e5-8485-e24b4d74b8a8}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{07c4522c-0fa7-47e5-8485-e24b4d74b8a8}">
+		<property name="maximum">
+			<value>100</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

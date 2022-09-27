@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{73466e8e-759e-48c1-8182-bb6bfa0b7ecd}">
+		<property name="assetPath">
+			<value>Effects/Sci-Fi Sounds/Electric/Data Calculating 4_5.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.2978684807256236</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c8542d9b-61e4-4077-b3c7-0fb1c5b24d9d}</destination>
+		</relationship>
+	</object>
+</objects>

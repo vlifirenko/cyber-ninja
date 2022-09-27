@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{24c1d9f1-f56b-44b1-a982-f6a33d7e2226}">
+		<property name="assetPath">
+			<value>Effects/Sci-Fi Sounds/Mechanical/Servo Big 4_2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>8</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c8542d9b-61e4-4077-b3c7-0fb1c5b24d9d}</destination>
+		</relationship>
+	</object>
+</objects>

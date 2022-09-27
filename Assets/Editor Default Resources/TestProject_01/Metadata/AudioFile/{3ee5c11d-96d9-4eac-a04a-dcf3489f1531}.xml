@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{3ee5c11d-96d9-4eac-a04a-dcf3489f1531}">
+		<property name="assetPath">
+			<value>Music/Future Ramen - Cyberpunk Vol. 1 FREE Unity/Future Ramen_CPV1_The Architect_Masters/Future Ramen_CPV1_The Architect_Loop 3.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>17.457374999999999</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c8542d9b-61e4-4077-b3c7-0fb1c5b24d9d}</destination>
+		</relationship>
+	</object>
+</objects>

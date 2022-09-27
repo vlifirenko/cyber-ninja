@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: f0585a09ee384f2da8eb2878a6cf1ce6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - vfxGameobject: {instanceID: 0}
+  - icon: {fileID: 21300000, guid: 6f719d976dbd6df419ee1bfc2405e02a, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

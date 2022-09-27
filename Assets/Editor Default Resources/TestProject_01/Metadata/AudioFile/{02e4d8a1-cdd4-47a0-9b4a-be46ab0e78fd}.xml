@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{02e4d8a1-cdd4-47a0-9b4a-be46ab0e78fd}">
+		<property name="assetPath">
+			<value>Music/Future Ramen - Cyberpunk Vol. 1 FREE Unity/Future Ramen_CPV1_Halt And Catch Fire_Masters/Future Ramen_CPV1_Halt And Catch Fire_Stinger_24_48k.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>10.197333333333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c8542d9b-61e4-4077-b3c7-0fb1c5b24d9d}</destination>
+		</relationship>
+	</object>
+</objects>

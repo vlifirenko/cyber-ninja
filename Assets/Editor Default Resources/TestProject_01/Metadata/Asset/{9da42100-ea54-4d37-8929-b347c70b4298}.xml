@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="EncodableAsset" id="{9da42100-ea54-4d37-8929-b347c70b4298}">
+		<property name="assetPath">
+			<value>Music/Future Ramen - Cyberpunk Vol. 1 FREE Unity/Future Ramen_CPV1_Dark Core_Masters/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c8542d9b-61e4-4077-b3c7-0fb1c5b24d9d}</destination>
+		</relationship>
+	</object>
+</objects>

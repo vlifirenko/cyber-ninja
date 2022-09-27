@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{0d355052-361b-4951-8183-48123a6ebaff}">
+		<property name="color">
+			<value>Green</value>
+		</property>
+		<property name="name">
+			<value>PlayerHealth</value>
+		</property>
+		<relationship name="folder">
+			<destination>{57f05d58-5a75-474c-8239-c1fe5772dfcb}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{02b0afc7-5558-4721-baba-376e91af0540}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{02b0afc7-5558-4721-baba-376e91af0540}">
+		<property name="maximum">
+			<value>100</value>
+		</property>
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>100</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>

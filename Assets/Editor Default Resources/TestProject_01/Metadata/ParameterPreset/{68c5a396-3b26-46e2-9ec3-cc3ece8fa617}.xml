@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{68c5a396-3b26-46e2-9ec3-cc3ece8fa617}">
+		<property name="name">
+			<value>Blood</value>
+		</property>
+		<relationship name="folder">
+			<destination>{f0ffeb1f-2132-4377-95fb-6a81c0299196}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{7dc5e9f3-e277-4369-93a1-124b0b36a168}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{7dc5e9f3-e277-4369-93a1-124b0b36a168}">
+		<property name="initialValue">
+			<value>1</value>
+		</property>
+	</object>
+</objects>

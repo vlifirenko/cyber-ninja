@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{434b9d75-b7dd-40a6-a8de-aef1d90690b2}">
+		<property name="color">
+			<value>Blue</value>
+		</property>
+		<property name="name">
+			<value>MusicEnd</value>
+		</property>
+		<relationship name="folder">
+			<destination>{57f05d58-5a75-474c-8239-c1fe5772dfcb}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{a790558b-2e64-468e-bf0c-ca9c4fb8166d}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{a790558b-2e64-468e-bf0c-ca9c4fb8166d}">
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>

@@ -1,0 +1,227 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4447391144145983788
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5524529904140947624, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_Name
+      value: vfx_Skill_Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947625, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947625, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947625, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947625, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947625, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947626, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_Asset
+      value: 
+      objectReference: {fileID: 8926484042661614526, guid: 56cf22150d9e021479bdf909d8ea5606, type: 3}
+    - target: {fileID: 5524529904140947626, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947626, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Name
+      value: Radius
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947626, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[2].m_Name
+      value: Lifetime
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947626, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Value
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947626, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[2].m_Value
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947626, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947626, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[2].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947627, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947627, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947627, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947627, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947627, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947627, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947627, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947627, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947627, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947627, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524529904140947627, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: vfxRadius
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_useAudio
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: audioVolume
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_useEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: playOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: vfxLifetime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: VFX_Activate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: effectRadius
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: playOnUpdate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_playOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_useDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_vfxDuration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: useAudioPhase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: AUDIO_Activate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: VFX_Parameters
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: EFFECT_Activate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: Effect_Activate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: AUDIO_Parameters
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: audioPhaseUpdate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: parametersUpdate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: vfxGlobalRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774570469584373933, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: m_activateDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8074717030899573680, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: Event
+      value: event:/Abilities/4_Skills/skill_Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 8074717030899573680, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: Params.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8074717030899573680, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: Params.Array.data[0].Name
+      value: VolumeMaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 8074717030899573680, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: Params.Array.data[1].Name
+      value: phase
+      objectReference: {fileID: 0}
+    - target: {fileID: 8074717030899573680, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: Params.Array.data[2].Name
+      value: phase
+      objectReference: {fileID: 0}
+    - target: {fileID: 8074717030899573680, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: Params.Array.data[0].Value
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8074717030899573680, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}
+      propertyPath: Params.Array.data[1].Value
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b2118bef63533a9489bdfcfd2c8b0fce, type: 3}

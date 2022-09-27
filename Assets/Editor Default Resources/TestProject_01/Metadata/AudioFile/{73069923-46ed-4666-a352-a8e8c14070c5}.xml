@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{73069923-46ed-4666-a352-a8e8c14070c5}">
+		<property name="assetPath">
+			<value>Music/Future Ramen - Cyberpunk Vol. 1 FREE Unity/Future Ramen_CPV1_Nexus Nights_Masters/Future Ramen_CPV1_Nexus Nights_Stinger 2_24_48k.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>10.9714375</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c8542d9b-61e4-4077-b3c7-0fb1c5b24d9d}</destination>
+		</relationship>
+	</object>
+</objects>
