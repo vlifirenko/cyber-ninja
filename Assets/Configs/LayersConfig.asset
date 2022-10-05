@@ -9,7 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8f91c4d0efc4f478d1a2aa1d29e22ed, type: 3}
-  m_Name: input_config
+  m_Script: {fileID: 11500000, guid: 5a80d32b018442649f14c7eafcfcae5e, type: 3}
+  m_Name: LayersConfig
   m_EditorClassIdentifier: 
-  isGamepadDefault: 0
+  attackLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 524288

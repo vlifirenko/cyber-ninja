@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd22b03c88c44a839efd92c3cf8e03b7, type: 3}
-  m_Name: audio_config
+  m_Name: AudioConfig
   m_EditorClassIdentifier: 
   masterVolume: 70
   musicVolume: 39
