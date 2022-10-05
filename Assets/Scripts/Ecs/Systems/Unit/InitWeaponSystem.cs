@@ -31,6 +31,8 @@ namespace CyberNinja.Ecs.Systems.Unit
                 weaponInstance.Transform.localPosition = weaponInstance.Position;
                 weaponInstance.Transform.localRotation = Quaternion.Euler(weaponInstance.Rotation);
                 weaponInstance.Transform.localScale = weaponInstance.Scale;
+
+                weaponView.WeaponInstance = weaponInstance;
             }
         }
 

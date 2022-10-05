@@ -13,7 +13,7 @@ namespace CyberNinja.Views.Unit
 
         [ToggleGroup("WEAPONS"), SerializeField] private bool WEAPONS;
         [VerticalGroup("WEAPONS/1"), SerializeField] private WeaponView weaponPack;
-        [VerticalGroup("WEAPONS/1"), SerializeField, ReadOnly] private GameObject weaponInstance;
+        [VerticalGroup("WEAPONS/1"), SerializeField, ReadOnly] private WeaponView weaponInstance;
 
         public Transform WeaponsContainer => weaponsContainer;
         public Transform HandLeft => handLeft;
@@ -21,6 +21,11 @@ namespace CyberNinja.Views.Unit
         public bool UseRightHand => useRightHand;
         public bool IsWeaponEnabled => WEAPONS;
         public WeaponView WeaponPack => weaponPack;
-        public GameObject WeaponInstance => weaponInstance;
+        
+        public WeaponView WeaponInstance
+        {
+            get => weaponInstance;
+            set => weaponInstance = value;
+        }
     }
 }
