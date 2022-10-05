@@ -119,27 +119,27 @@ PrefabInstance:
       objectReference: {fileID: 786645865189161579}
     - target: {fileID: 2463986128750946153, guid: ca5f90d76e592c64d88d948817528792, type: 3}
       propertyPath: position.x
-      value: 0.083
+      value: -0.067
       objectReference: {fileID: 0}
     - target: {fileID: 2463986128750946153, guid: ca5f90d76e592c64d88d948817528792, type: 3}
       propertyPath: position.y
-      value: 0.057
+      value: 0.031
       objectReference: {fileID: 0}
     - target: {fileID: 2463986128750946153, guid: ca5f90d76e592c64d88d948817528792, type: 3}
       propertyPath: position.z
-      value: -0.023
+      value: -0.033
       objectReference: {fileID: 0}
     - target: {fileID: 2463986128750946153, guid: ca5f90d76e592c64d88d948817528792, type: 3}
       propertyPath: rotation.x
-      value: 94.17
+      value: 178.77
       objectReference: {fileID: 0}
     - target: {fileID: 2463986128750946153, guid: ca5f90d76e592c64d88d948817528792, type: 3}
       propertyPath: rotation.y
-      value: 149.23
+      value: 179.028
       objectReference: {fileID: 0}
     - target: {fileID: 2463986128750946153, guid: ca5f90d76e592c64d88d948817528792, type: 3}
       propertyPath: rotation.z
-      value: -21.1
+      value: -171.893
       objectReference: {fileID: 0}
     - target: {fileID: 2463986128750946153, guid: ca5f90d76e592c64d88d948817528792, type: 3}
       propertyPath: childScale.x
