@@ -35,6 +35,13 @@
       "dependencies": {},
       "hash": "2fb5e220311202a2864492e07e373701e27a08bc"
     },
+    "com.supremestranger.leoecs-lite-physics": {
+      "version": "https://github.com/supremestranger/leoecs-lite-physics.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "4e7a935370c9455ec5d9eb9bed2e8580c4735615"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

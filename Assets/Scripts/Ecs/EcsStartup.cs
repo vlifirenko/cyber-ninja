@@ -4,12 +4,14 @@ using CyberNinja.Ecs.Systems.Ability;
 using CyberNinja.Ecs.Systems.Ai;
 using CyberNinja.Ecs.Systems.Door;
 using CyberNinja.Ecs.Systems.Game;
+using CyberNinja.Ecs.Systems.Item;
 using CyberNinja.Ecs.Systems.Unit;
 using CyberNinja.Models;
 using CyberNinja.Services;
 using CyberNinja.Services.Impl;
 using CyberNinja.Utils;
 using CyberNinja.Views;
+using LeoEcsPhysics;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Leopotam.EcsLite.Unity.Ugui;
@@ -43,11 +45,15 @@ namespace CyberNinja.Ecs
         private void Start()
         {
             var world = new EcsWorld();
+            var eventWorld = new EcsWorld();
+            var itemsWorld = new EcsWorld();
 
             _gameData = new GameData();
+            
+            EcsPhysicsEvents.ecsWorld = world;
 
             _vfxService = new VfxService(world);
-            _itemService = new ItemService();
+            _itemService = new ItemService(itemsWorld);
             _unitService = new UnitService(world, unitConfig, canvasView, _vfxService);
             _doorService = new DoorService(world, _unitService);
             _abilityService = new AbilityService(world, unitConfig, layersConfig, _unitService, _doorService, _vfxService,
@@ -70,6 +76,9 @@ namespace CyberNinja.Ecs
                 .Add(new CameraMovementSystem())
                 .Add(new AudioSystem())
                 .Add(new TimeSystem())
+                
+                // trigger
+                .Add(new UnitTriggerEnterSystem())
 
                 // movement
                 .Add(new StunSystem())
@@ -103,10 +112,15 @@ namespace CyberNinja.Ecs
                 // doors
                 .Add(new InitDoorsSystem())
                 
-                .AddWorld(new EcsWorld(), World.Events)
+                // items
+                .Add(new InitItemsSystem())
+                
+                .AddWorld(eventWorld, World.Events)
+                .AddWorld(itemsWorld, World.Items)
 #if UNITY_EDITOR
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem(World.Events))
+                .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem(World.Items))
 #endif
                 .Inject(_gameData, sceneView, canvasView)
                 .Inject(layersConfig, unitConfig, audioConfig, inputConfig)
@@ -114,6 +128,7 @@ namespace CyberNinja.Ecs
                     _gameService, _timeService)
                 .Inject()
                 .InjectUgui(uguiEmitter, World.Events)
+                .DelHerePhysics()
                 .Init();
         }
 
@@ -121,8 +136,10 @@ namespace CyberNinja.Ecs
 
         private void OnDestroy()
         {
+            EcsPhysicsEvents.ecsWorld = null;
             _systems?.Destroy();
             _systems?.GetWorld(World.Events)?.Destroy();
+            _systems?.GetWorld(World.Items)?.Destroy();
             _systems?.GetWorld()?.Destroy();
             _systems = null;
 

@@ -4,6 +4,7 @@ using CyberNinja.Views.Unit;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 
 namespace CyberNinja.Views
 {
@@ -13,14 +14,16 @@ namespace CyberNinja.Views
         [SerializeField] private UnitView playerView;
         [SerializeField] private StudioEventEmitter fmodEventEmitter;
         [SerializeField] private Volume volume;
-        [SerializeField] private DoorContainerView doorContainerView;
-        [SerializeField] private UnitContainerView unitContainerView;
+        [SerializeField] private DoorContainer doorContainer;
+        [SerializeField] private UnitContainer unitContainer;
+        [SerializeField] private ItemContainer itemContainer;
 
         public CameraView CameraView => cameraView;
         public UnitView PlayerView => playerView;
         public StudioEventEmitter FmodEventEmitter => fmodEventEmitter;
         public Volume Volume => volume;
-        public DoorContainerView DoorContainerView => doorContainerView;
-        public UnitContainerView UnitContainerView => unitContainerView;
+        public DoorContainer DoorContainer => doorContainer;
+        public UnitContainer UnitContainer => unitContainer;
+        public ItemContainer ItemContainer => itemContainer;
     }
 }

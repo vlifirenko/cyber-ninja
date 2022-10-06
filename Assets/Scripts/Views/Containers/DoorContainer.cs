@@ -2,7 +2,7 @@
 
 namespace CyberNinja.Views.Containers
 {
-    public class DoorContainerView : AViewContainer<DoorView>
+    public class DoorContainer : AViewContainer<DoorView>
     {
     }
 }

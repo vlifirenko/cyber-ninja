@@ -313,19 +313,20 @@ namespace CyberNinja.Services.Impl
 
             foreach (var hit in hitColliders)
             {
-                if (hit.CompareTag(ETags.door.ToString()))
+                if (hit.CompareTag(Tag.Door))
                 {
                     var doorView = hit.GetComponent<DoorView>();
                     _doorService.TryActivateDoor(doorView, ownerEntity);
                 }
-                else if (hit.CompareTag(ETags.item.ToString()))
+                //todo
+                /*else if (hit.CompareTag(Tag.Item))
                 {
                     var itemView = hit.GetComponent<ItemView>();
                     if (!itemView.Entity.Unpack(_world, out var itemEntity))
                         return;
 
                     _itemService.ActivateItem(itemEntity);
-                }
+                }*/
             }
         }
 

@@ -5,22 +5,15 @@ using Leopotam.EcsLite.Di;
 
 namespace CyberNinja.Ecs.Systems.Door
 {
-    public class InitDoorsSystem : IEcsRunSystem
+    public class InitDoorsSystem : IEcsInitSystem
     {
         private readonly EcsCustomInject<IDoorService> _doorService;
         private readonly EcsCustomInject<SceneView> _sceneView;
-        
-        public void Run(IEcsSystems systems)
-        {
-            var doors = _sceneView.Value.DoorContainerView.Items;
-            if (doors.Length == 0)
-                return;
 
-            foreach (var door in doors)
-            {
-                var view = door.GetComponent<DoorView>();
+        public void Init(IEcsSystems systems)
+        {
+            foreach (var view in _sceneView.Value.DoorContainer.Items)
                 _doorService.Value.CreateDoor(view);
-            }
         }
     }
 }

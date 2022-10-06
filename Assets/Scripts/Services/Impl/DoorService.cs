@@ -2,6 +2,7 @@
 using CyberNinja.Ecs.Components;
 using CyberNinja.Ecs.Components.Door;
 using CyberNinja.Models.Enums;
+using CyberNinja.Utils;
 using CyberNinja.Views;
 using Leopotam.EcsLite;
 using UniRx;
@@ -116,7 +117,7 @@ namespace CyberNinja.Services.Impl
             var unit = _unitService.GetUnit(unitEntity);
             Vector3 targetDoorPosition;
 
-            if (targetDoor.CompareTag(ETags.door.ToString()))
+            if (targetDoor.CompareTag(Tag.Door))
             {
                 var outPosition = targetDoor.GetComponent<DoorView>().OutPosition.position;
                 targetDoorPosition = outPosition;

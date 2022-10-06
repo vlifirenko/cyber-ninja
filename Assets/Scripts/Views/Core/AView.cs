@@ -20,5 +20,9 @@ namespace CyberNinja.Views.Core
         {
             _transform = transform;
         }
+
+        public void Show() => gameObject.SetActive(true);
+        
+        public void Hide() => gameObject.SetActive(false);
     }
 }
