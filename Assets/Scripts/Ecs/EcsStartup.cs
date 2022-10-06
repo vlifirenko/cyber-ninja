@@ -8,6 +8,7 @@ using CyberNinja.Ecs.Systems.Unit;
 using CyberNinja.Models;
 using CyberNinja.Services;
 using CyberNinja.Services.Impl;
+using CyberNinja.Utils;
 using CyberNinja.Views;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -101,26 +102,18 @@ namespace CyberNinja.Ecs
 
                 // doors
                 .Add(new InitDoorsSystem())
+                
+                .AddWorld(new EcsWorld(), World.Events)
 #if UNITY_EDITOR
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
+                .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem(World.Events))
 #endif
-                .Inject(_gameData)
-                .Inject(sceneView)
-                .Inject(canvasView)
-                .Inject(layersConfig)
-                .Inject(unitConfig)
-                .Inject(audioConfig)
-                .Inject(inputConfig)
-                .Inject(_unitService)
-                .Inject(_aiService)
-                .Inject(_abilityService)
-                .Inject(_doorService)
-                .Inject(_vfxService)
-                .Inject(_itemService)
-                .Inject(_gameService)
-                .Inject(_timeService)
+                .Inject(_gameData, sceneView, canvasView)
+                .Inject(layersConfig, unitConfig, audioConfig, inputConfig)
+                .Inject(_unitService, _aiService, _abilityService, _doorService, _vfxService, _itemService,
+                    _gameService, _timeService)
                 .Inject()
-                .InjectUgui(uguiEmitter)
+                .InjectUgui(uguiEmitter, World.Events)
                 .Init();
         }
 
@@ -129,7 +122,7 @@ namespace CyberNinja.Ecs
         private void OnDestroy()
         {
             _systems?.Destroy();
-            _systems?.GetWorld("ugui-events")?.Destroy();
+            _systems?.GetWorld(World.Events)?.Destroy();
             _systems?.GetWorld()?.Destroy();
             _systems = null;
 
