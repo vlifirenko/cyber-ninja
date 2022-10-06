@@ -332,7 +332,7 @@ MonoBehaviour:
   handRight: {fileID: 8386236951102427002}
   useRightHand: 1
   WEAPONS: 1
-  weaponPack: {fileID: 5045712561981640455, guid: 966154143bd89844cafbde78ab576a05, type: 3}
+  weaponPack: {fileID: 2463986128750946153, guid: d2c5906fc03b1774d8be348d227b1389, type: 3}
   weaponInstance: {fileID: 0}
 --- !u!1 &2109442428139309328
 GameObject:

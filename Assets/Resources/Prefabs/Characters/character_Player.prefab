@@ -11,10 +11,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3d77b37b7e7149a40a3b18bac38a1179, type: 2}
-    - target: {fileID: 605048881063390383, guid: c2e163ccfc1ff954dae0d2cbc1b797e2, type: 3}
-      propertyPath: weaponPack
-      value: 
-      objectReference: {fileID: 4390557318378078318, guid: 966154143bd89844cafbde78ab576a05, type: 3}
     - target: {fileID: 1537226025106676718, guid: c2e163ccfc1ff954dae0d2cbc1b797e2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
