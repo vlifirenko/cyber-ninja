@@ -10,6 +10,8 @@ namespace CyberNinja.Views
     public class CanvasView : AView
     {
         [SerializeField] private GameObject gameLayout;
+        [SerializeField] private UiTimerView timerView;
+        
         [TitleGroup("Attributes")]
         [SerializeField] private GameObject playerHealthBar;
         [SerializeField] private TMP_Text playerHealthText;
@@ -37,7 +39,8 @@ namespace CyberNinja.Views
         public Transform HealthContainer => healthContainer;
         public GameObject HealthPrefab => healthPrefab;
         public InfoBlockView InfoBlockView => infoBlockView;
-        
+        public UiTimerView TimerView => timerView;
+
         public Canvas Canvas { get; private set; }
 
         protected override void Awake()
