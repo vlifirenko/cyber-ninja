@@ -11,12 +11,11 @@ namespace CyberNinja.Ecs.Systems.Unit
 {
     public class InitUnitsSystem : IEcsInitSystem
     {
-        private readonly EcsWorldInject _ecsWorld;
         private readonly EcsCustomInject<SceneView> _sceneView;
         private readonly EcsCustomInject<IAiService> _aiService;
         private readonly EcsCustomInject<IUnitService> _unitService;
         private readonly EcsPoolInject<EnemyComponent> _enemyPool;
-        
+
         public void Init(IEcsSystems systems)
         {
             InitPlayer();
@@ -28,7 +27,7 @@ namespace CyberNinja.Ecs.Systems.Unit
             var view = _sceneView.Value.PlayerView;
             var entity = _unitService.Value.CreateUnit(view);
 
-            var playerPool = _ecsWorld.Value.GetPool<PlayerComponent>();
+            var playerPool = _enemyPool.Value.GetWorld().GetPool<PlayerComponent>();
             playerPool.Add(entity);
         }
 
@@ -44,7 +43,7 @@ namespace CyberNinja.Ecs.Systems.Unit
             {
                 var view = item.GetComponent<UnitView>();
                 var entity = _unitService.Value.CreateUnit(view);
-                
+
                 _enemyPool.Value.Add(entity);
                 _aiService.Value.InitUnit(entity);
             }

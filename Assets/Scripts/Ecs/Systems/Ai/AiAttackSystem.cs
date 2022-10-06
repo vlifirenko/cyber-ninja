@@ -1,9 +1,7 @@
-﻿using CyberNinja.Ecs.Components;
-using CyberNinja.Ecs.Components.Ai;
+﻿using CyberNinja.Ecs.Components.Ai;
 using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models.Enums;
 using CyberNinja.Services;
-using CyberNinja.Services.Impl;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
@@ -15,7 +13,6 @@ namespace CyberNinja.Ecs.Systems.Ai
         private readonly EcsFilterInject<Inc<AiTaskComponent, AiTargetComponent>, Exc<KnockoutComponent>> _filter;
         private readonly EcsPoolInject<AiTaskComponent> _aiTaskPool;
         private readonly EcsPoolInject<AiTargetComponent> _aiTargetPool;
-        private readonly EcsWorldInject _world;
         private readonly EcsCustomInject<IUnitService> _unitService;
 
         public void Run(IEcsSystems systems)
@@ -28,7 +25,7 @@ namespace CyberNinja.Ecs.Systems.Ai
 
                 var unit = _unitService.Value.GetUnit(entity);
                 var aiTarget = _aiTargetPool.Value.Get(entity);
-                if (!aiTarget.Entity.Unpack(_world.Value, out var targetEntity))
+                if (!aiTarget.Entity.Unpack(_aiTaskPool.Value.GetWorld(), out var targetEntity))
                     return;
 
                 if (_unitService.Value.HasState(targetEntity, EUnitState.Dead))

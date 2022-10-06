@@ -95,7 +95,6 @@ namespace CyberNinja.Ecs
 
                 // doors
                 .Add(new InitDoorsSystem())
-
 #if UNITY_EDITOR
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif
@@ -117,16 +116,13 @@ namespace CyberNinja.Ecs
                 .Init();
         }
 
-        private void FixedUpdate() => _systems?.Run();
+        private void Update() => _systems?.Run();
 
         private void OnDestroy()
         {
-            if (_systems != null)
-            {
-                _systems.Destroy();
-                _systems.GetWorld().Destroy();
-                _systems = null;
-            }
+            _systems?.Destroy();
+            _systems?.GetWorld()?.Destroy();
+            _systems = null;
 
             _aiService.OnDestroy();
             _vfxService.OnDestroy();

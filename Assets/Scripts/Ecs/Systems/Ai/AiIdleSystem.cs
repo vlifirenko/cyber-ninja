@@ -13,7 +13,6 @@ namespace CyberNinja.Ecs.Systems.Ai
     public class AiIdleSystem : IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<AiTaskComponent>, Exc<KnockoutComponent>> _filter;
-        private readonly EcsWorldInject _world;
         private readonly EcsCustomInject<LayersConfig> _layersConfig;
         private readonly EcsCustomInject<IUnitService> _unitService;
         private readonly EcsPoolInject<AiTaskComponent> _aiTaskPool;
@@ -43,7 +42,7 @@ namespace CyberNinja.Ecs.Systems.Ai
 
                         var targetTransform = hit.transform;
                         var packed = targetTransform.GetComponent<UnitView>().Entity;
-                        if (packed.Unpack(_world.Value, out var targetEntity))
+                        if (packed.Unpack(_aiTaskPool.Value.GetWorld(), out var targetEntity))
                         {
                             if (_unitService.Value.HasState(targetEntity, EUnitState.Dead))
                                 return;
@@ -55,7 +54,7 @@ namespace CyberNinja.Ecs.Systems.Ai
                                 {
                                     Distance = distance,
                                     Transform = targetTransform,
-                                    Entity = _world.Value.PackEntity(targetEntity)
+                                    Entity = _aiTaskPool.Value.GetWorld().PackEntity(targetEntity)
                                 };
 
                                 if (_aiTargetPool.Value.Has(entity))
