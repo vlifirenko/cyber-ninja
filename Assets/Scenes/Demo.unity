@@ -859,6 +859,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneView: {fileID: 1910917312}
   canvasView: {fileID: 1642340987}
+  uguiEmitter: {fileID: 2109982555}
   layersConfig: {fileID: 11400000, guid: f310f92ffb52f9d4a909e1dbae2b82bf, type: 2}
   unitConfig: {fileID: 11400000, guid: eb94f52f175b17547b7d17a3a290e285, type: 2}
   audioConfig: {fileID: 11400000, guid: 8ef0a8f1ada1fdc45be89cd8e6002245, type: 2}
@@ -2374,7 +2375,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5356526529243775941, guid: dec716fb035e8eb428644baa60bb1dd2, type: 3}
   m_PrefabInstance: {fileID: 5722894321981633488}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2109982551}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55f9f5033d9d421697574df1d71aa6ec, type: 3}
@@ -2386,7 +2387,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-5362
+  m_Name: pb_Mesh-2826
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2550,7 +2551,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-5372
+  m_Name: pb_Mesh-2836
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3217,13 +3218,30 @@ Transform:
   m_Father: {fileID: 74638825}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2109982551 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5356526529243775947, guid: dec716fb035e8eb428644baa60bb1dd2, type: 3}
+  m_PrefabInstance: {fileID: 5722894321981633488}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2109982555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109982551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b063c93934787408083465660cb96d7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &2119900263
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-5350
+  m_Name: pb_Mesh-2814
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

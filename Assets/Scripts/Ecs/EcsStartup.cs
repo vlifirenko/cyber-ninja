@@ -11,6 +11,7 @@ using CyberNinja.Services.Impl;
 using CyberNinja.Views;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using Leopotam.EcsLite.Unity.Ugui;
 using UnityEngine;
 
 namespace CyberNinja.Ecs
@@ -19,6 +20,7 @@ namespace CyberNinja.Ecs
     {
         [SerializeField] private SceneView sceneView;
         [SerializeField] private CanvasView canvasView;
+        [SerializeField] private EcsUguiEmitter uguiEmitter;
         [SerializeField] private LayersConfig layersConfig;
         [SerializeField] private UnitConfig unitConfig;
         [SerializeField] private AudioConfig audioConfig;
@@ -118,6 +120,7 @@ namespace CyberNinja.Ecs
                 .Inject(_gameService)
                 .Inject(_timeService)
                 .Inject()
+                .InjectUgui(uguiEmitter)
                 .Init();
         }
 
@@ -126,6 +129,7 @@ namespace CyberNinja.Ecs
         private void OnDestroy()
         {
             _systems?.Destroy();
+            _systems?.GetWorld("ugui-events")?.Destroy();
             _systems?.GetWorld()?.Destroy();
             _systems = null;
 
