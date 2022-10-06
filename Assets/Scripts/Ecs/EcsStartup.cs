@@ -33,6 +33,7 @@ namespace CyberNinja.Ecs
         private IVfxService _vfxService;
         private IItemService _itemService;
         private IGameService _gameService;
+        private ITimeService _timeService;
 
         private GameData _gameData;
 
@@ -50,6 +51,7 @@ namespace CyberNinja.Ecs
                 _itemService);
             _aiService = new AiService(world, _abilityService);
             _gameService = new GameService(world, sceneView, canvasView, _gameData);
+            _timeService = new TimeService();
 
             _systems = new EcsSystems(world);
             _systems
@@ -58,11 +60,13 @@ namespace CyberNinja.Ecs
                 .Add(new InitUnitsSystem())
                 .Add(new InitWeaponSystem())
                 .Add(new InitInputSystem())
+                .Add(new InitUiSystem())
 
                 // game
                 .Add(new GameSystem())
                 .Add(new CameraMovementSystem())
                 .Add(new AudioSystem())
+                .Add(new TimeSystem())
 
                 // movement
                 .Add(new StunSystem())
@@ -112,6 +116,7 @@ namespace CyberNinja.Ecs
                 .Inject(_vfxService)
                 .Inject(_itemService)
                 .Inject(_gameService)
+                .Inject(_timeService)
                 .Inject()
                 .Init();
         }
