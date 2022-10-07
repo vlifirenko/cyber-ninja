@@ -10,13 +10,12 @@ using CyberNinja.Views.Unit;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace CyberNinja.Services.Impl
+namespace CyberNinja.Services.Unit
 {
     public class UnitService : IUnitService
     {
         private readonly EcsWorld _world;
         private readonly UnitConfig _unitConfig;
-        private readonly CanvasView _canvasView;
         private readonly IVfxService _vfxService;
         private readonly EcsPool<StunComponent> _stunPool;
         private readonly EcsPool<KnockoutComponent> _knockoutPool;
@@ -30,12 +29,12 @@ namespace CyberNinja.Services.Impl
         private readonly EcsPool<EnergyComponent> _energyPool;
         private readonly EcsPool<VectorsComponent> _vectorsPool;
         private readonly EcsPool<MoveVectorComponent> _moveVectorPool;
+        private readonly EcsFilter _playerFilter;
 
         public UnitService(EcsWorld world, UnitConfig unitConfig, CanvasView canvasView, IVfxService vfxService)
         {
             _world = world;
             _unitConfig = unitConfig;
-            _canvasView = canvasView;
             _vfxService = vfxService;
 
             _stunPool = _world.GetPool<StunComponent>();
@@ -50,6 +49,8 @@ namespace CyberNinja.Services.Impl
             _energyPool = _world.GetPool<EnergyComponent>();
             _vectorsPool = _world.GetPool<VectorsComponent>();
             _moveVectorPool = _world.GetPool<MoveVectorComponent>();
+
+            _playerFilter = _world.Filter<PlayerComponent>().End();
         }
 
         public int CreateUnit(UnitView view)
@@ -67,7 +68,7 @@ namespace CyberNinja.Services.Impl
             var healthRegenerationPool = _world.GetPool<HealthRegenerationComponent>();
             ref var healthRegeneration = ref healthRegenerationPool.Add(entity);
             healthRegeneration.Value = view.HealthRegeneration;
-            
+
             var energyPool = _world.GetPool<EnergyComponent>();
             ref var energy = ref energyPool.Add(entity);
             energy.Current = view.MaxEnergy;
@@ -251,6 +252,14 @@ namespace CyberNinja.Services.Impl
 
         public bool IsPlayer(int entity) => _playerPool.Has(entity);
 
+        public int GetPlayerEntity()
+        {
+            foreach (var entity in _playerFilter)
+                return entity;
+
+            throw new Exception("Player entity not found");
+        }
+
         public HealthComponent GetHealth(int entity)
         {
             if (_healthPool.Has(entity))
@@ -261,31 +270,22 @@ namespace CyberNinja.Services.Impl
         public void UpdateHealth(int entity, float value)
         {
             ref var health = ref _healthPool.Get(entity);
-            health.Current = value;
             
+            health.Current = value;
+            health.IsDirty = true;
+
             if (IsPlayer(entity))
             {
-                var finalHealthScaleX = Mathf.Clamp01(health.Current / health.Max);
-                _canvasView.PlayerHealthBar.transform.localScale = new Vector3(finalHealthScaleX, 1, 1);
-
-                var finalHealthValue = Mathf.Clamp(health.Current, 0, health.Max);
-                _canvasView.PlayerHealthText.text = finalHealthValue.ToString("F0") + "/" + health.Max;
+                
             }
         }
 
         public void UpdateEnergy(int entity, float value)
         {
             ref var energy = ref _energyPool.Get(entity);
-            energy.Current = value;
             
-            if (IsPlayer(entity))
-            {
-                var finalEnergyScaleX = Mathf.Clamp01(energy.Current / energy.Max);
-                _canvasView.PlayerEnergyBar.transform.localScale = new Vector3(finalEnergyScaleX, 1, 1);
-
-                var finalEnergyValue = Mathf.Clamp(energy.Current, 0, energy.Max);
-                _canvasView.PlayerEnergyText.text = finalEnergyValue.ToString("F0") + "/" + energy.Current;
-            }
+            energy.Current = value;
+            energy.IsDirty = true;
         }
 
         public UnitComponent GetUnit(int entity)

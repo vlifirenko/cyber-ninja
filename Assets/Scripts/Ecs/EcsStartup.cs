@@ -5,10 +5,12 @@ using CyberNinja.Ecs.Systems.Ai;
 using CyberNinja.Ecs.Systems.Door;
 using CyberNinja.Ecs.Systems.Game;
 using CyberNinja.Ecs.Systems.Item;
+using CyberNinja.Ecs.Systems.Ui;
 using CyberNinja.Ecs.Systems.Unit;
 using CyberNinja.Models;
 using CyberNinja.Services;
 using CyberNinja.Services.Impl;
+using CyberNinja.Services.Unit;
 using CyberNinja.Utils;
 using CyberNinja.Views;
 using LeoEcsPhysics;
@@ -53,8 +55,8 @@ namespace CyberNinja.Ecs
             EcsPhysicsEvents.ecsWorld = world;
 
             _vfxService = new VfxService(world);
-            _itemService = new ItemService(itemsWorld);
             _unitService = new UnitService(world, unitConfig, canvasView, _vfxService);
+            _itemService = new ItemService(itemsWorld, _unitService);
             _doorService = new DoorService(world, _unitService);
             _abilityService = new AbilityService(world, unitConfig, layersConfig, _unitService, _doorService, _vfxService,
                 _itemService);
@@ -103,7 +105,8 @@ namespace CyberNinja.Ecs
                 .Add(new EnergyRegenerationSystem())
                 .Add(new DamageFactorSystem())
                 .Add(new ReviveSystem())
-                .Add(new UiHealthSystem())
+                .Add(new HealthEventSystem())
+                .Add(new EnergyEventSystem())
 
                 // ability
                 .Add(new InitAbilitiesSystem())
@@ -114,6 +117,10 @@ namespace CyberNinja.Ecs
                 
                 // items
                 .Add(new InitItemsSystem())
+                .Add(new UseItemSystem())
+                
+                // ui
+                .Add(new PlayerUiSystem())
                 
                 .AddWorld(eventWorld, World.Events)
                 .AddWorld(itemsWorld, World.Items)

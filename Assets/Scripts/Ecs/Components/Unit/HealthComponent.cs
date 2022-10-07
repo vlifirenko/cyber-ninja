@@ -4,5 +4,6 @@
     {
         public float Current;
         public float Max;
+        public bool IsDirty;
     }
 }

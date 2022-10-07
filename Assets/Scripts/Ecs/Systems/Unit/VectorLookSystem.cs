@@ -4,6 +4,7 @@ using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models;
 using CyberNinja.Models.Enums;
 using CyberNinja.Services.Impl;
+using CyberNinja.Services.Unit;
 using CyberNinja.Views;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;

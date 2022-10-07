@@ -2,6 +2,7 @@
 using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models.Enums;
 using CyberNinja.Services;
+using CyberNinja.Services.Unit;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;

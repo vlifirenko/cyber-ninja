@@ -2,6 +2,7 @@
 using CyberNinja.Ecs.Components;
 using CyberNinja.Ecs.Components.Door;
 using CyberNinja.Models.Enums;
+using CyberNinja.Services.Unit;
 using CyberNinja.Utils;
 using CyberNinja.Views;
 using Leopotam.EcsLite;

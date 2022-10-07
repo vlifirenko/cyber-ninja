@@ -1,4 +1,4 @@
-﻿using CyberNinja.Event;
+﻿using CyberNinja.Events;
 using CyberNinja.Services;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -17,7 +17,7 @@ namespace CyberNinja.Ecs.Systems.Game
             _timeService.Value.DeltaTime = Time.deltaTime;
             _timeService.Value.UnscaledDeltaTime = Time.unscaledDeltaTime;
             
-            EventsHolder.UpdateTime(_timeService.Value.Time);
+            GameEventsHolder.UpdateTime(_timeService.Value.Time);
         }
     }
 }

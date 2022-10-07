@@ -3,6 +3,7 @@ using CyberNinja.Ecs.Components.Ai;
 using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models.Enums;
 using CyberNinja.Services;
+using CyberNinja.Services.Unit;
 using CyberNinja.Views.Unit;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;

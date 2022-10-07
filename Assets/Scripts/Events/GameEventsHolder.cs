@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace CyberNinja.Event
+namespace CyberNinja.Events
 {
-    public static class EventsHolder
+    public static class GameEventsHolder
     {
         public static event Action<float> OnTimeUpdate;
 

@@ -1,5 +1,5 @@
 ﻿using System;
-using CyberNinja.Event;
+using CyberNinja.Events;
 using CyberNinja.Views;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -13,7 +13,7 @@ namespace CyberNinja.Ecs.Systems.Game
 
         public void Init(IEcsSystems systems)
         {
-            EventsHolder.OnTimeUpdate += value =>
+            GameEventsHolder.OnTimeUpdate += value =>
             {
                 var time = TimeSpan.FromSeconds(Mathf.RoundToInt(value));
 
