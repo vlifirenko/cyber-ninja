@@ -1,9 +1,9 @@
 ﻿using System;
-using CyberNinja.Config;
 using CyberNinja.Ecs.Components;
 using CyberNinja.Ecs.Components.Ability;
 using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models.Ability;
+using CyberNinja.Models.Config;
 using CyberNinja.Models.Enums;
 using CyberNinja.Services.Unit;
 using CyberNinja.Utils;
@@ -25,10 +25,10 @@ namespace CyberNinja.Services.Impl
         private readonly IUnitService _unitService;
         private readonly IDoorService _doorService;
         private readonly IVfxService _vfxService;
-        private readonly IItemService _itemService;
+        private readonly ISceneService _sceneService;
 
         public AbilityService(EcsWorld world, UnitConfig unitConfig, LayersConfig layersConfig,
-            IUnitService unitService, IDoorService doorService, IVfxService vfxService, IItemService itemService)
+            IUnitService unitService, IDoorService doorService, IVfxService vfxService, ISceneService sceneService)
         {
             _world = world;
             _unitConfig = unitConfig;
@@ -36,7 +36,7 @@ namespace CyberNinja.Services.Impl
             _unitService = unitService;
             _doorService = doorService;
             _vfxService = vfxService;
-            _itemService = itemService;
+            _sceneService = sceneService;
 
             _enabledPool = _world.GetPool<AbilityEnabledComponent>();
         }

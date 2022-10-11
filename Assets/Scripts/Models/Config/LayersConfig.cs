@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CyberNinja.Config
+namespace CyberNinja.Models.Config
 {
     [CreateAssetMenu(menuName = "Config/Layers", fileName = "Layers")]
     public class LayersConfig : ScriptableObject

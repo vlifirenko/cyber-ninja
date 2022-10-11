@@ -1,6 +1,6 @@
 using System;
-using CyberNinja.Config;
 using CyberNinja.Models.Ability;
+using CyberNinja.Models.Config;
 using CyberNinja.Models.Enums;
 using CyberNinja.Views.Core;
 using Leopotam.EcsLite;

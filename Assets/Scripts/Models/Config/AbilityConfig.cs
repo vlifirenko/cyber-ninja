@@ -2,7 +2,7 @@ using CyberNinja.Models.Enums;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace CyberNinja.Config
+namespace CyberNinja.Models.Config
 {
     [CreateAssetMenu(menuName = "Config/Ability", fileName = "Ability")]
     public class AbilityConfig : ScriptableObject

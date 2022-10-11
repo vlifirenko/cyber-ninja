@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CyberNinja.Config
+namespace CyberNinja.Models.Config
 {
     [CreateAssetMenu(menuName = "Config/Audio", fileName = "Audio")]
     public class AudioConfig : ScriptableObject

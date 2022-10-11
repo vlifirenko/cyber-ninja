@@ -1,8 +1,8 @@
 ﻿using System;
-using CyberNinja.Config;
 using CyberNinja.Ecs.Components;
 using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models.Ability;
+using CyberNinja.Models.Config;
 using CyberNinja.Views;
 using Leopotam.EcsLite;
 using UniRx;

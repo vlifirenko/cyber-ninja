@@ -1,5 +1,5 @@
-﻿using CyberNinja.Config;
-using CyberNinja.Models.Ability;
+﻿using CyberNinja.Models.Ability;
+using CyberNinja.Models.Config;
 using UnityEngine;
 
 namespace CyberNinja.Services

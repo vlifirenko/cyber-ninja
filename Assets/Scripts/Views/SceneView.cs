@@ -16,7 +16,7 @@ namespace CyberNinja.Views
         [SerializeField] private Volume volume;
         [SerializeField] private DoorContainer doorContainer;
         [SerializeField] private UnitContainer unitContainer;
-        [SerializeField] private ItemContainer itemContainer;
+        [FormerlySerializedAs("itemContainer")] [SerializeField] private SceneObjectContainer sceneObjectContainer;
 
         public CameraView CameraView => cameraView;
         public UnitView PlayerView => playerView;
@@ -24,6 +24,6 @@ namespace CyberNinja.Views
         public Volume Volume => volume;
         public DoorContainer DoorContainer => doorContainer;
         public UnitContainer UnitContainer => unitContainer;
-        public ItemContainer ItemContainer => itemContainer;
+        public SceneObjectContainer SceneObjectContainer => sceneObjectContainer;
     }
 }

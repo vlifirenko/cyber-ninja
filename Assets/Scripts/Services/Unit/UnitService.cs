@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using CyberNinja.Config;
 using CyberNinja.Ecs.Components.Ai;
 using CyberNinja.Ecs.Components.Unit;
+using CyberNinja.Models.Config;
 using CyberNinja.Models.Enums;
 using CyberNinja.Utils;
 using CyberNinja.Views;

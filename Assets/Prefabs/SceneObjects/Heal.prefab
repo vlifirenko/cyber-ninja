@@ -148,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
       propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.size
@@ -159,20 +159,56 @@ PrefabInstance:
       value: FresnelColor
       objectReference: {fileID: 0}
     - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Name
+      value: MeshColor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[2].m_Name
+      value: EmissionColor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
       propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Name
       value: MeshToMaterialize
       objectReference: {fileID: 0}
     - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.x
-      value: 8.363101
+      value: 0.015686275
       objectReference: {fileID: 0}
     - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.y
-      value: 8.363101
+      value: 0.7490196
       objectReference: {fileID: 0}
     - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.z
-      value: 8.363101
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.x
+      value: 0.08873497
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.y
+      value: 4.237095
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[2].m_Value.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[2].m_Value.x
+      value: 0.3137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[2].m_Value.y
+      value: 11.984314
       objectReference: {fileID: 0}
     - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
       propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Value
@@ -180,6 +216,14 @@ PrefabInstance:
       objectReference: {fileID: 9175019031382894591, guid: 1a929bf1cebe7ca44ada4afe4f6e2ad3, type: 3}
     - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[2].m_Overridden
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8829622114992613777, guid: 926bbd407e994b74ba26eddf763f3449, type: 3}
@@ -282,7 +326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5238713024405266162, guid: eaab787c047c67b439d85c22ea856b52, type: 3}
       propertyPath: m_Name
-      value: Heal_Item
+      value: Heal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eaab787c047c67b439d85c22ea856b52, type: 3}

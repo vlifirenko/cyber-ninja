@@ -1,13 +1,13 @@
 ﻿using System;
-using CyberNinja.Config;
-using CyberNinja.Models.Enums;
+using CyberNinja.Models.Config;
+using CyberNinja.Views;
 
 namespace CyberNinja.Events
 {
     public static class ItemEventsHolder
     {
-        public static event Action<int, ItemUseEffect> OnUseItem;
+        public static event Action<SceneObjectView> OnTryPickup;
 
-        public static void UseItem(int entity, ItemUseEffect effect) => OnUseItem?.Invoke(entity, effect);
+        public static void TryPickup(SceneObjectView view) => OnTryPickup?.Invoke(view);
     }
 }

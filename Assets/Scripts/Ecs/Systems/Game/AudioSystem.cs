@@ -1,5 +1,5 @@
-﻿using CyberNinja.Config;
-using CyberNinja.Models;
+﻿using CyberNinja.Models;
+using CyberNinja.Models.Config;
 using CyberNinja.Views;
 using FMOD.Studio;
 using FMODUnity;

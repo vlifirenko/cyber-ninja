@@ -1,21 +1,20 @@
 ﻿using System;
-using CyberNinja.Config;
 using CyberNinja.Events;
+using CyberNinja.Models;
 using CyberNinja.Models.Enums;
-using CyberNinja.Services;
 using CyberNinja.Services.Unit;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 
-namespace CyberNinja.Ecs.Systems.Item
+namespace CyberNinja.Ecs.Systems.SceneObjects
 {
-    public class UseItemSystem : IEcsInitSystem
+    public class UseSceneObjectSystem : IEcsInitSystem
     {
         private readonly EcsCustomInject<IUnitService> _unitService;
         
         public void Init(IEcsSystems systems)
         {
-            ItemEventsHolder.OnUseItem += (entity, effect) =>
+            SceneEventsHolder.OnUseSceneObject += (entity, effect) =>
             {
                 switch (effect.type)
                 {
@@ -28,7 +27,7 @@ namespace CyberNinja.Ecs.Systems.Item
             };
         }
 
-        private void Heal(int entity, ItemUseEffect effect)
+        private void Heal(int entity, SceneObjectUseEffect effect)
         {
             var health = _unitService.Value.GetHealth(entity);
             var newValue = Math.Clamp(health.Current + effect.value, 0f, health.Max);

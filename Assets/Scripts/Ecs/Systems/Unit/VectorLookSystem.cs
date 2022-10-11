@@ -1,7 +1,7 @@
-﻿using CyberNinja.Config;
-using CyberNinja.Ecs.Components.Ai;
+﻿using CyberNinja.Ecs.Components.Ai;
 using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models;
+using CyberNinja.Models.Config;
 using CyberNinja.Models.Enums;
 using CyberNinja.Services.Impl;
 using CyberNinja.Services.Unit;

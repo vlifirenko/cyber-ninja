@@ -10,12 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46987a9426974392bc65df3e3fedb163, type: 3}
-  m_Name: Item_Trap
+  m_Name: Test
   m_EditorClassIdentifier: 
   tryEquip: 0
-  destroyAfterPickup: 0
-  useOnPickup: 1
-  useEffect:
-    type: 10
-    value: -100
-  reloading: 5

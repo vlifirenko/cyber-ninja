@@ -1,7 +1,7 @@
 ﻿using CyberNinja.Models.Enums;
 using UnityEngine;
 
-namespace CyberNinja.Config
+namespace CyberNinja.Models.Config
 {
     [CreateAssetMenu(menuName = "Config/Input", fileName = "Input")]
     public class InputConfig : ScriptableObject

@@ -7,11 +7,11 @@ using Leopotam.EcsLite.Di;
 
 namespace CyberNinja.Ecs.Systems.Unit
 {
-    public class UnitTriggerEnterSystem : IEcsRunSystem
+    public class TriggerEnterSystem : IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<OnTriggerEnterEvent>> _filter;
         private readonly EcsPoolInject<OnTriggerEnterEvent> _triggerPool;
-        private readonly EcsCustomInject<IItemService> _itemService;
+        private readonly EcsCustomInject<ISceneService> _sceneService;
 
         public void Run(IEcsSystems systems)
         {
@@ -21,8 +21,8 @@ namespace CyberNinja.Ecs.Systems.Unit
 
                 if (eventData.collider.CompareTag(Tag.Item))
                 {
-                    if (eventData.collider.TryGetComponent<ItemView>(out var view))
-                        _itemService.Value.PickupItem(view);
+                    if (eventData.collider.TryGetComponent<SceneObjectView>(out var view))
+                        _sceneService.Value.TriggerObject(view);
                 }
             }
         }

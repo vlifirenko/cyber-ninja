@@ -1,13 +1,13 @@
-using CyberNinja.Config;
-using CyberNinja.Ecs.Systems;
 using CyberNinja.Ecs.Systems.Ability;
 using CyberNinja.Ecs.Systems.Ai;
 using CyberNinja.Ecs.Systems.Door;
 using CyberNinja.Ecs.Systems.Game;
 using CyberNinja.Ecs.Systems.Item;
+using CyberNinja.Ecs.Systems.SceneObjects;
 using CyberNinja.Ecs.Systems.Ui;
 using CyberNinja.Ecs.Systems.Unit;
 using CyberNinja.Models;
+using CyberNinja.Models.Config;
 using CyberNinja.Services;
 using CyberNinja.Services.Impl;
 using CyberNinja.Services.Unit;
@@ -38,9 +38,10 @@ namespace CyberNinja.Ecs
         private IAbilityService _abilityService;
         private IDoorService _doorService;
         private IVfxService _vfxService;
-        private IItemService _itemService;
+        private ISceneService _sceneService;
         private IGameService _gameService;
         private ITimeService _timeService;
+        private IItemService _itemService;
 
         private GameData _gameData;
 
@@ -56,13 +57,14 @@ namespace CyberNinja.Ecs
 
             _vfxService = new VfxService(world);
             _unitService = new UnitService(world, unitConfig, canvasView, _vfxService);
-            _itemService = new ItemService(itemsWorld, _unitService);
+            _sceneService = new SceneService(itemsWorld, _unitService);
             _doorService = new DoorService(world, _unitService);
             _abilityService = new AbilityService(world, unitConfig, layersConfig, _unitService, _doorService, _vfxService,
-                _itemService);
+                _sceneService);
             _aiService = new AiService(world, _abilityService);
             _gameService = new GameService(world, sceneView, canvasView, _gameData);
             _timeService = new TimeService();
+            _itemService = new ItemService();
 
             _systems = new EcsSystems(world);
             _systems
@@ -80,7 +82,7 @@ namespace CyberNinja.Ecs
                 .Add(new TimeSystem())
                 
                 // trigger
-                .Add(new UnitTriggerEnterSystem())
+                .Add(new TriggerEnterSystem())
 
                 // movement
                 .Add(new StunSystem())
@@ -115,9 +117,12 @@ namespace CyberNinja.Ecs
                 // doors
                 .Add(new InitDoorsSystem())
                 
+                // scene objects
+                .Add(new InitSceneObjectsSystem())
+                .Add(new UseSceneObjectSystem())
+                
                 // items
-                .Add(new InitItemsSystem())
-                .Add(new UseItemSystem())
+                .Add(new TryPickupItemService())
                 
                 // ui
                 .Add(new PlayerUiSystem())
@@ -131,8 +136,8 @@ namespace CyberNinja.Ecs
 #endif
                 .Inject(_gameData, sceneView, canvasView)
                 .Inject(layersConfig, unitConfig, audioConfig, inputConfig)
-                .Inject(_unitService, _aiService, _abilityService, _doorService, _vfxService, _itemService,
-                    _gameService, _timeService)
+                .Inject(_unitService, _aiService, _abilityService, _doorService, _vfxService, _sceneService,
+                    _gameService, _timeService, _itemService)
                 .Inject()
                 .InjectUgui(uguiEmitter, World.Events)
                 .DelHerePhysics()

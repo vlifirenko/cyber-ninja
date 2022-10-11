@@ -1,5 +1,5 @@
 using System;
-using CyberNinja.Config;
+using CyberNinja.Models.Config;
 
 namespace CyberNinja.Models.Ability
 {

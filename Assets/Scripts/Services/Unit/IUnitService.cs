@@ -1,5 +1,5 @@
-﻿using CyberNinja.Config;
-using CyberNinja.Ecs.Components.Unit;
+﻿using CyberNinja.Ecs.Components.Unit;
+using CyberNinja.Models.Config;
 using CyberNinja.Views.Unit;
 using UnityEngine;
 
