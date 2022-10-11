@@ -3,6 +3,7 @@
     public static class World
     {
         public const string Events = "events";
-        public const string Items = "items";
+        public const string Scene = "scene";
+        public const string Item = "item";
     }
 }

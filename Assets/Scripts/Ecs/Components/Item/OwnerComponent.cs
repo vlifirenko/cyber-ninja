@@ -4,6 +4,6 @@ namespace CyberNinja.Ecs.Components.Item
 {
     public struct OwnerComponent
     {
-        public EcsPackedEntity Entity;
+        public EcsPackedEntityWithWorld Entity;
     }
 }

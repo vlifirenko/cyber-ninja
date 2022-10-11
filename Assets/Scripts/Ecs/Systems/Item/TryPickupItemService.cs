@@ -1,12 +1,19 @@
 ﻿using CyberNinja.Events;
+using CyberNinja.Services;
+using CyberNinja.Services.Unit;
 using CyberNinja.Views;
 using Leopotam.EcsLite;
+using Leopotam.EcsLite.Di;
 using UnityEngine;
 
 namespace CyberNinja.Ecs.Systems.Item
 {
     public class TryPickupItemService : IEcsInitSystem
     {
+        private readonly EcsCustomInject<IUnitService> _unitService;
+        private readonly EcsCustomInject<IItemService> _itemService;
+        private readonly EcsWorldInject _world;
+
         public void Init(IEcsSystems systems)
         {
             ItemEventsHolder.OnTryPickup += OnTryPickup;
@@ -15,13 +22,11 @@ namespace CyberNinja.Ecs.Systems.Item
         private void OnTryPickup(SceneObjectView view)
         {
             var config = view.Config;
-            var isSuccessPickup = true;
-            Debug.Log($"try pickup {config.item.title}");
-
-            if (isSuccessPickup)
-            {
-                view.Hide();
-            }
+            var itemEntity = _itemService.Value.CreateItem(config.item);
+            var playerEntity = _unitService.Value.GetPlayerEntity();
+            
+            _itemService.Value.TryEquip(itemEntity, _world.Value.PackEntityWithWorld(playerEntity));
+            view.Hide();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CyberNinja.Models.Enums;
+using UnityEngine;
 
 namespace CyberNinja.Models.Config
 {
@@ -6,5 +7,6 @@ namespace CyberNinja.Models.Config
     public class ItemConfig : ScriptableObject
     {
         public string title;
+        public EItemSlot slot;
     }
 }

@@ -49,6 +49,7 @@ namespace CyberNinja.Ecs
         {
             var world = new EcsWorld();
             var eventWorld = new EcsWorld();
+            var sceneWorld = new EcsWorld();
             var itemsWorld = new EcsWorld();
 
             _gameData = new GameData();
@@ -57,14 +58,14 @@ namespace CyberNinja.Ecs
 
             _vfxService = new VfxService(world);
             _unitService = new UnitService(world, unitConfig, canvasView, _vfxService);
-            _sceneService = new SceneService(itemsWorld, _unitService);
+            _sceneService = new SceneService(sceneWorld, _unitService);
             _doorService = new DoorService(world, _unitService);
             _abilityService = new AbilityService(world, unitConfig, layersConfig, _unitService, _doorService, _vfxService,
                 _sceneService);
             _aiService = new AiService(world, _abilityService);
             _gameService = new GameService(world, sceneView, canvasView, _gameData);
             _timeService = new TimeService();
-            _itemService = new ItemService();
+            _itemService = new ItemService(itemsWorld);
 
             _systems = new EcsSystems(world);
             _systems
@@ -128,11 +129,13 @@ namespace CyberNinja.Ecs
                 .Add(new PlayerUiSystem())
                 
                 .AddWorld(eventWorld, World.Events)
-                .AddWorld(itemsWorld, World.Items)
+                .AddWorld(sceneWorld, World.Scene)
+                .AddWorld(itemsWorld, World.Item)
 #if UNITY_EDITOR
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem(World.Events))
-                .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem(World.Items))
+                .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem(World.Scene))
+                .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem(World.Item))
 #endif
                 .Inject(_gameData, sceneView, canvasView)
                 .Inject(layersConfig, unitConfig, audioConfig, inputConfig)
@@ -151,7 +154,8 @@ namespace CyberNinja.Ecs
             EcsPhysicsEvents.ecsWorld = null;
             _systems?.Destroy();
             _systems?.GetWorld(World.Events)?.Destroy();
-            _systems?.GetWorld(World.Items)?.Destroy();
+            _systems?.GetWorld(World.Scene)?.Destroy();
+            _systems?.GetWorld(World.Item)?.Destroy();
             _systems?.GetWorld()?.Destroy();
             _systems = null;
 
