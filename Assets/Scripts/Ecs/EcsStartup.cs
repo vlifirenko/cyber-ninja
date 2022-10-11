@@ -72,7 +72,6 @@ namespace CyberNinja.Ecs
 
                 // init
                 .Add(new InitUnitsSystem())
-                .Add(new InitWeaponSystem())
                 .Add(new InitInputSystem())
                 .Add(new InitUiSystem())
 

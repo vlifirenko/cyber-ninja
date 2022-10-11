@@ -19,3 +19,4 @@ MonoBehaviour:
     type: 0
     value: 0
   reloading: 0
+  item: {fileID: 11400000, guid: cf1b7d5a7d625d142a4158015ad69575, type: 2}

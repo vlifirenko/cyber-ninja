@@ -51,10 +51,42 @@ namespace CyberNinja.Services.Impl
             {
                 Entity = ownerEntity
             };
+
+            if (ownerEntity.Unpack(out var world, out var entity))
+            {
+                var unit = world.GetPool<UnitComponent>().Get(entity);
+                var item = _itemPool.Get(itemEntity);
+                var weaponView = unit.View.WeaponSlotView;
+
+                if (!weaponView.IsWeaponEnabled)
+                    return;
+
+                if (weaponView.ItemInstance != null)
+                    Object.Destroy(weaponView.ItemInstance.gameObject);
+
+                var hand = weaponView.UseRightHand ? weaponView.HandRight : weaponView.HandLeft;
+                var weaponInstance = Object.Instantiate(item.Config.prefab, hand, false);
+
+                weaponInstance.Transform.localPosition = weaponInstance.Position;
+                weaponInstance.Transform.localRotation = Quaternion.Euler(weaponInstance.Rotation);
+                weaponInstance.Transform.localScale = weaponInstance.Scale;
+
+                weaponView.ItemInstance = weaponInstance;
+            }
         }
 
         private void Swap()
         {
+            // remove
+            // todo
+            /*var unit = _unitPool.Value.Get(entity);
+            var weaponView = unit.View.WeaponSlotView;
+
+            for (var i = 0; i < weaponView.WeaponsContainer.childCount; i++)
+            {
+                Object.DestroyImmediate(weaponView.WeaponsContainer
+                    .GetChild(weaponView.WeaponsContainer.childCount - i - 1).gameObject);
+            }*/
         }
 
         public void ActivateItem(int entity)

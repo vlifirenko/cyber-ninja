@@ -1,6 +1,7 @@
 using CyberNinja.Views.Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace CyberNinja.Views.Unit
 {
@@ -12,20 +13,18 @@ namespace CyberNinja.Views.Unit
         [FoldoutGroup("REFERENCES"), SerializeField] private bool useRightHand = true;
 
         [ToggleGroup("WEAPONS"), SerializeField] private bool WEAPONS;
-        [VerticalGroup("WEAPONS/1"), SerializeField] private WeaponView weaponPack;
-        [VerticalGroup("WEAPONS/1"), SerializeField, ReadOnly] private WeaponView weaponInstance;
+        [FormerlySerializedAs("weaponInstance")] [VerticalGroup("WEAPONS/1"), SerializeField, ReadOnly] private ItemView itemInstance;
 
         public Transform WeaponsContainer => weaponsContainer;
         public Transform HandLeft => handLeft;
         public Transform HandRight => handRight;
         public bool UseRightHand => useRightHand;
         public bool IsWeaponEnabled => WEAPONS;
-        public WeaponView WeaponPack => weaponPack;
-        
-        public WeaponView WeaponInstance
+
+        public ItemView ItemInstance
         {
-            get => weaponInstance;
-            set => weaponInstance = value;
+            get => itemInstance;
+            set => itemInstance = value;
         }
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CyberNinja.Views.Unit
 {
-    public class WeaponView : AView
+    public class ItemView : AView
     {
         [SerializeField] private Transform model;
         [SerializeField] private Vector3 position;

@@ -1,4 +1,5 @@
 ﻿using CyberNinja.Models.Enums;
+using CyberNinja.Views.Unit;
 using UnityEngine;
 
 namespace CyberNinja.Models.Config
@@ -8,5 +9,6 @@ namespace CyberNinja.Models.Config
     {
         public string title;
         public EItemSlot slot;
+        public ItemView prefab;
     }
 }
