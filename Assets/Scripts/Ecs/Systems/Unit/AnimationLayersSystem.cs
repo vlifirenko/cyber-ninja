@@ -13,7 +13,7 @@ namespace CyberNinja.Ecs.Systems.Unit
         private readonly EcsFilterInject<Inc<LayerUpperBodyComponent>> _filter;
         private readonly EcsPoolInject<LayerUpperBodyTimeComponent> _layerUpperBodyTimePool;
         private readonly EcsPoolInject<LayerUpperBodyComponent> _layerUpperBodyPool;
-        private readonly EcsCustomInject<UnitConfig> _characterConfig;
+        private readonly EcsCustomInject<GlobalUnitConfig> _characterConfig;
         private readonly EcsCustomInject<IUnitService> _unitService;
 
         public void Run(IEcsSystems systems)

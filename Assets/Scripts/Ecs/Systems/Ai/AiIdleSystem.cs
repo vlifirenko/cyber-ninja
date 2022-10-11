@@ -31,7 +31,7 @@ namespace CyberNinja.Ecs.Systems.Ai
                 var unit = _unitService.Value.GetUnit(entity);
                 var hitColliders = Physics.OverlapSphere(
                     unit.View.Transform.position,
-                    unit.View.LookRadius,
+                    unit.Config.LookRadius,
                     _layersConfig.Value.playerLayerMask);
 
                 if (hitColliders.Length > 1)

@@ -18,7 +18,7 @@ namespace CyberNinja.Services.Impl
     public class AbilityService : IAbilityService, IDestroyable
     {
         private readonly EcsWorld _world;
-        private readonly UnitConfig _unitConfig;
+        private readonly GlobalUnitConfig _globalUnitConfig;
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
         private readonly EcsPool<AbilityEnabledComponent> _enabledPool;
         private readonly LayersConfig _layersConfig;
@@ -27,11 +27,11 @@ namespace CyberNinja.Services.Impl
         private readonly IVfxService _vfxService;
         private readonly ISceneService _sceneService;
 
-        public AbilityService(EcsWorld world, UnitConfig unitConfig, LayersConfig layersConfig,
+        public AbilityService(EcsWorld world, GlobalUnitConfig globalUnitConfig, LayersConfig layersConfig,
             IUnitService unitService, IDoorService doorService, IVfxService vfxService, ISceneService sceneService)
         {
             _world = world;
-            _unitConfig = unitConfig;
+            _globalUnitConfig = globalUnitConfig;
             _layersConfig = layersConfig;
             _unitService = unitService;
             _doorService = doorService;
@@ -114,7 +114,7 @@ namespace CyberNinja.Services.Impl
                 if (pool.Has(ownerEntity))
                     return;
 
-                pool.Add(ownerEntity).Value = _unitConfig.abilityInputBlockTime;
+                pool.Add(ownerEntity).Value = _globalUnitConfig.abilityInputBlockTime;
             }
 
             var energyPool = _world.GetPool<EnergyComponent>();

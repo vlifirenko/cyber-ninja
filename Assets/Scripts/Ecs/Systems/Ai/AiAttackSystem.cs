@@ -34,7 +34,7 @@ namespace CyberNinja.Ecs.Systems.Ai
 
                 var distance = Vector3.Distance(unit.View.Transform.position, aiTarget.Transform.position);
 
-                if (distance >= unit.View.MaxAttackDistance)
+                if (distance >= unit.Config.MaxAttackDistance)
                     aiTask.Value = EAiTaskType.Chase;
             }
         }

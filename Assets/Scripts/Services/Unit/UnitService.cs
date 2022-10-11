@@ -15,8 +15,9 @@ namespace CyberNinja.Services.Unit
     public class UnitService : IUnitService
     {
         private readonly EcsWorld _world;
-        private readonly UnitConfig _unitConfig;
+        private readonly GlobalUnitConfig _globalUnitConfig;
         private readonly IVfxService _vfxService;
+        private readonly IItemService _itemService;
         private readonly EcsPool<StunComponent> _stunPool;
         private readonly EcsPool<KnockoutComponent> _knockoutPool;
         private readonly EcsPool<DeadComponent> _deadPool;
@@ -31,11 +32,13 @@ namespace CyberNinja.Services.Unit
         private readonly EcsPool<MoveVectorComponent> _moveVectorPool;
         private readonly EcsFilter _playerFilter;
 
-        public UnitService(EcsWorld world, UnitConfig unitConfig, CanvasView canvasView, IVfxService vfxService)
+        public UnitService(EcsWorld world, GlobalUnitConfig globalUnitConfig, CanvasView canvasView, IVfxService vfxService,
+            IItemService itemService)
         {
             _world = world;
-            _unitConfig = unitConfig;
+            _globalUnitConfig = globalUnitConfig;
             _vfxService = vfxService;
+            _itemService = itemService;
 
             _stunPool = _world.GetPool<StunComponent>();
             _knockoutPool = _world.GetPool<KnockoutComponent>();
@@ -59,24 +62,24 @@ namespace CyberNinja.Services.Unit
 
             ref var unit = ref _unitPool.Add(entity);
             unit.View = view;
-            unit.ControlType = view.ControlType;
+            unit.Config = view.Config;
 
             ref var health = ref _healthPool.Add(entity);
-            health.Current = view.MaxHealth;
-            health.Max = view.MaxHealth;
+            health.Current = view.Config.MaxHealth;
+            health.Max = view.Config.MaxHealth;
 
             var healthRegenerationPool = _world.GetPool<HealthRegenerationComponent>();
             ref var healthRegeneration = ref healthRegenerationPool.Add(entity);
-            healthRegeneration.Value = view.HealthRegeneration;
+            healthRegeneration.Value = view.Config.HealthRegeneration;
 
             var energyPool = _world.GetPool<EnergyComponent>();
             ref var energy = ref energyPool.Add(entity);
-            energy.Current = view.MaxEnergy;
-            energy.Max = view.MaxEnergy;
+            energy.Current = view.Config.MaxEnergy;
+            energy.Max = view.Config.MaxEnergy;
 
             var energyRegenerationPool = _world.GetPool<EnergyRegenerationComponent>();
             ref var energyRegeneration = ref energyRegenerationPool.Add(entity);
-            energyRegeneration.Value = view.EnergyRegeneration;
+            energyRegeneration.Value = view.Config.EnergyRegeneration;
 
             var damageFactorPool = _world.GetPool<DamageFactorComponent>();
             ref var damageFactor = ref damageFactorPool.Add(entity);
@@ -85,7 +88,7 @@ namespace CyberNinja.Services.Unit
 
             var movementPool = _world.GetPool<SpeedComponent>();
             ref var movement = ref movementPool.Add(entity);
-            movement.SpeedMoveMax = view.MoveSpeed;
+            movement.SpeedMoveMax = view.Config.MoveSpeed;
             movement.SpeedCurrent = 0;
             movement.SpeedTarget = 0;
 
@@ -96,8 +99,14 @@ namespace CyberNinja.Services.Unit
             vectors.VectorDifference = Vector3.zero;
 
             view.NavMeshAgent.speed = movement.SpeedCurrent;
-            view.NavMeshAgent.stoppingDistance = view.AttackDistance - 0.1f;
+            view.NavMeshAgent.stoppingDistance = view.Config.AttackDistance - 0.1f;
             view.NavMeshAgent.updateRotation = false;
+
+            if (unit.Config.DefaultWeapon != null)
+            {
+                var weaponEntity =  _itemService.CreateItem(unit.Config.DefaultWeapon);
+                _itemService.TryEquip(weaponEntity, _world.PackEntityWithWorld(entity));
+            }
 
             view.Entity = _world.PackEntity(entity);
 
@@ -115,10 +124,10 @@ namespace CyberNinja.Services.Unit
 
             UpdateHealth(entity, newHealth);
 
-            var damageClamped = Mathf.Clamp01(damageMath / _unitConfig.maxDamage);
+            var damageClamped = Mathf.Clamp01(damageMath / _globalUnitConfig.maxDamage);
             var healthClamped = Mathf.Clamp01(1 - health.Current / health.Max);
 
-            var abilityData = unit.View.AbilityDamageConfig;
+            var abilityData = unit.View.Config.AbilityDamageConfig;
             if (damageMath > 0)
             {
                 if (abilityData.ANIMATOR)
@@ -126,7 +135,7 @@ namespace CyberNinja.Services.Unit
                 if (abilityData.VFX)
                     _vfxService.SpawnVfx(entity, abilityData, true, damageClamped, healthClamped, damageOrigin.position);
 
-                var damageClampedLayer = Mathf.Clamp(damageClamped, _unitConfig.minLayerHit, 1); // limit min layer weight
+                var damageClampedLayer = Mathf.Clamp(damageClamped, _globalUnitConfig.minLayerHit, 1); // limit min layer weight
                 unit.View.Animator.SetLayerWeight(2, damageClampedLayer);
             }
 
@@ -147,12 +156,12 @@ namespace CyberNinja.Services.Unit
 
             unit.View.NavMeshAgent.enabled = false;
 
-            if (unit.View.AbilityDeadConfig.ANIMATOR)
-                unit.View.Animator.TriggerAnimations(unit.View.AbilityDeadConfig);
-            if (unit.View.AbilityDeadConfig.VFX)
-                _vfxService.SpawnVfx(entity, unit.View.AbilityDeadConfig);
+            if (unit.View.Config.AbilityDeadConfig.ANIMATOR)
+                unit.View.Animator.TriggerAnimations(unit.View.Config.AbilityDeadConfig);
+            if (unit.View.Config.AbilityDeadConfig.VFX)
+                _vfxService.SpawnVfx(entity, unit.View.Config.AbilityDeadConfig);
 
-            if (unit.ControlType == EControlType.AI)
+            if (unit.Config.ControlType == EControlType.AI)
             {
                 ref var aiTask = ref _world.GetPool<AiTaskComponent>().Get(entity);
                 aiTask.Value = EAiTaskType.Dead;
@@ -353,19 +362,19 @@ namespace CyberNinja.Services.Unit
         private void ToggleStun(int entity)
         {
             var unit = _unitPool.Get(entity);
-            var abilityData = unit.View.AbilityDamageConfig;
+            var abilityData = unit.View.Config.AbilityDamageConfig;
 
-            if (unit.View.AbilityStunOnConfig.ANIMATOR)
+            if (unit.View.Config.AbilityStunOnConfig.ANIMATOR)
             {
                 if (HasState(entity, EUnitState.Stun))
                 {
                     AddState(entity, EUnitState.Knockout);
-                    unit.View.Animator.TriggerAnimations(unit.View.AbilityStunOnConfig);
+                    unit.View.Animator.TriggerAnimations(unit.View.Config.AbilityStunOnConfig);
                 }
                 else
                 {
                     RemoveState(entity, EUnitState.Knockout);
-                    unit.View.Animator.TriggerAnimations(unit.View.AbilityStunOffConfig);
+                    unit.View.Animator.TriggerAnimations(unit.View.Config.AbilityStunOffConfig);
                 }
             }
 

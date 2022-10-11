@@ -34,7 +34,7 @@ namespace CyberNinja.Ecs.Systems.Unit
             foreach (var entity in _filter.Value)
             {
                 var unit = _unitService.Value.GetUnit(entity);
-                var isPlayer = unit.ControlType == EControlType.Player;
+                var isPlayer = unit.Config.ControlType == EControlType.Player;
 
                 VectorMoveMath(entity, isPlayer);
                 InputMath(entity, unit.View, isPlayer);
@@ -93,14 +93,14 @@ namespace CyberNinja.Ecs.Systems.Unit
             var speedLerp = Mathf.Lerp(
                 speed.SpeedCurrent,
                 speed.SpeedTarget,
-                view.SmoothMove);
+                view.Config.SmoothMove);
             if (speedLerp < 0.01f)
                 speedLerp = 0;
 
             speed.SpeedCurrent = speedLerp;
 
             var enemyIsClose = _aiTargetPool.Value.Has(entity)
-                               && _aiTargetPool.Value.Get(entity).Distance <= view.AttackDistance;
+                               && _aiTargetPool.Value.Get(entity).Distance <= view.Config.AttackDistance;
 
             if (isPlayerControl)
             {
@@ -130,7 +130,7 @@ namespace CyberNinja.Ecs.Systems.Unit
                 var speedTarget = 0f;
                 if (!enemyIsClose)
                 {
-                    speedTarget = speed.SpeedMoveMax * view.SpeedFactor;
+                    speedTarget = speed.SpeedMoveMax * view.Config.SpeedFactor;
                 }
 
                 speed.SpeedTarget = speedTarget;
@@ -176,7 +176,7 @@ namespace CyberNinja.Ecs.Systems.Unit
             if (isPlayerControl)
             {
                 Vector3 forwardVector;
-                if (unit.View.RotateToLookVector && _vectorLookPool.Value.Has(entity))
+                if (unit.Config.RotateToLookVector && _vectorLookPool.Value.Has(entity))
                     forwardVector = _vectorLookPool.Value.Get(entity).Value;
                 else
                     forwardVector = _moveVectorPool.Value.Get(entity).Value;
@@ -187,7 +187,7 @@ namespace CyberNinja.Ecs.Systems.Unit
                     var rotation = Quaternion.Slerp(
                         unit.View.Transform.rotation,
                         direction,
-                        unit.View.SmoothRotation);
+                        unit.Config.SmoothRotation);
                     unit.View.Transform.rotation = rotation;
                 }
             }
@@ -200,7 +200,7 @@ namespace CyberNinja.Ecs.Systems.Unit
                 unit.View.Transform.rotation = Quaternion.Slerp(
                     unit.View.Transform.rotation,
                     Quaternion.LookRotation(targetVector, Vector3.up),
-                    unit.View.SmoothRotation);
+                    unit.Config.SmoothRotation);
             }
         }
     }

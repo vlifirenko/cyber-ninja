@@ -18,6 +18,7 @@ using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Leopotam.EcsLite.Unity.Ugui;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace CyberNinja.Ecs
 {
@@ -27,7 +28,7 @@ namespace CyberNinja.Ecs
         [SerializeField] private CanvasView canvasView;
         [SerializeField] private EcsUguiEmitter uguiEmitter;
         [SerializeField] private LayersConfig layersConfig;
-        [SerializeField] private UnitConfig unitConfig;
+        [FormerlySerializedAs("unitConfig")] [SerializeField] private GlobalUnitConfig globalUnitConfig;
         [SerializeField] private AudioConfig audioConfig;
         [SerializeField] private InputConfig inputConfig;
 
@@ -57,15 +58,15 @@ namespace CyberNinja.Ecs
             EcsPhysicsEvents.ecsWorld = world;
 
             _vfxService = new VfxService(world);
-            _unitService = new UnitService(world, unitConfig, canvasView, _vfxService);
+            _itemService = new ItemService(itemsWorld);
+            _unitService = new UnitService(world, globalUnitConfig, canvasView, _vfxService, _itemService);
             _sceneService = new SceneService(sceneWorld, _unitService);
             _doorService = new DoorService(world, _unitService);
-            _abilityService = new AbilityService(world, unitConfig, layersConfig, _unitService, _doorService, _vfxService,
+            _abilityService = new AbilityService(world, globalUnitConfig, layersConfig, _unitService, _doorService, _vfxService,
                 _sceneService);
             _aiService = new AiService(world, _abilityService);
             _gameService = new GameService(world, sceneView, canvasView, _gameData);
             _timeService = new TimeService();
-            _itemService = new ItemService(itemsWorld);
 
             _systems = new EcsSystems(world);
             _systems
@@ -137,7 +138,7 @@ namespace CyberNinja.Ecs
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem(World.Item))
 #endif
                 .Inject(_gameData, sceneView, canvasView)
-                .Inject(layersConfig, unitConfig, audioConfig, inputConfig)
+                .Inject(layersConfig, globalUnitConfig, audioConfig, inputConfig)
                 .Inject(_unitService, _aiService, _abilityService, _doorService, _vfxService, _sceneService,
                     _gameService, _timeService, _itemService)
                 .Inject()

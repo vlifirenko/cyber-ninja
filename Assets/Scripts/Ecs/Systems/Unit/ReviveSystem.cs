@@ -31,7 +31,7 @@ namespace CyberNinja.Ecs.Systems.Unit
         private void Revive(int entity)
         {
             var unit = _unitService.Value.GetUnit(entity);
-            var abilityData = unit.View.AbilityReviveConfig;
+            var abilityData = unit.Config.AbilityReviveConfig;
 
             _unitService.Value.RemoveState(entity, EUnitState.Dead);
 
@@ -41,7 +41,7 @@ namespace CyberNinja.Ecs.Systems.Unit
                     if (_unitService.Value.HasState(entity, EUnitState.Dead))
                         return;
                     _unitService.Value.AddState(entity, EUnitState.Knockout);
-                    if (unit.ControlType == EControlType.AI)
+                    if (unit.Config.ControlType == EControlType.AI)
                         _aiService.Value.ReplaceAiTask(entity, EAiTaskType.Idle);
                 })
                 .AddTo(_disposable);

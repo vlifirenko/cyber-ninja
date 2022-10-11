@@ -30,12 +30,12 @@ namespace CyberNinja.Ecs.Systems.Ai
 
                 aiTarget.Distance = Vector3.Distance(unit.View.Transform.position, aiTarget.Transform.position);
 
-                if (aiTarget.Distance > unit.View.MaxChaseDistance)
+                if (aiTarget.Distance > unit.Config.MaxChaseDistance)
                 {
                     aiTask.Value = EAiTaskType.Idle;
                     _aiTargetPool.Value.Del(entity);
                 }
-                else if (aiTarget.Distance <= unit.View.AttackDistance)
+                else if (aiTarget.Distance <= unit.Config.AttackDistance)
                 {
                     _aiService.Value.TryAttack(entity);
                 }

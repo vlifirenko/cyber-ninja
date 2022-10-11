@@ -17,7 +17,7 @@ namespace CyberNinja.Ecs.Systems.Unit
         private static readonly int hashDashTime = Animator.StringToHash("dashTime");
 
         private readonly EcsFilterInject<Inc<UnitComponent, MoveVectorComponent>, Exc<DeadComponent>> _filter;
-        private readonly EcsCustomInject<UnitConfig> _characterConfig;
+        private readonly EcsCustomInject<GlobalUnitConfig> _characterConfig;
         private readonly EcsCustomInject<IUnitService> _unitService;
         private readonly EcsPoolInject<VectorsComponent> _vectorsPool;
         private readonly EcsPoolInject<MoveVectorComponent> _moveVectorPool;
@@ -34,7 +34,7 @@ namespace CyberNinja.Ecs.Systems.Unit
                 var speed = _speedPool.Value.Get(entity);
                 var differenceValues = Vector2.zero;
 
-                if (unit.View.RotateToLookVector)
+                if (unit.Config.RotateToLookVector)
                 {
                     if (_vectorsPool.Value.Get(entity).IsActiveVectorLook)
                     {
@@ -66,7 +66,7 @@ namespace CyberNinja.Ecs.Systems.Unit
                 var animator = unit.View.Animator;
                 var x = animator.GetFloat(hashDiffVectorX);
                 var z = animator.GetFloat(hashDiffVectorZ);
-                var lerp = unit.View.DiffVectorLerp;
+                var lerp = unit.Config.DiffVectorLerp;
                 var lerpX = Mathf.Lerp(x, differenceValues.x, lerp);
                 var lerpZ = Mathf.Lerp(z, differenceValues.y, lerp);
                 var differenceVector = _aiTargetPool.Value.Has(entity)

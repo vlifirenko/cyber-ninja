@@ -16,7 +16,7 @@ namespace CyberNinja.Ecs.Systems.Unit
     {
         private readonly EcsFilterInject<Inc<UnitComponent>, Exc<DeadComponent, KnockoutComponent>> _filter;
         private readonly EcsCustomInject<SceneView> _sceneView;
-        private readonly EcsCustomInject<UnitConfig> _characterConfig;
+        private readonly EcsCustomInject<GlobalUnitConfig> _characterConfig;
         private readonly EcsCustomInject<UnitService> _unitService;
         private readonly EcsCustomInject<GameData> _gameData;
         private readonly EcsPoolInject<PlayerComponent> _playerPool;
@@ -28,7 +28,7 @@ namespace CyberNinja.Ecs.Systems.Unit
         {
             foreach (var entity in _filter.Value)
             {
-                var isPlayer = _unitService.Value.GetUnit(entity).ControlType == EControlType.Player;
+                var isPlayer = _unitService.Value.GetUnit(entity).Config.ControlType == EControlType.Player;
                 UpdateVectorLook(entity, isPlayer);
             }
         }
@@ -72,14 +72,14 @@ namespace CyberNinja.Ecs.Systems.Unit
                         finalVectorLook = hit.point - view.Transform.position;
                         finalVectorLook.y = 0;
 
-                        if (finalVectorLook.magnitude > view.MinMouseMagnitudeTemp)
+                        if (finalVectorLook.magnitude > view.Config.MinMouseMagnitudeTemp)
                         {
-                            view.MinMouseMagnitudeTemp = view.MinMouseMagnitude + -view.MouseMagnitudeOffset;
+                            view.Config.MinMouseMagnitudeTemp = view.Config.MinMouseMagnitude + -view.Config.MouseMagnitudeOffset;
                             finalVectorLook = finalVectorLook.normalized;
                         }
                         else
                         {
-                            view.MinMouseMagnitudeTemp = view.MinMouseMagnitude + view.MouseMagnitudeOffset;
+                            view.Config.MinMouseMagnitudeTemp = view.Config.MinMouseMagnitude + view.Config.MouseMagnitudeOffset;
                             finalVectorLook = moveVector;
                         }
                     }

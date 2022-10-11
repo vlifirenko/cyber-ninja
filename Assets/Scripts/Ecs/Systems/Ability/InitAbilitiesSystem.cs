@@ -57,7 +57,7 @@ namespace CyberNinja.Ecs.Systems.Ability
             {
                 var unit = _unitService.Value.GetUnit(entity);
 
-                foreach (var abilityItem in unit.View.Abilities)
+                foreach (var abilityItem in unit.Config.Abilities)
                 {
                     _abilityService.Value.CreateAbility(abilityItem, entity);
 
@@ -72,7 +72,7 @@ namespace CyberNinja.Ecs.Systems.Ability
             {
                 var unit = _unitService.Value.GetUnit(entity);
                 
-                foreach (var abilityItem in unit.View.Abilities)
+                foreach (var abilityItem in unit.Config.Abilities)
                     _abilityService.Value.CreateAbility(abilityItem, entity);
             }
         }

@@ -77,6 +77,8 @@ namespace CyberNinja.Services.Impl
 
         private void Swap()
         {
+            Debug.Log("Swap");
+            
             // remove
             // todo
             /*var unit = _unitPool.Value.Get(entity);
