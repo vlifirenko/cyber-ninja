@@ -37,15 +37,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1835845968204741264, guid: c2e163ccfc1ff954dae0d2cbc1b797e2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1835845968204741264, guid: c2e163ccfc1ff954dae0d2cbc1b797e2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1835845968204741264, guid: c2e163ccfc1ff954dae0d2cbc1b797e2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1835845968204741264, guid: c2e163ccfc1ff954dae0d2cbc1b797e2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -61,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1835845968204741265, guid: c2e163ccfc1ff954dae0d2cbc1b797e2, type: 3}
       propertyPath: m_Name
-      value: character_Player
+      value: unit_Player
       objectReference: {fileID: 0}
     - target: {fileID: 1835845968204741265, guid: c2e163ccfc1ff954dae0d2cbc1b797e2, type: 3}
       propertyPath: m_TagString
@@ -202,6 +202,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb86859428142ad498f0661f991407c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1983964537587115015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851976922542826004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d6d1bbe58a45684bb926eb1bdc2c57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1931332380557325354 stripped

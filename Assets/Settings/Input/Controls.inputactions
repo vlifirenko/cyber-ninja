@@ -11,7 +11,8 @@
                     "id": "9f743778-0e19-44e5-9e52-673bb2623329",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "RestartLevel",
@@ -19,7 +20,8 @@
                     "id": "7493fc91-5af9-4fde-8b7c-289c33e6a217",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "TogglePostProcessing",
@@ -27,7 +29,8 @@
                     "id": "6563394a-763b-45c5-a05f-cfa94a4c74c9",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "MusicMute",
@@ -35,7 +38,8 @@
                     "id": "31472298-08fc-4635-b431-9af0de2d324f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "ToggleUI",
@@ -43,7 +47,8 @@
                     "id": "c05c5df0-d5fd-4147-a42c-64e9c50c7c70",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Screenshot",
@@ -51,7 +56,8 @@
                     "id": "07c3089c-2e3d-474a-96fb-07418e7ed38e",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -221,7 +227,8 @@
                     "id": "05491381-ed47-4f6c-9509-0053d55fb80a",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Vertical",
@@ -229,7 +236,8 @@
                     "id": "1f0c7476-5694-4e59-b893-2e059dba706e",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -247,7 +255,7 @@
                 {
                     "name": "negative",
                     "id": "c9a41c98-a78b-452e-9548-c0f666343540",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
@@ -258,7 +266,7 @@
                 {
                     "name": "positive",
                     "id": "00681802-cb0b-4838-8a35-b80782965d7c",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
@@ -377,7 +385,8 @@
                     "id": "5d8c2c57-0fff-4c5b-bc8a-61e41545ebcc",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Look",
@@ -385,7 +394,8 @@
                     "id": "59c8af58-7028-4e8e-a09b-bd1fa209bd15",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Ability01_Tap",
@@ -393,7 +403,8 @@
                     "id": "0708dccb-8db5-482a-abd2-7dcea75bfafc",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": "Tap",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Ability02_Tap",
@@ -401,7 +412,8 @@
                     "id": "7259e08e-72f4-495b-b997-879b99d6234f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": "Tap",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Ability03_Tap",
@@ -409,7 +421,8 @@
                     "id": "38aa15fe-fb8b-49c4-81e9-3f356c286d30",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": "Tap",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Ability04_Tap",
@@ -417,7 +430,8 @@
                     "id": "a7116aa4-2fb7-469b-8d4f-9d402329ec54",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": "Tap",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Action01_Tap",
@@ -425,7 +439,8 @@
                     "id": "22e536a0-f1b7-49c0-91de-b88135e9d98c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": "Tap",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Action02_Tap",
@@ -433,7 +448,8 @@
                     "id": "99f1ae0b-1021-4526-a5b8-ffb56d700281",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": "Tap",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Action03_Tap",
@@ -441,7 +457,8 @@
                     "id": "7cc360fd-3de9-454b-9dc8-8db81c09011b",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": "Tap",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Action04_Tap",
@@ -449,7 +466,17 @@
                     "id": "42f23c38-e203-4406-a32c-356acd943312",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Use",
+                    "type": "Button",
+                    "id": "344fe8aa-f207-4375-9e6d-daed1cd85c53",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -714,6 +741,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Action03_Tap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b1b51d2-f152-41fb-b4fc-723282ca7ea5",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

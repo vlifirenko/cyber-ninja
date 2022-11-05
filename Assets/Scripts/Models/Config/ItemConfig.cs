@@ -9,6 +9,6 @@ namespace CyberNinja.Models.Config
     {
         public string title;
         public EItemSlot slot;
-        public ItemView prefab;
+        public ItemPosition prefab;
     }
 }

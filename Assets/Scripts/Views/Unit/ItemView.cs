@@ -1,17 +1,6 @@
-using CyberNinja.Views.Core;
-using UnityEngine;
-
-namespace CyberNinja.Views.Unit
+﻿namespace CyberNinja.Views.Unit
 {
-    public class ItemView : AView
+    public class ItemView : SceneObjectView
     {
-        [SerializeField] private Transform model;
-        [SerializeField] private Vector3 position;
-        [SerializeField] private Vector3 rotation;
-        [SerializeField] private Vector3 scale;
-
-        public Vector3 Position => position;
-        public Vector3 Rotation => rotation;
-        public Vector3 Scale => scale;
     }
 }

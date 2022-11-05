@@ -21,6 +21,7 @@ namespace CyberNinja.Services.Impl
         {
             _world = world;
             _unitService = unitService;
+            
             _sceneObjectPool = _world.GetPool<SceneObjectComponent>();
         }
 
@@ -38,8 +39,12 @@ namespace CyberNinja.Services.Impl
             Debug.Log($"Collide {view.name}");
 
             var config = view.Config;
+            var playerEntity = _unitService.GetPlayerEntity();
+            
+            
 
-            if (config.useOnPickup)
+            // legacy impl
+            /*if (config.useOnPickup)
             {
                 if (config.useEffect.type == EItemUseEffectType.None)
                     throw new Exception("Config use effect type is None");
@@ -68,7 +73,7 @@ namespace CyberNinja.Services.Impl
                         view.Collider.enabled = true;
                     })
                     .AddTo(_disposable);
-            }
+            }*/
         }
 
         public void OnDestroy() => _disposable.Dispose();

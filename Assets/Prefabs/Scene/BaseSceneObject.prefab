@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2343367383803224452}
   - component: {fileID: 9023213230514547441}
-  - component: {fileID: 760627775719963196}
   m_Layer: 0
   m_Name: BaseSceneObject
   m_TagString: item
@@ -46,20 +45,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &760627775719963196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5238713024405266162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af22dcead10787249b9ea472c12dc23c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model: {fileID: 0}
-  rootCollider: {fileID: 9023213230514547441}
-  config: {fileID: 0}
-  materializeVfx: {fileID: 0}
-  spawnTime: 3

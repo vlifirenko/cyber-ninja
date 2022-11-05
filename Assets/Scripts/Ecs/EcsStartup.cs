@@ -83,7 +83,7 @@ namespace CyberNinja.Ecs
                 .Add(new TimeSystem())
                 
                 // trigger
-                .Add(new TriggerEnterSystem())
+                .Add(new TriggerSystem())
 
                 // movement
                 .Add(new StunSystem())
