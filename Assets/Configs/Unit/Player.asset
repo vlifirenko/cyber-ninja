@@ -40,4 +40,4 @@ MonoBehaviour:
   abilityStunOffConfig: {fileID: 11400000, guid: 70c6a8822f0293b4e8cc53980c5f2bfd, type: 2}
   abilityDeadConfig: {fileID: 11400000, guid: 6aed9abc74ddf234da313a1c220c5f1c, type: 2}
   abilityReviveConfig: {fileID: 11400000, guid: 5503bce4d4d286744ae475667b53235e, type: 2}
-  defaultWeapon: {fileID: 11400000, guid: cf1b7d5a7d625d142a4158015ad69575, type: 2}
+  defaultWeapon: {fileID: 0}

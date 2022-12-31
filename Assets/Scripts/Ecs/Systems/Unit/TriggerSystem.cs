@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using CyberNinja.Ecs.Components.Unit;
+using CyberNinja.Events;
 using CyberNinja.Services;
 using CyberNinja.Services.Unit;
 using CyberNinja.Utils;
+using CyberNinja.Views.Unit;
 using LeoEcsPhysics;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -46,6 +48,9 @@ namespace CyberNinja.Ecs.Systems.Unit
                 ref var triggerEntity = ref _triggerPool.Value.Get(entity);
                 triggerEntity.Transforms.Add(transform);
             }
+
+            var view = transform.GetComponent<ItemView>();
+            ItemEventsHolder.ItemTriggerEnter(view);
         }
 
         private void OnTriggerExit(in int entity, Transform transform)
@@ -54,6 +59,9 @@ namespace CyberNinja.Ecs.Systems.Unit
             trigger.Transforms.Remove(transform);
             if (trigger.Transforms.Count == 0)
                 _triggerPool.Value.Del(entity);
+            
+            var view = transform.GetComponent<ItemView>();
+            ItemEventsHolder.ItemTriggerExit(view);
         }
     }
 }
