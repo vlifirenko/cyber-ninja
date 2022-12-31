@@ -10,5 +10,6 @@ namespace CyberNinja.Models.Config
         public string title;
         public EItemSlot slot;
         public ItemPosition prefab;
+        public Sprite icon;
     }
 }

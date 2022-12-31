@@ -3,7 +3,7 @@
 namespace CyberNinja.Views.Core
 {
     [RequireComponent(typeof(CanvasGroup))]
-    public abstract class AUiCanvasView : AUiView
+    public abstract class AUiCanvasGroupView : AUiView
     {
         [SerializeField] private CanvasGroup canvasGroup;
 

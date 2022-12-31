@@ -3,6 +3,7 @@ using CyberNinja.Ecs.Components.Item;
 using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models.Config;
 using CyberNinja.Models.Enums;
+using CyberNinja.Views.Unit;
 using Leopotam.EcsLite;
 using UnityEngine;
 
@@ -113,6 +114,12 @@ namespace CyberNinja.Services.Impl
             }
 
             return result;
+        }
+
+        public void Pickup(ItemView view)
+        {
+            var config = view.Config;
+            Debug.Log($"pickup {config.title}");
         }
     }
 }

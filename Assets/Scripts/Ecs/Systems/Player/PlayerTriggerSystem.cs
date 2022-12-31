@@ -10,9 +10,9 @@ using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace CyberNinja.Ecs.Systems.Unit
+namespace CyberNinja.Ecs.Systems.Player
 {
-    public class TriggerSystem : IEcsRunSystem
+    public class PlayerTriggerSystem : IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<OnTriggerEnterEvent>> _triggerEnterFilter;
         private readonly EcsFilterInject<Inc<OnTriggerExitEvent>> _triggerExitFilter;
@@ -20,7 +20,7 @@ namespace CyberNinja.Ecs.Systems.Unit
         private readonly EcsPoolInject<OnTriggerExitEvent> _triggerExitPool;
         private readonly EcsPoolInject<TriggerComponent> _triggerPool;
         private readonly EcsCustomInject<ISceneService> _sceneService;
-        private readonly EcsCustomInject<IUnitService> _unitService;
+        private readonly EcsCustomInject<IPlayerService> _playerService;
 
         public void Run(IEcsSystems systems)
         {
@@ -28,14 +28,14 @@ namespace CyberNinja.Ecs.Systems.Unit
             {
                 var eventData = _triggerEnterPool.Value.Get(entity);
                 if (eventData.collider.CompareTag(Tag.Item))
-                    OnTriggerEnter(_unitService.Value.GetPlayerEntity(), eventData.collider.transform);
+                    OnTriggerEnter(_playerService.Value.GetEntity(), eventData.collider.transform);
             }
 
             foreach (var entity in _triggerExitFilter.Value)
             {
                 var eventData = _triggerExitPool.Value.Get(entity);
                 if (eventData.collider.CompareTag(Tag.Item))
-                    OnTriggerExit(_unitService.Value.GetPlayerEntity(), eventData.collider.transform);
+                    OnTriggerExit(_playerService.Value.GetEntity(), eventData.collider.transform);
             }
         }
 
@@ -50,7 +50,7 @@ namespace CyberNinja.Ecs.Systems.Unit
             }
 
             var view = transform.GetComponent<ItemView>();
-            ItemEventsHolder.ItemTriggerEnter(view);
+            ItemEventsHolder.PlayerItemTriggerEnter(view);
         }
 
         private void OnTriggerExit(in int entity, Transform transform)
@@ -61,7 +61,7 @@ namespace CyberNinja.Ecs.Systems.Unit
                 _triggerPool.Value.Del(entity);
             
             var view = transform.GetComponent<ItemView>();
-            ItemEventsHolder.ItemTriggerExit(view);
+            ItemEventsHolder.PlayerItemTriggerExit(view);
         }
     }
 }

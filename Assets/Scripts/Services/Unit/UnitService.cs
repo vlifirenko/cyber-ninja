@@ -6,6 +6,7 @@ using CyberNinja.Models.Config;
 using CyberNinja.Models.Enums;
 using CyberNinja.Utils;
 using CyberNinja.Views;
+using CyberNinja.Views.Core;
 using CyberNinja.Views.Unit;
 using Leopotam.EcsLite;
 using UnityEngine;
@@ -30,7 +31,7 @@ namespace CyberNinja.Services.Unit
         private readonly EcsPool<EnergyComponent> _energyPool;
         private readonly EcsPool<VectorsComponent> _vectorsPool;
         private readonly EcsPool<MoveVectorComponent> _moveVectorPool;
-        private readonly EcsFilter _playerFilter;
+        private readonly EcsPool<TriggerComponent> _triggerPool;
 
         public UnitService(EcsWorld world, GlobalUnitConfig globalUnitConfig, CanvasView canvasView, IVfxService vfxService,
             IItemService itemService)
@@ -52,8 +53,7 @@ namespace CyberNinja.Services.Unit
             _energyPool = _world.GetPool<EnergyComponent>();
             _vectorsPool = _world.GetPool<VectorsComponent>();
             _moveVectorPool = _world.GetPool<MoveVectorComponent>();
-
-            _playerFilter = _world.Filter<PlayerComponent>().End();
+            _triggerPool = _world.GetPool<TriggerComponent>();
         }
 
         public int CreateUnit(UnitView view)
@@ -104,7 +104,7 @@ namespace CyberNinja.Services.Unit
 
             if (unit.Config.DefaultWeapon != null)
             {
-                var weaponEntity =  _itemService.CreateItem(unit.Config.DefaultWeapon);
+                var weaponEntity = _itemService.CreateItem(unit.Config.DefaultWeapon);
                 _itemService.TryEquip(weaponEntity, _world.PackEntityWithWorld(entity));
             }
 
@@ -261,14 +261,6 @@ namespace CyberNinja.Services.Unit
 
         public bool IsPlayer(int entity) => _playerPool.Has(entity);
 
-        public int GetPlayerEntity()
-        {
-            foreach (var entity in _playerFilter)
-                return entity;
-
-            throw new Exception("Player entity not found");
-        }
-
         public HealthComponent GetHealth(int entity)
         {
             if (_healthPool.Has(entity))
@@ -279,20 +271,19 @@ namespace CyberNinja.Services.Unit
         public void UpdateHealth(int entity, float value)
         {
             ref var health = ref _healthPool.Get(entity);
-            
+
             health.Current = value;
             health.IsDirty = true;
 
             if (IsPlayer(entity))
             {
-                
             }
         }
 
         public void UpdateEnergy(int entity, float value)
         {
             ref var energy = ref _energyPool.Get(entity);
-            
+
             energy.Current = value;
             energy.IsDirty = true;
         }
@@ -357,6 +348,19 @@ namespace CyberNinja.Services.Unit
                     };
                 }
             }
+        }
+
+        public AView GetTrigger(int entity)
+        {
+            var trigger = _triggerPool.Get(entity);
+            if (trigger.Transforms.Count == 0)
+                return null;
+
+            var view = trigger.Transforms[0].GetComponent<AView>();
+            if (view == null)
+                return null;
+
+            return view;
         }
 
         private void ToggleStun(int entity)

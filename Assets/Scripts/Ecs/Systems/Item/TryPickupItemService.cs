@@ -10,7 +10,7 @@ namespace CyberNinja.Ecs.Systems.Item
 {
     public class TryPickupItemService : IEcsInitSystem
     {
-        private readonly EcsCustomInject<IUnitService> _unitService;
+        private readonly EcsCustomInject<IPlayerService> _unitService;
         private readonly EcsCustomInject<IItemService> _itemService;
         private readonly EcsWorldInject _world;
 
@@ -23,7 +23,7 @@ namespace CyberNinja.Ecs.Systems.Item
         {
             var config = view.Config;
             var itemEntity = _itemService.Value.CreateItem(config.item);
-            var playerEntity = _unitService.Value.GetPlayerEntity();
+            var playerEntity = _unitService.Value.GetEntity();
             
             _itemService.Value.TryEquip(itemEntity, _world.Value.PackEntityWithWorld(playerEntity));
             view.Hide();

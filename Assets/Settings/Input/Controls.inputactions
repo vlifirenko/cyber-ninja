@@ -614,17 +614,6 @@
                 },
                 {
                     "name": "",
-                    "id": "250595ca-057d-408a-b661-461becedb5a7",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "Action02_Tap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "62c46fdd-c28d-4926-a2a3-b292ce260684",
                     "path": "<Keyboard>/f",
                     "interactions": "",

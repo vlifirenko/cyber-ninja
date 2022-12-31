@@ -34,7 +34,7 @@ namespace CyberNinja.Services.Impl
             return entity;
         }
 
-        public void TriggerObject(SceneObjectView view)
+        /*public void TriggerObject(SceneObjectView view)
         {
             Debug.Log($"Collide {view.name}");
 
@@ -73,8 +73,8 @@ namespace CyberNinja.Services.Impl
                         view.Collider.enabled = true;
                     })
                     .AddTo(_disposable);
-            }*/
-        }
+            }#1#
+        }*/
 
         public void OnDestroy() => _disposable.Dispose();
     }
