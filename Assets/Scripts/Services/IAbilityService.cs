@@ -7,7 +7,5 @@ namespace CyberNinja.Services
         public void CreateAbility(AbilityItem abilityItem, int ownerEntity);
 
         public (bool, int) TryActivateAbility(int slotIndex, int unitEntity);
-
-        public bool IsEnabled(int entity);
     }
 }

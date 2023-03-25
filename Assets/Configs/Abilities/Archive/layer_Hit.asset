@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0585a09ee384f2da8eb2878a6cf1ce6, type: 3}
-  m_Name: _Empty
+  m_Name: layer_Hit
   m_EditorClassIdentifier: 
-  abilityName: "\u041F\u0443\u0441\u0442\u043E\u0439 \u0441\u043B\u043E\u0442"
-  description: "\u041D\u0443\u0436\u0435\u043D \u0434\u043B\u044F \u0442\u043E\u0433\u043E,
-    \u0447\u0442\u043E\u0431\u044B \u0441\u043B\u043E\u0442 \u0438\u043C\u0435\u043B
-    \u0437\u0430\u0433\u043B\u0443\u0448\u0435\u0447\u043D\u0443\u044E \u0438\u043A\u043E\u043D\u043A\u0443"
-  abilityType: 0
+  abilityName: "\u041F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u0435 \u0443\u0440\u043E\u043D\u0430"
+  description: "\u041F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u0435 \u0443\u0440\u043E\u043D\u0430
+    \u044E\u043D\u0438\u0442\u043E\u043C"
+  abilityType: 1
   actionType: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 66d252edf94c25a40895bee5a459e94d, type: 3}
   ATTRIBUTES: 0
   damage: 0
   energyCost: 0
@@ -27,32 +26,32 @@ MonoBehaviour:
   duration: 0
   cooldown: 0
   ANIMATOR: 1
-  animParameter: 0
+  animParameter: 1
   animTrigger: 1
   animUseBool: 0
   animBoolValue: 0
   animUseUpperBodyWeight: 0
   animUpperBodyWeightTime: 0
-  VFX: 0
-  vfxGameobject: {fileID: 0}
+  VFX: 1
+  vfxGameobject: {fileID: 8147957322477603204, guid: 36143f5e19bd8064fa5b388df05c282c, type: 3}
   vfxSpawnDelay: 0
-  vfxLifeTime: 0
-  vfxPosition: {x: 0, y: 0, z: 0}
+  vfxLifeTime: 1
+  vfxPosition: {x: 0, y: 1, z: 0}
   vfxRotation: {x: 0, y: 0, z: 0}
-  vfxPlaceOutside: 0
+  vfxPlaceOutside: 1
   UseLookVector: 0
   SHAPE: 0
   useRadius: 0
   radius: 0
   useAngle: 0
   angle: 0
-  STATIONARY: 0
+  STATIONARY: 1
   stationaryTime: 0
   STUN: 0
   stunTime: 0
   DASH: 0
-  dashTime: 0
-  dashDistance: 0
+  dashTime: 0.1
+  dashDistance: 1
   dashUseLook: 0
   SHIELD: 0
   shieldDamagePhysicalFactor: 0

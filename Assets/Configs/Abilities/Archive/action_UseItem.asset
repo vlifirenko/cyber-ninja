@@ -47,7 +47,7 @@ MonoBehaviour:
   radius: 0
   useAngle: 0
   angle: 0
-  STATIONARY: 0
+  STATIONARY: 1
   stationaryTime: 0.6
   STUN: 0
   stunTime: 0

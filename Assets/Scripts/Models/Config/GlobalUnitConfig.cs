@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CyberNinja.Models.Ability;
+using UnityEngine;
 
 namespace CyberNinja.Models.Config
 {
@@ -16,5 +17,8 @@ namespace CyberNinja.Models.Config
         public float layerWeightTreshold = 0.02f;
         [Space]
         public float defaultMoveSpeed = 5f;
+
+        [Space]
+        public AbilityItem skillWeaponHitConfig;
     }
 }

@@ -3,6 +3,7 @@ using CyberNinja.Models.Config;
 using CyberNinja.Services;
 using CyberNinja.Services.Unit;
 using CyberNinja.Utils;
+using CyberNinja.Views;
 using CyberNinja.Views.Ui;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -18,7 +19,10 @@ namespace CyberNinja.Ecs.Systems.Unit
         private EcsPoolInject<TriggerComponent> _triggerPool;
         private EcsCustomInject<IUnitService> _unitService;
         private EcsCustomInject<IItemService> _itemService;
+        private EcsCustomInject<GlobalUnitConfig> _globalUnitConfig;
+        private EcsCustomInject<IAbilityService> _abilityService;
         private EcsWorldInject _world;
+        private readonly EcsCustomInject<CanvasView> _canvasView;
 
         [EcsUguiNamed(UiConst.ItemPopup)] private UiItemPopup _uiItemPopup;
 
@@ -34,7 +38,10 @@ namespace CyberNinja.Ecs.Systems.Unit
                     if (_weaponPool.Value.Has(entity))
                         DropPrevWeapon(entity);
                     else
+                    {
                         _uiItemPopup.Hide();
+                        AddAttackAbility();
+                    }
 
                     EquipWeapon(entity, pickup);
                 }
@@ -73,6 +80,16 @@ namespace CyberNinja.Ecs.Systems.Unit
                 weaponEntity = pickup.ItemSceneView.Entity;
 
             _itemService.Value.TryEquip(weaponEntity.Value, _world.Value.PackEntityWithWorld(unit));
+        }
+
+        private void AddAttackAbility()
+        {
+            var abilityItem = _globalUnitConfig.Value.skillWeaponHitConfig;
+            if (_unitService.Value.Player.Unpack(_world.Value, out var player))
+            {
+                _abilityService.Value.CreateAbility(abilityItem, player);
+                _canvasView.Value.AbilityImages[abilityItem.slotIndex].sprite = abilityItem.abilityConfig.icon;
+            }
         }
     }
 }
