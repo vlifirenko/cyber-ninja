@@ -33,6 +33,7 @@ namespace CyberNinja.Services.Unit
         private readonly EcsPool<VectorsComponent> _vectorsPool;
         private readonly EcsPool<MoveVectorComponent> _moveVectorPool;
         private readonly EcsPool<TriggerComponent> _triggerPool;
+        private CanvasView _canvasView;
 
         private EcsPackedEntity _playerEntity;
 
@@ -43,6 +44,7 @@ namespace CyberNinja.Services.Unit
             _globalUnitConfig = globalUnitConfig;
             _vfxService = vfxService;
             _itemService = itemService;
+            _canvasView = canvasView;
 
             _stunPool = _world.GetPool<StunComponent>();
             _knockoutPool = _world.GetPool<KnockoutComponent>();
@@ -58,6 +60,8 @@ namespace CyberNinja.Services.Unit
             _moveVectorPool = _world.GetPool<MoveVectorComponent>();
             _triggerPool = _world.GetPool<TriggerComponent>();
         }
+
+        public IAbilityService AbilityService { get; set; }
 
         public int CreateUnit(UnitView view)
         {
@@ -109,6 +113,10 @@ namespace CyberNinja.Services.Unit
             {
                 var weaponEntity = _itemService.CreateItem(unit.Config.DefaultWeapon);
                 _itemService.TryEquip(weaponEntity, _world.PackEntityWithWorld(entity));
+                
+                AbilityService.CreateAbility(_globalUnitConfig.skillWeaponHitConfig, entity);
+                _canvasView.AbilityImages[_globalUnitConfig.skillWeaponHitConfig.slotIndex].sprite =
+                    _globalUnitConfig.skillWeaponHitConfig.abilityConfig.icon;
             }
 
             view.Entity = _world.PackEntity(entity);
@@ -367,7 +375,7 @@ namespace CyberNinja.Services.Unit
 
             return view;
         }
-
+        
         private void ToggleStun(int entity)
         {
             var unit = _unitPool.Get(entity);

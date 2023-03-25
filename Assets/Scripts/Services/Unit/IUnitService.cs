@@ -13,6 +13,7 @@ namespace CyberNinja.Services.Unit
 
         public EcsPackedEntity Player { get; set; }
 
+        public IAbilityService AbilityService { get; set; }
         public int CreateUnit(UnitView view);
 
         public UnitComponent GetUnit(int entity);

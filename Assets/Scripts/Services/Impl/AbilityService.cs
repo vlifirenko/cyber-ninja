@@ -26,7 +26,7 @@ namespace CyberNinja.Services.Impl
         private readonly IDoorService _doorService;
         private readonly IVfxService _vfxService;
         private readonly ISceneService _sceneService;
-
+        
         public AbilityService(EcsWorld world, GlobalUnitConfig globalUnitConfig, LayersConfig layersConfig,
             IUnitService unitService, IDoorService doorService, IVfxService vfxService, ISceneService sceneService)
         {

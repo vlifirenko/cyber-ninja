@@ -66,6 +66,7 @@ namespace CyberNinja.Ecs
             _doorService = new DoorService(world, _unitService);
             _abilityService = new AbilityService(world, globalUnitConfig, layersConfig, _unitService, _doorService, _vfxService,
                 _sceneService);
+            _unitService.AbilityService = _abilityService;
             _aiService = new AiService(world, _abilityService);
             _gameService = new GameService(world, sceneView, canvasView, _gameData);
             _timeService = new TimeService();
