@@ -42,17 +42,21 @@ namespace CyberNinja.Services.Impl
 
         public void TryEquip(int itemEntity, EcsPackedEntityWithWorld ownerEntity)
         {
-            var item = _itemPool.Get(itemEntity);
-            var equippedItems = GetAllEquippedItems();
+            //var item = _itemPool.Get(itemEntity);
+            //var equippedItems = GetAllEquippedItems();
 
-            if (!equippedItems.ContainsKey(item.Config.slot))
+            /*if (!equippedItems.ContainsKey(item.Config.slot))
                 Equip(itemEntity, ownerEntity);
             else
-                Swap();
+                Swap();*/
+            
+            Equip(itemEntity, ownerEntity);
         }
 
         private void Equip(int itemEntity, EcsPackedEntityWithWorld ownerEntity)
         {
+            if (_ownerPool.Has(itemEntity))
+                _ownerPool.Del(itemEntity);
             _ownerPool.Add(itemEntity) = new OwnerComponent
             {
                 Entity = ownerEntity
