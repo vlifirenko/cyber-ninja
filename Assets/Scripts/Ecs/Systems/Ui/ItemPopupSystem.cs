@@ -8,7 +8,7 @@ namespace CyberNinja.Ecs.Systems.Ui
 {
     public class ItemPopupSystem : IEcsInitSystem
     {
-        [EcsUguiNamed(Utils.Ui.ItemPopup)] private UiItemPopup _itemPopup;
+        [EcsUguiNamed(Utils.UiConst.ItemPopup)] private UiItemPopup _itemPopup;
 
         public void Init(IEcsSystems systems)
         {

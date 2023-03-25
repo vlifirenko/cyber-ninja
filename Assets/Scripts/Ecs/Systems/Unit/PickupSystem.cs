@@ -2,9 +2,11 @@
 using CyberNinja.Models.Config;
 using CyberNinja.Services;
 using CyberNinja.Services.Unit;
+using CyberNinja.Utils;
+using CyberNinja.Views.Ui;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using UnityEngine;
+using Leopotam.EcsLite.Unity.Ugui;
 
 namespace CyberNinja.Ecs.Systems.Unit
 {
@@ -18,6 +20,8 @@ namespace CyberNinja.Ecs.Systems.Unit
         private EcsCustomInject<IItemService> _itemService;
         private EcsWorldInject _world;
 
+        [EcsUguiNamed(UiConst.ItemPopup)] private UiItemPopup _uiItemPopup;
+
         public void Run(IEcsSystems systems)
         {
             foreach (var entity in _filter.Value)
@@ -29,6 +33,9 @@ namespace CyberNinja.Ecs.Systems.Unit
                 {
                     if (_weaponPool.Value.Has(entity))
                         DropPrevWeapon(entity);
+                    else
+                        _uiItemPopup.Hide();
+
                     EquipWeapon(entity, pickup);
                 }
             }
@@ -64,7 +71,7 @@ namespace CyberNinja.Ecs.Systems.Unit
             }
             else
                 weaponEntity = pickup.ItemSceneView.Entity;
-            
+
             _itemService.Value.TryEquip(weaponEntity.Value, _world.Value.PackEntityWithWorld(unit));
         }
     }
