@@ -25,3 +25,6 @@ MonoBehaviour:
     slotIndex: 0
     abilityConfig: {fileID: 11400000, guid: 9c898ade16f8e8f4698fa7621abbdcaa, type: 2}
     overrideData: []
+  droidYSpawnPosition: 2
+  droidMoveDistance: 2
+  droidSpeed: 0.01

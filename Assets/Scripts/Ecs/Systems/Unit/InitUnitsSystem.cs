@@ -1,12 +1,10 @@
-﻿using System.Linq;
-using CyberNinja.Ecs.Components.Unit;
-using CyberNinja.Models.Enums;
+﻿using CyberNinja.Ecs.Components.Unit;
+using CyberNinja.Models.Config;
 using CyberNinja.Services;
 using CyberNinja.Services.Unit;
 using CyberNinja.Utils;
 using CyberNinja.Views;
 using CyberNinja.Views.Ui;
-using CyberNinja.Views.Unit;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Leopotam.EcsLite.Unity.Ugui;
@@ -20,6 +18,7 @@ namespace CyberNinja.Ecs.Systems.Unit
         private readonly EcsCustomInject<SceneView> _sceneView;
         private readonly EcsCustomInject<IAiService> _aiService;
         private readonly EcsCustomInject<IUnitService> _unitService;
+        private EcsCustomInject<GlobalUnitConfig> _globalUnitConfig;
 
         [EcsUguiNamed(UiConst.HealthSliderContainer)]
         private UiHealthSliderContainer _healthSliderContainer;
@@ -36,6 +35,9 @@ namespace CyberNinja.Ecs.Systems.Unit
                     playerPool.Add(entity);
 
                     _unitService.Value.Player = _world.Value.PackEntity(entity);
+
+                    if (view.Config.isHasDroid)
+                        CreateDroid(entity);
                 }
                 else
                 {
@@ -45,11 +47,27 @@ namespace CyberNinja.Ecs.Systems.Unit
 
                     enemy.HealthSlider = instance;
                     instance.gameObject.SetActive(true);
-                    
+
                     enemyPool.Add(entity) = enemy;
                     _aiService.Value.InitUnit(entity);
                 }
             }
+        }
+
+        private void CreateDroid(int entity)
+        {
+            var unit = _world.Value.GetPool<UnitComponent>().Get(entity);
+            var position = new Vector3(
+                Random.Range(-1f, 1f),
+                _globalUnitConfig.Value.droidYSpawnPosition,
+                Random.Range(-1f, 1f));
+
+            unit.View.DroidView.Transform.localPosition = position;
+            unit.View.DroidView.Transform.parent = null;
+            unit.View.DroidView.Show();
+
+
+            _world.Value.GetPool<DroidComponent>().Add(entity).DroidView = unit.View.DroidView;
         }
     }
 }

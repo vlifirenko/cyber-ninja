@@ -45,6 +45,7 @@ namespace CyberNinja.Models.Config
         [FoldoutGroup("ABILITIES")] [SerializeField] private AbilityConfig abilityReviveConfig;
 
         [SerializeField] private ItemConfig defaultWeapon;
+        public bool isHasDroid;
         
         public EControlType ControlType => controlType;
         public float LookRadius => lookRadius;

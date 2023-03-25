@@ -3,6 +3,7 @@ using CyberNinja.Models.Ability;
 using CyberNinja.Models.Config;
 using CyberNinja.Models.Enums;
 using CyberNinja.Views.Core;
+using CyberNinja.Views.Player;
 using Leopotam.EcsLite;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -20,6 +21,8 @@ namespace CyberNinja.Views.Unit
         [SerializeField] private UnitVfxView vfxView;
         [SerializeField] private UnitWeaponSlotView weaponSlotView;
         [Header("Enemy")]
+        [SerializeField] private DroidView droidView;
+        [Header("Enemy")]
         [SerializeField] private bool isFreeze;
 
         public UnitConfig Config => config;
@@ -30,5 +33,7 @@ namespace CyberNinja.Views.Unit
         public UnitWeaponSlotView WeaponSlotView => weaponSlotView;
 
         public bool IsFreeze => isFreeze;
+
+        public DroidView DroidView => droidView;
     }
 }
