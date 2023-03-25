@@ -1,5 +1,6 @@
 ﻿using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models.Config;
+using CyberNinja.Services;
 using CyberNinja.Services.Unit;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -14,14 +15,16 @@ namespace CyberNinja.Ecs.Systems.Unit
         private EcsPoolInject<WeaponComponent> _weaponPool;
         private EcsPoolInject<TriggerComponent> _triggerPool;
         private EcsCustomInject<IUnitService> _unitService;
-        
+        private EcsCustomInject<IItemService> _itemService;
+        private EcsWorldInject _world;
+
         public void Run(IEcsSystems systems)
         {
             foreach (var entity in _filter.Value)
             {
                 var pickup = _pickupPool.Value.Get(entity);
                 var config = pickup.ItemConfig;
-                
+
                 if (config.type == EItemType.Weapon)
                 {
                     if (_weaponPool.Value.Has(entity))
@@ -30,13 +33,13 @@ namespace CyberNinja.Ecs.Systems.Unit
                 }
             }
         }
-        
+
         private void DropPrevWeapon(int unitEntity)
         {
             var prevWeapon = _weaponPool.Value.Get(unitEntity);
             var unit = _unitService.Value.GetUnit(unitEntity);
             var position = unit.View.Transform.position;
-            
+
             prevWeapon.SceneView.gameObject.SetActive(true);
             prevWeapon.SceneView.Transform.position = position;
             _weaponPool.Value.Del(unitEntity);
@@ -52,6 +55,17 @@ namespace CyberNinja.Ecs.Systems.Unit
             };
             _triggerPool.Value.Get(unit).Transforms.Remove(pickup.ItemSceneView.Transform);
             pickup.ItemSceneView.gameObject.SetActive(false);
+
+            int? weaponEntity;
+            if (!pickup.ItemSceneView.Entity.HasValue)
+            {
+                weaponEntity = _itemService.Value.CreateItem(pickup.ItemConfig);
+                pickup.ItemSceneView.Entity = weaponEntity;
+            }
+            else
+                weaponEntity = pickup.ItemSceneView.Entity;
+            
+            _itemService.Value.TryEquip(weaponEntity.Value, _world.Value.PackEntityWithWorld(unit));
         }
     }
 }

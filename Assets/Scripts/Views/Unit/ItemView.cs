@@ -9,5 +9,7 @@ namespace CyberNinja.Views.Unit
         [SerializeField] private ItemConfig config;
 
         public ItemConfig Config => config;
+        
+        public int? Entity { get; set; }
     }
 }
