@@ -31,7 +31,6 @@ namespace CyberNinja.Ecs.Systems.Unit
                     playerPool.Add(entity);
 
                     _unitService.Value.Player = _world.Value.PackEntity(entity);
-                    Debug.Log(entity);
                 }
                 else
                 {

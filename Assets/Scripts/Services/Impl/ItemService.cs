@@ -129,9 +129,9 @@ namespace CyberNinja.Services.Impl
             
             _world.GetPool<PickupComponent>().Add(player) = new PickupComponent
             {
-                ItemConfig = config
+                ItemConfig = config,
+                ItemSceneView = view
             };
-            
         }
     }
 }

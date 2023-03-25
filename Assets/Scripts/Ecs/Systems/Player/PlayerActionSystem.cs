@@ -3,6 +3,7 @@ using CyberNinja.Services.Unit;
 using CyberNinja.Views.Unit;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace CyberNinja.Ecs.Systems.Player
@@ -25,7 +26,7 @@ namespace CyberNinja.Ecs.Systems.Player
             var trigger = _unitService.Value.GetTrigger(playerEntity);
             if (trigger == null)
                 return;
-
+            
             _itemService.Value.Pickup(trigger as ItemView);
         }
     }
