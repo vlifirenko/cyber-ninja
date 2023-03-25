@@ -3612,6 +3612,10 @@ PrefabInstance:
       propertyPath: config
       value: 
       objectReference: {fileID: 11400000, guid: 082146cc7d3c9104f9a878b204a9d052, type: 2}
+    - target: {fileID: 3599100598901881508, guid: b7782b1de23c00d4d954521563defbd6, type: 3}
+      propertyPath: isFreeze
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5092618355022486732, guid: b7782b1de23c00d4d954521563defbd6, type: 3}
       propertyPath: m_RootOrder
       value: 0

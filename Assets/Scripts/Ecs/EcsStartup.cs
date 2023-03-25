@@ -136,6 +136,7 @@ namespace CyberNinja.Ecs
                 // ui
                 .Add(new PlayerUiSystem())
                 .Add(new ItemPopupSystem())
+                .Add(new UiUpdateEnemyHealthSystem())
                 
                 //
                 .DelHere<PickupComponent>()
