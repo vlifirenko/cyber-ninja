@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using CyberNinja.Models.Config;
 using CyberNinja.Models.Enums;
+using CyberNinja.Services.Unit;
 using CyberNinja.Views.Unit;
 using Leopotam.EcsLite;
 
@@ -19,5 +20,7 @@ namespace CyberNinja.Services
         public Dictionary<EItemSlot, int> GetAllEquippedItems();
 
         public void Pickup(ItemView view);
+        
+        public IUnitService UnitService { get; set; }
     }
 }

@@ -8,8 +8,15 @@ namespace CyberNinja.Models.Config
     public class ItemConfig : ScriptableObject
     {
         public string title;
+        public EItemType type;
         public EItemSlot slot;
         public ItemPosition prefab;
         public Sprite icon;
+    }
+
+    public enum EItemType
+    {
+        None = 0,
+        Weapon = 10
     }
 }

@@ -8,6 +8,7 @@ using CyberNinja.Views;
 using CyberNinja.Views.Unit;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine;
 
 namespace CyberNinja.Ecs.Systems.Unit
 {
@@ -28,6 +29,9 @@ namespace CyberNinja.Ecs.Systems.Unit
                 {
                     var playerPool = _world.Value.GetPool<PlayerComponent>();
                     playerPool.Add(entity);
+
+                    _unitService.Value.Player = _world.Value.PackEntity(entity);
+                    Debug.Log(entity);
                 }
                 else
                 {

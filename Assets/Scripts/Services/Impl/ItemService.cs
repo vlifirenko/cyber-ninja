@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CyberNinja.Ecs.Components.Item;
 using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models.Config;
 using CyberNinja.Models.Enums;
+using CyberNinja.Services.Unit;
 using CyberNinja.Views.Unit;
 using Leopotam.EcsLite;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace CyberNinja.Services.Impl
 {
@@ -14,6 +17,8 @@ namespace CyberNinja.Services.Impl
         private readonly EcsWorld _world;
         private readonly EcsPool<ItemComponent> _itemPool;
         private readonly EcsPool<OwnerComponent> _ownerPool;
+
+        public IUnitService UnitService { get; set; }
 
         public ItemService(EcsWorld world)
         {
@@ -79,7 +84,7 @@ namespace CyberNinja.Services.Impl
         private void Swap()
         {
             Debug.Log("Swap");
-            
+
             // remove
             // todo
             /*var unit = _unitPool.Value.Get(entity);
@@ -119,7 +124,14 @@ namespace CyberNinja.Services.Impl
         public void Pickup(ItemView view)
         {
             var config = view.Config;
-            Debug.Log($"pickup {config.title}");
+            if (!UnitService.Player.Unpack(_world, out var player))
+                throw new Exception("!UnitService.Player.Unpack");
+            
+            _world.GetPool<PickupComponent>().Add(player) = new PickupComponent
+            {
+                ItemConfig = config
+            };
+            
         }
     }
 }

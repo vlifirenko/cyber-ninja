@@ -9,6 +9,7 @@ using CyberNinja.Views;
 using CyberNinja.Views.Core;
 using CyberNinja.Views.Unit;
 using Leopotam.EcsLite;
+using Leopotam.EcsLite.Di;
 using UnityEngine;
 
 namespace CyberNinja.Services.Unit
@@ -32,6 +33,8 @@ namespace CyberNinja.Services.Unit
         private readonly EcsPool<VectorsComponent> _vectorsPool;
         private readonly EcsPool<MoveVectorComponent> _moveVectorPool;
         private readonly EcsPool<TriggerComponent> _triggerPool;
+
+        private EcsPackedEntity _playerEntity;
 
         public UnitService(EcsWorld world, GlobalUnitConfig globalUnitConfig, CanvasView canvasView, IVfxService vfxService,
             IItemService itemService)
@@ -260,6 +263,8 @@ namespace CyberNinja.Services.Unit
         }
 
         public bool IsPlayer(int entity) => _playerPool.Has(entity);
+        
+        public EcsPackedEntity Player { get; set; }
 
         public HealthComponent GetHealth(int entity)
         {

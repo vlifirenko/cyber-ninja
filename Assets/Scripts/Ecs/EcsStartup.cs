@@ -1,3 +1,4 @@
+using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Ecs.Systems.Ability;
 using CyberNinja.Ecs.Systems.Ai;
 using CyberNinja.Ecs.Systems.Door;
@@ -17,6 +18,7 @@ using CyberNinja.Views;
 using LeoEcsPhysics;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using Leopotam.EcsLite.ExtendedSystems;
 using Leopotam.EcsLite.Unity.Ugui;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -51,18 +53,16 @@ namespace CyberNinja.Ecs
         private void Start()
         {
             var world = new EcsWorld();
-            var eventWorld = new EcsWorld();
-            var sceneWorld = new EcsWorld();
-            var itemsWorld = new EcsWorld();
 
             _gameData = new GameData();
 
             EcsPhysicsEvents.ecsWorld = world;
 
             _vfxService = new VfxService(world);
-            _itemService = new ItemService(itemsWorld);
+            _itemService = new ItemService(world);
             _unitService = new UnitService(world, globalUnitConfig, canvasView, _vfxService, _itemService);
-            _sceneService = new SceneService(sceneWorld, _unitService);
+            _itemService.UnitService = _unitService;
+            _sceneService = new SceneService(world, _unitService);
             _doorService = new DoorService(world, _unitService);
             _abilityService = new AbilityService(world, globalUnitConfig, layersConfig, _unitService, _doorService, _vfxService,
                 _sceneService);
@@ -129,26 +129,24 @@ namespace CyberNinja.Ecs
                 .Add(new UseSceneObjectSystem())
 
                 // items
-                .Add(new TryPickupItemService())
+                //.Add(new TryPickupItemService())
+                .Add(new PickupSystem())
 
                 // ui
                 .Add(new PlayerUiSystem())
                 .Add(new ItemPopupSystem())
-                .AddWorld(eventWorld, World.Events)
-                .AddWorld(sceneWorld, World.Scene)
-                .AddWorld(itemsWorld, World.Item)
+                
+                //
+                .DelHere<PickupComponent>()
 #if UNITY_EDITOR
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
-                .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem(World.Events))
-                .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem(World.Scene))
-                .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem(World.Item))
 #endif
                 .Inject(_gameData, sceneView, canvasView)
                 .Inject(layersConfig, globalUnitConfig, audioConfig, inputConfig)
                 .Inject(_unitService, _aiService, _abilityService, _doorService, _vfxService, _sceneService,
                     _gameService, _timeService, _itemService, _playerService)
                 .Inject()
-                .InjectUgui(uguiEmitter, World.Events)
+                .InjectUgui(uguiEmitter)
                 .DelHerePhysics()
                 .Init();
         }
@@ -158,11 +156,8 @@ namespace CyberNinja.Ecs
         private void OnDestroy()
         {
             EcsPhysicsEvents.ecsWorld = null;
-            _systems?.Destroy();
-            _systems?.GetWorld(World.Events)?.Destroy();
-            _systems?.GetWorld(World.Scene)?.Destroy();
-            _systems?.GetWorld(World.Item)?.Destroy();
             _systems?.GetWorld()?.Destroy();
+            _systems?.Destroy();
             _systems = null;
 
             _aiService.OnDestroy();

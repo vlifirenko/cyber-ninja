@@ -2,6 +2,7 @@
 using CyberNinja.Models.Config;
 using CyberNinja.Views.Core;
 using CyberNinja.Views.Unit;
+using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace CyberNinja.Services.Unit
@@ -9,6 +10,8 @@ namespace CyberNinja.Services.Unit
     public interface IUnitService : IState, IHealth
     {
         public bool IsPlayer(int entity);
+
+        public EcsPackedEntity Player { get; set; }
 
         public int CreateUnit(UnitView view);
 
