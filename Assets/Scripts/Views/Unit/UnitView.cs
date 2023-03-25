@@ -19,6 +19,8 @@ namespace CyberNinja.Views.Unit
         [SerializeField] private Transform vfxSpawnPoint;
         [SerializeField] private UnitVfxView vfxView;
         [SerializeField] private UnitWeaponSlotView weaponSlotView;
+        [Header("Enemy")]
+        [SerializeField] private bool isFreeze;
 
         public UnitConfig Config => config;
         public Animator Animator => animator;
@@ -26,5 +28,7 @@ namespace CyberNinja.Views.Unit
         public Transform VfxSpawnPoint => vfxSpawnPoint;
         public UnitVfxView VfxView => vfxView;
         public UnitWeaponSlotView WeaponSlotView => weaponSlotView;
+
+        public bool IsFreeze => isFreeze;
     }
 }

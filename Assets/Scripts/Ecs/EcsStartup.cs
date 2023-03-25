@@ -123,10 +123,10 @@ namespace CyberNinja.Ecs
                 .Add(new AbilityCooldownSystem())
 
                 // doors
-                .Add(new InitDoorsSystem())
+                //.Add(new InitDoorsSystem())
 
                 // scene objects
-                .Add(new InitSceneObjectsSystem())
+                //.Add(new InitSceneObjectsSystem())
                 .Add(new UseSceneObjectSystem())
 
                 // items

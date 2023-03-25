@@ -119,6 +119,9 @@ namespace CyberNinja.Services.Unit
                     _globalUnitConfig.skillWeaponHitConfig.abilityConfig.icon;
             }
 
+            if (view.IsFreeze)
+                _world.GetPool<FreezeComponent>().Add(entity);
+
             view.Entity = _world.PackEntity(entity);
 
             return entity;

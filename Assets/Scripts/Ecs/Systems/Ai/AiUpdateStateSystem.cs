@@ -10,7 +10,7 @@ namespace CyberNinja.Ecs.Systems.Ai
 {
     public class AiUpdateStateSystem : IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<AiTaskComponent>> _filter;
+        private readonly EcsFilterInject<Inc<AiTaskComponent>, Exc<FreezeComponent>> _filter;
         private readonly EcsCustomInject<IUnitService> _unitService;
         private readonly EcsPoolInject<SpeedComponent> _speedPool;
         private readonly EcsPoolInject<DeadComponent> _deadPool;

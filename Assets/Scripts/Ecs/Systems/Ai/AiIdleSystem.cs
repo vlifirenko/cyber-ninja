@@ -13,7 +13,7 @@ namespace CyberNinja.Ecs.Systems.Ai
 {
     public class AiIdleSystem : IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<AiTaskComponent>, Exc<KnockoutComponent>> _filter;
+        private readonly EcsFilterInject<Inc<AiTaskComponent>, Exc<KnockoutComponent, FreezeComponent>> _filter;
         private readonly EcsCustomInject<LayersConfig> _layersConfig;
         private readonly EcsCustomInject<IUnitService> _unitService;
         private readonly EcsPoolInject<AiTaskComponent> _aiTaskPool;

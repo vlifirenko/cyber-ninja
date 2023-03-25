@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f853a625a3414bebac9a57a99a37e2dd, type: 3}
-  m_Name: Player
+  m_Name: Enemy
   m_EditorClassIdentifier: 
-  controlType: 0
+  controlType: 1
   lookRadius: 8
   maxChaseDistance: 12
   attackDistance: 2.5
