@@ -20,7 +20,6 @@ namespace CyberNinja.Views.Unit
         [SerializeField] private Transform vfxSpawnPoint;
         [SerializeField] private UnitVfxView vfxView;
         [SerializeField] private UnitWeaponSlotView weaponSlotView;
-        [Header("Enemy")]
         [SerializeField] private DroidView droidView;
         [Header("Enemy")]
         [SerializeField] private bool isFreeze;

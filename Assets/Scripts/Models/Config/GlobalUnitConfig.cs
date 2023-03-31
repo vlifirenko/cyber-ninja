@@ -26,5 +26,7 @@ namespace CyberNinja.Models.Config
         public float droidSpeed = 2f;
         public float lookingTargetDistance = 50f;
         public DroidProjectile droidProjectile;
+        public float droidShootReloadTime = 0.25f;
+        public float droidShootSpeed = 2f;
     }
 }

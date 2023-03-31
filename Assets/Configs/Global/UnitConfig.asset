@@ -28,4 +28,7 @@ MonoBehaviour:
   droidYSpawnPosition: 2
   droidMoveDistance: 2
   droidSpeed: 0.01
-  lookingTargetDistance: 10
+  lookingTargetDistance: 25
+  droidProjectile: {fileID: 1898050158055525068, guid: 7f58bb57df8ba7e41b1b2b434ebda2fd, type: 3}
+  droidShootReloadTime: 0.25
+  droidShootSpeed: 0.001
