@@ -117,8 +117,9 @@ namespace CyberNinja.Ecs
                 .Add(new ReviveSystem())
                 .Add(new HealthEventSystem())
                 .Add(new EnergyEventSystem())
-                .Add(new DroidSystem())
+                .Add(new DroidMovementSystem())
                 .Add(new FindTargetsSystem())
+                .Add(new DroidShootSystem())
 
                 // ability
                 .Add(new InitAbilitiesSystem())

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace CyberNinja.Ecs.Systems.Player
 {
-    public class DroidSystem : IEcsRunSystem
+    public class DroidMovementSystem : IEcsRunSystem
     {
         private EcsFilterInject<Inc<DroidComponent>, Exc<DeadComponent>> _filter;
         private EcsWorldInject _world;

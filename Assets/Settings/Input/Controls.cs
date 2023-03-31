@@ -508,6 +508,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Droid_Shoot"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""00e5fe76-9cfb-4e9a-86aa-8c5b608403ae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -541,17 +550,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Ability01_Tap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fc0c3ab9-7b8f-42bd-a8bb-8922a51a9a20"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Ability02_Tap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -785,6 +783,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""12e1d83f-05fd-4a36-8424-624abda32cef"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Droid_Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -845,6 +854,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m__Player_Action04_Tap = m__Player.FindAction("Action04_Tap", throwIfNotFound: true);
         m__Player_Use = m__Player.FindAction("Use", throwIfNotFound: true);
         m__Player_Aim = m__Player.FindAction("Aim", throwIfNotFound: true);
+        m__Player_Droid_Shoot = m__Player.FindAction("Droid_Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1030,6 +1040,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m__Player_Action04_Tap;
     private readonly InputAction m__Player_Use;
     private readonly InputAction m__Player_Aim;
+    private readonly InputAction m__Player_Droid_Shoot;
     public struct _PlayerActions
     {
         private @Controls m_Wrapper;
@@ -1046,6 +1057,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Action04_Tap => m_Wrapper.m__Player_Action04_Tap;
         public InputAction @Use => m_Wrapper.m__Player_Use;
         public InputAction @Aim => m_Wrapper.m__Player_Aim;
+        public InputAction @Droid_Shoot => m_Wrapper.m__Player_Droid_Shoot;
         public InputActionMap Get() { return m_Wrapper.m__Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1091,6 +1103,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Aim.started -= m_Wrapper.m__PlayerActionsCallbackInterface.OnAim;
                 @Aim.performed -= m_Wrapper.m__PlayerActionsCallbackInterface.OnAim;
                 @Aim.canceled -= m_Wrapper.m__PlayerActionsCallbackInterface.OnAim;
+                @Droid_Shoot.started -= m_Wrapper.m__PlayerActionsCallbackInterface.OnDroid_Shoot;
+                @Droid_Shoot.performed -= m_Wrapper.m__PlayerActionsCallbackInterface.OnDroid_Shoot;
+                @Droid_Shoot.canceled -= m_Wrapper.m__PlayerActionsCallbackInterface.OnDroid_Shoot;
             }
             m_Wrapper.m__PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1131,6 +1146,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
+                @Droid_Shoot.started += instance.OnDroid_Shoot;
+                @Droid_Shoot.performed += instance.OnDroid_Shoot;
+                @Droid_Shoot.canceled += instance.OnDroid_Shoot;
             }
         }
     }
@@ -1181,5 +1199,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnAction04_Tap(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
+        void OnDroid_Shoot(InputAction.CallbackContext context);
     }
 }

@@ -30,8 +30,6 @@ namespace CyberNinja.Ecs.Systems.Player
                 var unit = _unitPool.Value.Get(entity);
                 ref var targets = ref _targetsPool.Value.Get(entity);
                 
-                Debug.Log(targets.Targets.Count);
-                
                 var position = unit.View.Transform.position;
                 var radius = _globalUnitConfig.Value.lookingTargetDistance;
 

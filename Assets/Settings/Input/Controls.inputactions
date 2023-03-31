@@ -486,6 +486,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Droid_Shoot",
+                    "type": "PassThrough",
+                    "id": "00e5fe76-9cfb-4e9a-86aa-8c5b608403ae",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -519,17 +528,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Ability01_Tap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fc0c3ab9-7b8f-42bd-a8bb-8922a51a9a20",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Ability02_Tap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -761,6 +759,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "12e1d83f-05fd-4a36-8424-624abda32cef",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Droid_Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
