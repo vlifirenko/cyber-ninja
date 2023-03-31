@@ -12,13 +12,13 @@ using Object = UnityEngine.Object;
 
 namespace CyberNinja.Services.Impl
 {
-    public class ItemService : IItemService
+    public class ItemService
     {
         private readonly EcsWorld _world;
         private readonly EcsPool<ItemComponent> _itemPool;
         private readonly EcsPool<OwnerComponent> _ownerPool;
 
-        public IUnitService UnitService { get; set; }
+        public UnitService UnitService { get; set; }
 
         public ItemService(EcsWorld world)
         {

@@ -2,6 +2,7 @@
 using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Events;
 using CyberNinja.Services;
+using CyberNinja.Services.Impl;
 using CyberNinja.Services.Unit;
 using CyberNinja.Utils;
 using CyberNinja.Views.Unit;
@@ -20,7 +21,7 @@ namespace CyberNinja.Ecs.Systems.Player
         private readonly EcsPoolInject<OnTriggerExitEvent> _triggerExitPool;
         private readonly EcsPoolInject<TriggerComponent> _triggerPool;
         private readonly EcsCustomInject<ISceneService> _sceneService;
-        private readonly EcsCustomInject<IPlayerService> _playerService;
+        private readonly EcsCustomInject<PlayerService> _playerService;
 
         public void Run(IEcsSystems systems)
         {

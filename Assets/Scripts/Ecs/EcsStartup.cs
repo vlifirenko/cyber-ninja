@@ -38,15 +38,15 @@ namespace CyberNinja.Ecs
         private EcsSystems _systems;
 
         private IAiService _aiService;
-        private IUnitService _unitService;
+        private UnitService _unitService;
         private IAbilityService _abilityService;
         private IDoorService _doorService;
         private IVfxService _vfxService;
         private ISceneService _sceneService;
         private IGameService _gameService;
         private ITimeService _timeService;
-        private IItemService _itemService;
-        private IPlayerService _playerService;
+        private ItemService _itemService;
+        private PlayerService _playerService;
 
         private GameData _gameData;
 
@@ -118,6 +118,7 @@ namespace CyberNinja.Ecs
                 .Add(new HealthEventSystem())
                 .Add(new EnergyEventSystem())
                 .Add(new DroidSystem())
+                .Add(new FindTargetsSystem())
 
                 // ability
                 .Add(new InitAbilitiesSystem())

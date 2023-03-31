@@ -1,17 +1,16 @@
 ﻿using CyberNinja.Events;
 using CyberNinja.Services;
-using CyberNinja.Services.Unit;
+using CyberNinja.Services.Impl;
 using CyberNinja.Views;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using UnityEngine;
 
 namespace CyberNinja.Ecs.Systems.Item
 {
     public class TryPickupItemService : IEcsInitSystem
     {
-        private readonly EcsCustomInject<IPlayerService> _unitService;
-        private readonly EcsCustomInject<IItemService> _itemService;
+        private readonly EcsCustomInject<PlayerService> _unitService;
+        private readonly EcsCustomInject<ItemService> _itemService;
         private readonly EcsWorldInject _world;
 
         public void Init(IEcsSystems systems)

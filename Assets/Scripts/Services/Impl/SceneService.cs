@@ -13,11 +13,11 @@ namespace CyberNinja.Services.Impl
     public class SceneService : ISceneService, IDestroyable
     {
         private readonly EcsWorld _world;
-        private readonly IUnitService _unitService;
+        private readonly UnitService _unitService;
         private readonly EcsPool<SceneObjectComponent> _sceneObjectPool;
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
 
-        public SceneService(EcsWorld world, IUnitService unitService)
+        public SceneService(EcsWorld world, UnitService unitService)
         {
             _world = world;
             _unitService = unitService;

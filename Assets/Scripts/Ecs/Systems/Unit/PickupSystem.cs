@@ -1,6 +1,7 @@
 ﻿using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models.Config;
 using CyberNinja.Services;
+using CyberNinja.Services.Impl;
 using CyberNinja.Services.Unit;
 using CyberNinja.Utils;
 using CyberNinja.Views;
@@ -17,8 +18,8 @@ namespace CyberNinja.Ecs.Systems.Unit
         private EcsPoolInject<PickupComponent> _pickupPool;
         private EcsPoolInject<WeaponComponent> _weaponPool;
         private EcsPoolInject<TriggerComponent> _triggerPool;
-        private EcsCustomInject<IUnitService> _unitService;
-        private EcsCustomInject<IItemService> _itemService;
+        private EcsCustomInject<UnitService> _unitService;
+        private EcsCustomInject<ItemService> _itemService;
         private EcsCustomInject<GlobalUnitConfig> _globalUnitConfig;
         private EcsCustomInject<IAbilityService> _abilityService;
         private EcsWorldInject _world;

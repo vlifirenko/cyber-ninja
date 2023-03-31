@@ -14,7 +14,7 @@ namespace CyberNinja.Ecs.Systems.Unit
         private readonly EcsPoolInject<LayerUpperBodyTimeComponent> _layerUpperBodyTimePool;
         private readonly EcsPoolInject<LayerUpperBodyComponent> _layerUpperBodyPool;
         private readonly EcsCustomInject<GlobalUnitConfig> _characterConfig;
-        private readonly EcsCustomInject<IUnitService> _unitService;
+        private readonly EcsCustomInject<UnitService> _unitService;
 
         public void Run(IEcsSystems systems)
         {

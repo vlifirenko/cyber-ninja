@@ -1,4 +1,6 @@
-﻿using CyberNinja.Services;
+﻿using CyberNinja.Models;
+using CyberNinja.Services;
+using CyberNinja.Services.Impl;
 using CyberNinja.Services.Unit;
 using CyberNinja.Views.Unit;
 using Leopotam.EcsLite;
@@ -10,13 +12,14 @@ namespace CyberNinja.Ecs.Systems.Player
 {
     public class PlayerActionSystem : IEcsRunSystem
     {
-        private readonly EcsCustomInject<IPlayerService> _playerService;
-        private readonly EcsCustomInject<IUnitService> _unitService;
-        private readonly EcsCustomInject<IItemService> _itemService;
+        private readonly EcsCustomInject<GameData> _gameData;
+        private readonly EcsCustomInject<UnitService> _unitService;
+        private readonly EcsCustomInject<ItemService> _itemService;
+        private readonly EcsCustomInject<PlayerService> _playerService;
 
         public void Run(IEcsSystems systems)
         {
-            var input = _playerService.Value.GetInput();
+            var input = _gameData.Value.Controls;
             input._Player.Use.performed += OnUse;
         }
 

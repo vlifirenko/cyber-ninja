@@ -23,5 +23,6 @@ namespace CyberNinja.Models.Config
         public float droidYSpawnPosition = 2f;
         public float droidMoveDistance = 2f;
         public float droidSpeed = 2f;
+        public float lookingTargetDistance = 50f;
     }
 }

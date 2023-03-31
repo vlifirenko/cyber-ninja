@@ -12,7 +12,7 @@ namespace CyberNinja.Ecs.Systems.Unit
     {
         private readonly EcsFilterInject<Inc<DashComponent>> _filter;
         private readonly EcsPoolInject<DashComponent> _dashPool;
-        private readonly EcsCustomInject<IUnitService> _unitService;
+        private readonly EcsCustomInject<UnitService> _unitService;
 
         public void Run(IEcsSystems systems)
         {

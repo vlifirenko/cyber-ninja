@@ -499,6 +499,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""3cb0e9e9-f358-4b5c-9d63-70bb8c3d9a70"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -765,6 +774,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Use"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5144f4a-c5b0-46ae-8350-9b6af22a08fc"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -824,6 +844,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m__Player_Action03_Tap = m__Player.FindAction("Action03_Tap", throwIfNotFound: true);
         m__Player_Action04_Tap = m__Player.FindAction("Action04_Tap", throwIfNotFound: true);
         m__Player_Use = m__Player.FindAction("Use", throwIfNotFound: true);
+        m__Player_Aim = m__Player.FindAction("Aim", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1008,6 +1029,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m__Player_Action03_Tap;
     private readonly InputAction m__Player_Action04_Tap;
     private readonly InputAction m__Player_Use;
+    private readonly InputAction m__Player_Aim;
     public struct _PlayerActions
     {
         private @Controls m_Wrapper;
@@ -1023,6 +1045,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Action03_Tap => m_Wrapper.m__Player_Action03_Tap;
         public InputAction @Action04_Tap => m_Wrapper.m__Player_Action04_Tap;
         public InputAction @Use => m_Wrapper.m__Player_Use;
+        public InputAction @Aim => m_Wrapper.m__Player_Aim;
         public InputActionMap Get() { return m_Wrapper.m__Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1065,6 +1088,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Use.started -= m_Wrapper.m__PlayerActionsCallbackInterface.OnUse;
                 @Use.performed -= m_Wrapper.m__PlayerActionsCallbackInterface.OnUse;
                 @Use.canceled -= m_Wrapper.m__PlayerActionsCallbackInterface.OnUse;
+                @Aim.started -= m_Wrapper.m__PlayerActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m__PlayerActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m__PlayerActionsCallbackInterface.OnAim;
             }
             m_Wrapper.m__PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1102,6 +1128,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Use.started += instance.OnUse;
                 @Use.performed += instance.OnUse;
                 @Use.canceled += instance.OnUse;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
             }
         }
     }
@@ -1151,5 +1180,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnAction03_Tap(InputAction.CallbackContext context);
         void OnAction04_Tap(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
     }
 }

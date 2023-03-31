@@ -28,3 +28,4 @@ MonoBehaviour:
   droidYSpawnPosition: 2
   droidMoveDistance: 2
   droidSpeed: 0.01
+  lookingTargetDistance: 10

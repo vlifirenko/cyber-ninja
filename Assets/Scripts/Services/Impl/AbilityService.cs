@@ -22,13 +22,13 @@ namespace CyberNinja.Services.Impl
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
         private readonly EcsPool<AbilityEnabledComponent> _enabledPool;
         private readonly LayersConfig _layersConfig;
-        private readonly IUnitService _unitService;
+        private readonly UnitService _unitService;
         private readonly IDoorService _doorService;
         private readonly IVfxService _vfxService;
         private readonly ISceneService _sceneService;
         
         public AbilityService(EcsWorld world, GlobalUnitConfig globalUnitConfig, LayersConfig layersConfig,
-            IUnitService unitService, IDoorService doorService, IVfxService vfxService, ISceneService sceneService)
+            UnitService unitService, IDoorService doorService, IVfxService vfxService, ISceneService sceneService)
         {
             _world = world;
             _globalUnitConfig = globalUnitConfig;

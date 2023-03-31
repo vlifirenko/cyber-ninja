@@ -17,7 +17,7 @@ namespace CyberNinja.Ecs.Systems.Unit
         private readonly EcsWorldInject _world;
         private readonly EcsCustomInject<SceneView> _sceneView;
         private readonly EcsCustomInject<IAiService> _aiService;
-        private readonly EcsCustomInject<IUnitService> _unitService;
+        private readonly EcsCustomInject<UnitService> _unitService;
         private EcsCustomInject<GlobalUnitConfig> _globalUnitConfig;
 
         [EcsUguiNamed(UiConst.HealthSliderContainer)]

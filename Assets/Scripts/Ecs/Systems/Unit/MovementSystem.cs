@@ -1,5 +1,6 @@
 ﻿using CyberNinja.Ecs.Components.Ai;
 using CyberNinja.Ecs.Components.Unit;
+using CyberNinja.Models;
 using CyberNinja.Models.Enums;
 using CyberNinja.Services;
 using CyberNinja.Services.Unit;
@@ -16,7 +17,8 @@ namespace CyberNinja.Ecs.Systems.Unit
     {
         private readonly EcsCustomInject<SceneView> _sceneView;
         private readonly EcsFilterInject<Inc<UnitComponent>, Exc<DeadComponent>> _filter;
-        private readonly EcsCustomInject<IUnitService> _unitService;
+        private readonly EcsCustomInject<UnitService> _unitService;
+        private readonly EcsCustomInject<GameData> _gameData;
         private readonly EcsPoolInject<PlayerComponent> _playerPool;
         private readonly EcsPoolInject<InputAxisComponent> _inputAxisPool;
         private readonly EcsPoolInject<MoveVectorComponent> _moveVectorPool;
@@ -51,7 +53,7 @@ namespace CyberNinja.Ecs.Systems.Unit
         {
             if (isPlayer)
             {
-                var controls = _playerPool.Value.Get(entity).Controls;
+                var controls = _gameData.Value.Controls;
                 var inputAxis = new Vector2(
                     controls._Player.Move.ReadValue<Vector2>().x,
                     controls._Player.Move.ReadValue<Vector2>().y);

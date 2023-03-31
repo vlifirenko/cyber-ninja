@@ -13,7 +13,7 @@ namespace CyberNinja.Ecs.Systems.Unit
     public class ReviveSystem : IEcsRunSystem, IEcsDestroySystem
     {
         private readonly EcsFilterInject<Inc<DeadComponent>> _filter;
-        private readonly EcsCustomInject<IUnitService> _unitService;
+        private readonly EcsCustomInject<UnitService> _unitService;
         private readonly EcsCustomInject<IVfxService> _vfxService;
         private readonly EcsCustomInject<IAiService> _aiService;
         private readonly CompositeDisposable _disposable = new CompositeDisposable();

@@ -14,10 +14,10 @@ namespace CyberNinja.Services.Impl
     public class DoorService : IDoorService
     {
         private readonly EcsWorld _world;
-        private readonly IUnitService _unitService;
+        private readonly UnitService _unitService;
         private readonly CompositeDisposable _disposable;
 
-        public DoorService(EcsWorld world, IUnitService unitService)
+        public DoorService(EcsWorld world, UnitService unitService)
         {
             _world = world;
             _unitService = unitService;

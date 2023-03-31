@@ -2,24 +2,25 @@
 using System.Collections.Generic;
 using CyberNinja.Ecs.Components.Ai;
 using CyberNinja.Ecs.Components.Unit;
+using CyberNinja.Models;
 using CyberNinja.Models.Config;
 using CyberNinja.Models.Enums;
+using CyberNinja.Services.Impl;
 using CyberNinja.Utils;
 using CyberNinja.Views;
 using CyberNinja.Views.Core;
 using CyberNinja.Views.Unit;
 using Leopotam.EcsLite;
-using Leopotam.EcsLite.Di;
 using UnityEngine;
 
 namespace CyberNinja.Services.Unit
 {
-    public class UnitService : IUnitService
+    public class UnitService
     {
         private readonly EcsWorld _world;
         private readonly GlobalUnitConfig _globalUnitConfig;
         private readonly IVfxService _vfxService;
-        private readonly IItemService _itemService;
+        private readonly ItemService _itemService;
         private readonly EcsPool<StunComponent> _stunPool;
         private readonly EcsPool<KnockoutComponent> _knockoutPool;
         private readonly EcsPool<DeadComponent> _deadPool;
@@ -38,7 +39,7 @@ namespace CyberNinja.Services.Unit
         private EcsPackedEntity _playerEntity;
 
         public UnitService(EcsWorld world, GlobalUnitConfig globalUnitConfig, CanvasView canvasView, IVfxService vfxService,
-            IItemService itemService)
+            ItemService itemService)
         {
             _world = world;
             _globalUnitConfig = globalUnitConfig;
@@ -123,6 +124,8 @@ namespace CyberNinja.Services.Unit
                 _world.GetPool<FreezeComponent>().Add(entity);
 
             view.Entity = _world.PackEntity(entity);
+
+            _world.GetPool<TargetsComponent>().Add(entity).Targets = new List<Target>();
 
             return entity;
         }
