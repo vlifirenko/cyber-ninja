@@ -19,7 +19,7 @@ namespace CyberNinja.Services.Unit
     {
         private readonly EcsWorld _world;
         private readonly GlobalUnitConfig _globalUnitConfig;
-        private readonly IVfxService _vfxService;
+        private readonly VfxService _vfxService;
         private readonly ItemService _itemService;
         private readonly EcsPool<StunComponent> _stunPool;
         private readonly EcsPool<KnockoutComponent> _knockoutPool;
@@ -38,7 +38,7 @@ namespace CyberNinja.Services.Unit
 
         private EcsPackedEntity _playerEntity;
 
-        public UnitService(EcsWorld world, GlobalUnitConfig globalUnitConfig, CanvasView canvasView, IVfxService vfxService,
+        public UnitService(EcsWorld world, GlobalUnitConfig globalUnitConfig, CanvasView canvasView, VfxService vfxService,
             ItemService itemService)
         {
             _world = world;
@@ -62,7 +62,7 @@ namespace CyberNinja.Services.Unit
             _triggerPool = _world.GetPool<TriggerComponent>();
         }
 
-        public IAbilityService AbilityService { get; set; }
+        public AbilityService AbilityService { get; set; }
 
         public int CreateUnit(UnitView view)
         {

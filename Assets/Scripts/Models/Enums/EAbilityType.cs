@@ -6,6 +6,7 @@ namespace CyberNinja.Models.Enums
         Layer = 1,
         Base = 10,
         Action = 20,
-        Skill = 30
+        Skill = 30,
+        EnemyShoot = 40
     }
 }

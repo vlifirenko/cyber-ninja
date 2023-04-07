@@ -21,7 +21,7 @@ namespace CyberNinja.Ecs.Systems.Unit
         private EcsCustomInject<UnitService> _unitService;
         private EcsCustomInject<ItemService> _itemService;
         private EcsCustomInject<GlobalUnitConfig> _globalUnitConfig;
-        private EcsCustomInject<IAbilityService> _abilityService;
+        private EcsCustomInject<AbilityService> _abilityService;
         private EcsWorldInject _world;
         private readonly EcsCustomInject<CanvasView> _canvasView;
 

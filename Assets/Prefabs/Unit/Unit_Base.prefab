@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 3662107747513608871}
   - component: {fileID: 605048881063390383}
   m_Layer: 19
-  m_Name: CharacterBase
+  m_Name: Unit_Base
   m_TagString: unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

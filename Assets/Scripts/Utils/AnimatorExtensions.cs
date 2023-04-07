@@ -31,6 +31,7 @@ namespace CyberNinja.Utils
                         animator.SetTrigger(actionTrigger);
                         break;
                     case EAbilityType.Skill:
+                    case EAbilityType.EnemyShoot:
                         animator.SetTrigger(skillTrigger);
                         break;
                     default:

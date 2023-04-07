@@ -40,9 +40,9 @@ namespace CyberNinja.Ecs
 
         private IAiService _aiService;
         private UnitService _unitService;
-        private IAbilityService _abilityService;
+        private AbilityService _abilityService;
         private IDoorService _doorService;
-        private IVfxService _vfxService;
+        private VfxService _vfxService;
         private ISceneService _sceneService;
         private IGameService _gameService;
         private ITimeService _timeService;

@@ -14,7 +14,7 @@ namespace CyberNinja.Ecs.Systems.Ability
     {
         private readonly EcsFilterInject<Inc<PlayerComponent>> _playerFilter;
         private readonly EcsFilterInject<Inc<EnemyComponent>> _enemyFilter;
-        private readonly EcsCustomInject<IAbilityService> _abilityService;
+        private readonly EcsCustomInject<AbilityService> _abilityService;
         private readonly EcsCustomInject<UnitService> _unitService;
         private readonly EcsCustomInject<CanvasView> _canvasView;
         private readonly EcsPoolInject<PlayerComponent> _playerPool;

@@ -2,6 +2,7 @@
 using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models.Enums;
 using CyberNinja.Services;
+using CyberNinja.Services.Impl;
 using CyberNinja.Services.Unit;
 using CyberNinja.Utils;
 using Leopotam.EcsLite;
@@ -14,7 +15,7 @@ namespace CyberNinja.Ecs.Systems.Unit
     {
         private readonly EcsFilterInject<Inc<DeadComponent>> _filter;
         private readonly EcsCustomInject<UnitService> _unitService;
-        private readonly EcsCustomInject<IVfxService> _vfxService;
+        private readonly EcsCustomInject<VfxService> _vfxService;
         private readonly EcsCustomInject<IAiService> _aiService;
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
 

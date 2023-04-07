@@ -12,11 +12,11 @@ namespace CyberNinja.Services.Impl
     public class AiService : IAiService
     {
         private readonly EcsWorld _world;
-        private readonly IAbilityService _abilityService;
+        private readonly AbilityService _abilityService;
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
         private readonly EcsPool<AiTaskComponent> _aiTaskPool;
 
-        public AiService(EcsWorld world, IAbilityService abilityService)
+        public AiService(EcsWorld world, AbilityService abilityService)
         {
             _world = world;
             _abilityService = abilityService;

@@ -20,7 +20,7 @@ namespace CyberNinja.Views
         [Space]
         [BoxGroup("Target"), SerializeField, Range(0.001f, 1)] private float blendLerp = 0.01f;
 
-        [BoxGroup("Parameters"), Range(.6f, 1), SerializeField] private float zoom = 0.8f;
+        [BoxGroup("Parameters"), Range(.6f, 10), SerializeField] private float zoom = 0.8f;
         
         public Transform CameraMain => cameraMain;
         public Transform CameraBase => cameraBase;
