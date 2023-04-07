@@ -10,6 +10,7 @@ namespace CyberNinja.Models.Config
         public StartResource[] startResources;
         public float outerCircleUnlockCost = 100;
         public int startColonyLevel = 1;
+        public LayerMask mineCellLayer;
     }
 
     [Serializable]

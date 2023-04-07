@@ -49,6 +49,7 @@ namespace CyberNinja.Ecs
                 .Add(new InitMineSystem())
 
                 // game
+                .Add(new MineCellMouseHoverSystem())
                 
                 // ui
                 .Add(new UiUpdateResources())
