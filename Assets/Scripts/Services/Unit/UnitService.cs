@@ -132,9 +132,19 @@ namespace CyberNinja.Services.Unit
 
         public void AddDamage(int entity, float damage, Transform damageOrigin)
         {
+            var damageFactor = _damageFactorPool.Get(entity);
+            // todo move to system
+            /*_world.GetPool<DamageComponent>().Add(entity) = new DamageComponent
+            {
+                Value = new Damage
+                {
+                    value = damageFactor.PhysicalFactor,
+                    damageOrigin = damageOrigin
+                }
+            };*/
+            //
             ref var health = ref _healthPool.Get(entity);
             var unit = _unitPool.Get(entity);
-            var damageFactor = _damageFactorPool.Get(entity);
 
             var damageMath = damage - damage * damageFactor.PhysicalFactor / 100;
             var newHealth = Mathf.Clamp(health.Current - damageMath, 0f, health.Max);
@@ -162,6 +172,8 @@ namespace CyberNinja.Services.Unit
 
         private void Dead(int entity)
         {
+            // todo move to system
+            
             AddState(entity, EUnitState.Dead);
             AddState(entity, EUnitState.Knockout);
 
@@ -184,6 +196,9 @@ namespace CyberNinja.Services.Unit
                 aiTask.Value = EAiTaskType.Dead;
                 if (_world.GetPool<AiTargetComponent>().Has(entity))
                     _world.GetPool<AiTargetComponent>().Del(entity);
+
+                ref var enemy = ref _world.GetPool<EnemyComponent>().Get(entity);
+                enemy.HealthSlider.gameObject.SetActive(false);
             }
         }
 

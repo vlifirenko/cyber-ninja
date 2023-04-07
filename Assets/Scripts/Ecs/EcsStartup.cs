@@ -5,6 +5,7 @@ using CyberNinja.Ecs.Systems.Door;
 using CyberNinja.Ecs.Systems.Game;
 using CyberNinja.Ecs.Systems.Item;
 using CyberNinja.Ecs.Systems.Player;
+using CyberNinja.Ecs.Systems.Player.Droid;
 using CyberNinja.Ecs.Systems.SceneObjects;
 using CyberNinja.Ecs.Systems.Ui;
 using CyberNinja.Ecs.Systems.Unit;
@@ -113,13 +114,14 @@ namespace CyberNinja.Ecs
                 .Add(new AbilityInputBlockSystem())
                 .Add(new HealthRegenerationSystem())
                 .Add(new EnergyRegenerationSystem())
-                .Add(new DamageFactorSystem())
+                .Add(new CalculateDamageFactorSystem())
                 .Add(new ReviveSystem())
                 .Add(new HealthEventSystem())
                 .Add(new EnergyEventSystem())
                 .Add(new DroidMovementSystem())
                 .Add(new FindTargetsSystem())
                 .Add(new DroidShootSystem())
+                .Add(new DamageSystem())
 
                 // ability
                 .Add(new InitAbilitiesSystem())

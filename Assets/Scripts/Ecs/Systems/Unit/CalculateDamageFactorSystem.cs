@@ -6,17 +6,17 @@ using UnityEngine;
 
 namespace CyberNinja.Ecs.Systems.Unit
 {
-    public class DamageFactorSystem : IEcsRunSystem
+    public class CalculateDamageFactorSystem : IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<DamageFactorComponent>> _filter;
         private readonly EcsPoolInject<DamageFactorComponent> _damageFactorPool;
-        
+
         public void Run(IEcsSystems systems)
         {
             foreach (var entity in _filter.Value)
             {
-                ref var damageFactor =ref _damageFactorPool.Value.Get(entity);
-                
+                ref var damageFactor = ref _damageFactorPool.Value.Get(entity);
+
                 if (damageFactor.ImpactList.Count == 0)
                 {
                     damageFactor.PhysicalFactor = 0;

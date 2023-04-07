@@ -4,7 +4,7 @@ using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace CyberNinja.Ecs.Systems.Player
+namespace CyberNinja.Ecs.Systems.Player.Droid
 {
     public class DroidMovementSystem : IEcsRunSystem
     {

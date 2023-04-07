@@ -31,4 +31,6 @@ MonoBehaviour:
   lookingTargetDistance: 25
   droidProjectile: {fileID: 1898050158055525068, guid: 7f58bb57df8ba7e41b1b2b434ebda2fd, type: 3}
   droidShootReloadTime: 0.25
-  droidShootSpeed: 0.001
+  droidShootSpeed: 0.005
+  droidHitDistance: 2
+  droidDamage: 10
