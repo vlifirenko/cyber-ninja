@@ -428,6 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneView: {fileID: 1910917317}
+  mineConfig: {fileID: 11400000, guid: 5fc57b0207c00784cb47e012a0824d24, type: 2}
   uguiEmitter: {fileID: 5722894323663729803}
   layersConfig: {fileID: 11400000, guid: f310f92ffb52f9d4a909e1dbae2b82bf, type: 2}
   globalUnitConfig: {fileID: 11400000, guid: eb94f52f175b17547b7d17a3a290e285, type: 2}
@@ -1251,19 +1252,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 663243124797258679, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8835934
+      value: 0.88359344
       objectReference: {fileID: 0}
     - target: {fileID: 663243124797258679, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.26984456
+      value: 0.26984453
       objectReference: {fileID: 0}
     - target: {fileID: 663243124797258679, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.36599642
+      value: -0.3659964
       objectReference: {fileID: 0}
     - target: {fileID: 663243124797258679, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.1117733
+      value: 0.111773275
       objectReference: {fileID: 0}
     - target: {fileID: 1147349365556241131, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_FollowOffset.y
@@ -1279,35 +1280,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2089856319450136476, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8835934
+      value: 0.88359344
       objectReference: {fileID: 0}
     - target: {fileID: 2089856319450136476, guid: 5a919448245572743b7c97565b708747, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.26984453
-      objectReference: {fileID: 0}
-    - target: {fileID: 2089856319450136476, guid: 5a919448245572743b7c97565b708747, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.36599642
-      objectReference: {fileID: 0}
-    - target: {fileID: 2089856319450136476, guid: 5a919448245572743b7c97565b708747, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.1117733
-      objectReference: {fileID: 0}
-    - target: {fileID: 4560385789221715945, guid: 5a919448245572743b7c97565b708747, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.8835934
-      objectReference: {fileID: 0}
-    - target: {fileID: 4560385789221715945, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.26984456
       objectReference: {fileID: 0}
-    - target: {fileID: 4560385789221715945, guid: 5a919448245572743b7c97565b708747, type: 3}
+    - target: {fileID: 2089856319450136476, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0.36599642
       objectReference: {fileID: 0}
+    - target: {fileID: 2089856319450136476, guid: 5a919448245572743b7c97565b708747, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.11177329
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560385789221715945, guid: 5a919448245572743b7c97565b708747, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.88359344
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560385789221715945, guid: 5a919448245572743b7c97565b708747, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.26984453
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560385789221715945, guid: 5a919448245572743b7c97565b708747, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.36599636
+      objectReference: {fileID: 0}
     - target: {fileID: 4560385789221715945, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.1117733
+      value: 0.11177326
       objectReference: {fileID: 0}
     - target: {fileID: 6759741975342567758, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_RootOrder

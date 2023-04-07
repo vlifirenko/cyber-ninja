@@ -1,4 +1,5 @@
-﻿using CyberNinja.Models;
+﻿using CyberNinja.Ecs.Systems.Mine;
+using CyberNinja.Models;
 using CyberNinja.Models.Config;
 using CyberNinja.Services;
 using CyberNinja.Services.Impl;
@@ -14,6 +15,7 @@ namespace CyberNinja.Ecs
     public class MineEcsStartup : MonoBehaviour
     {
         [SerializeField] private MineSceneView sceneView;
+        [SerializeField] private MineConfig mineConfig;
         [SerializeField] private EcsUguiEmitter uguiEmitter;
         [SerializeField] private LayersConfig layersConfig;
         [SerializeField] private GlobalUnitConfig globalUnitConfig;
@@ -44,6 +46,7 @@ namespace CyberNinja.Ecs
             _systems
 
                 // init
+                .Add(new InitMineSystem())
 
                 // game
                 
@@ -53,7 +56,7 @@ namespace CyberNinja.Ecs
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif
                 .Inject(_gameData, sceneView)
-                .Inject(layersConfig, globalUnitConfig, audioConfig, inputConfig)
+                .Inject(layersConfig, globalUnitConfig, audioConfig, inputConfig, mineConfig)
                 .Inject(_timeService, _playerService)
                 .Inject()
                 .InjectUgui(uguiEmitter)
