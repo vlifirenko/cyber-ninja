@@ -12,3 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbe57f63e0246898265a48f95fab746, type: 3}
   m_Name: Mine
   m_EditorClassIdentifier: 
+  isOuterCircleUnlocked: 0
+  startResources:
+  - type: 10
+    value: 10
+  - type: 20
+    value: 0
+  - type: 30
+    value: 0

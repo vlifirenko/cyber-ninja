@@ -12,5 +12,6 @@ namespace CyberNinja.Models
         public bool isMusicMute;
         public bool isEffectsMute;
         public bool isEnvironmentMute;
+        public PlayerResources playerResources = new PlayerResources();
     }
 }

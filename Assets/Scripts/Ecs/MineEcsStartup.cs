@@ -50,6 +50,9 @@ namespace CyberNinja.Ecs
 
                 // game
                 
+                // ui
+                .Add(new UiUpdateResources())
+                
                 //
                 //.DelHere<PickupComponent>()
 #if UNITY_EDITOR
