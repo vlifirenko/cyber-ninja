@@ -15,8 +15,10 @@ MonoBehaviour:
   isOuterCircleUnlocked: 0
   startResources:
   - type: 10
-    value: 10
+    value: 0
   - type: 20
-    value: 0
+    value: 200
   - type: 30
-    value: 0
+    value: 10
+  outerCircleUnlockCost: 100
+  startColonyLevel: 1
