@@ -29,6 +29,9 @@ namespace CyberNinja.Views
 
         private void Update()
         {
+            if (mineCircle == EMineCircle.Core)
+                return;
+            
             if (_isHovered && _renderer.material != hoverMaterial)
                 _renderer.material = hoverMaterial;
             else if (!_isHovered && _renderer.material != defaultMaterial)

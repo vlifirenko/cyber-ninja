@@ -23,6 +23,15 @@ namespace CyberNinja.Ecs.Systems.Mine
             if (Physics.Raycast(ray, out var hit, Mathf.Infinity, _mineConfig.Value.mineCellLayer))
             {
                 var mineCell = hit.transform.parent.GetComponent<MineCell>();
+                if (mineCell.MineCircle == EMineCircle.Core)
+                {
+                    if (_prevMineCell != null)
+                    {
+                        _prevMineCell.IsHovered = false;
+                        _prevMineCell = null;
+                    }
+                }
+
                 if (!mineCell.IsHovered)
                     mineCell.IsHovered = true;
 
