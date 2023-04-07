@@ -20,7 +20,6 @@ namespace CyberNinja.Models.Config
         public float defaultMoveSpeed = 5f;
 
         [Space]
-        public AbilityItem skillWeaponHitConfig;
         public float droidYSpawnPosition = 2f;
         public float droidMoveDistance = 2f;
         public float droidSpeed = 2f;

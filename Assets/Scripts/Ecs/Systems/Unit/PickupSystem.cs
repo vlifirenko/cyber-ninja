@@ -41,7 +41,7 @@ namespace CyberNinja.Ecs.Systems.Unit
                     else
                     {
                         _uiItemPopup.Hide();
-                        AddAttackAbility();
+                        AddAttackAbility(entity);
                     }
 
                     EquipWeapon(entity, pickup);
@@ -83,13 +83,14 @@ namespace CyberNinja.Ecs.Systems.Unit
             _itemService.Value.TryEquip(weaponEntity.Value, _world.Value.PackEntityWithWorld(unit));
         }
 
-        private void AddAttackAbility()
+        private void AddAttackAbility(int entity)
         {
-            var abilityItem = _globalUnitConfig.Value.skillWeaponHitConfig;
+            var unit = _unitService.Value.GetUnit(entity);
+            var ability = unit.Config.Abilities[0];
             if (_unitService.Value.Player.Unpack(_world.Value, out var player))
             {
-                _abilityService.Value.CreateAbility(abilityItem, player);
-                _canvasView.Value.AbilityImages[abilityItem.slotIndex].sprite = abilityItem.abilityConfig.icon;
+                _abilityService.Value.CreateAbility(ability, player);
+                _canvasView.Value.AbilityImages[ability.slotIndex].sprite = ability.abilityConfig.icon;
             }
         }
     }

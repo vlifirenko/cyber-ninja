@@ -114,10 +114,10 @@ namespace CyberNinja.Services.Unit
             {
                 var weaponEntity = _itemService.CreateItem(unit.Config.DefaultWeapon);
                 _itemService.TryEquip(weaponEntity, _world.PackEntityWithWorld(entity));
-                
-                AbilityService.CreateAbility(_globalUnitConfig.skillWeaponHitConfig, entity);
-                _canvasView.AbilityImages[_globalUnitConfig.skillWeaponHitConfig.slotIndex].sprite =
-                    _globalUnitConfig.skillWeaponHitConfig.abilityConfig.icon;
+
+                var ability = unit.Config.Abilities[0];
+                AbilityService.CreateAbility(ability, entity);
+                _canvasView.AbilityImages[ability.slotIndex].sprite = ability.abilityConfig.icon;
             }
 
             if (view.IsFreeze)

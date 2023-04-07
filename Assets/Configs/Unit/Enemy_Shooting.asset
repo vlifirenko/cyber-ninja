@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f853a625a3414bebac9a57a99a37e2dd, type: 3}
-  m_Name: Player
+  m_Name: Enemy_Shooting
   m_EditorClassIdentifier: 
-  controlType: 0
-  lookRadius: 8
-  maxChaseDistance: 12
-  attackDistance: 2.5
-  maxAttackDistance: 3.5
-  maxHealth: 10000
-  maxEnergy: 10000
+  controlType: 1
+  lookRadius: 11
+  maxChaseDistance: 0
+  attackDistance: 10
+  maxAttackDistance: 11
+  maxHealth: 100
+  maxEnergy: 100
   healthRegeneration: 0
   energyRegeneration: 0
-  moveSpeed: 10
-  speedFactor: 1
-  smoothMove: 0.1
+  moveSpeed: 0
+  speedFactor: 0
+  smoothMove: 0
   smoothRotation: 0.4
   abilitySmoothRotation: 1
   rotateToLookVector: 1
@@ -31,14 +31,11 @@ MonoBehaviour:
   minMouseMagnitude: 1.5
   mouseMagnitudeOffset: 0.2
   minMouseMagnitudeTemp: 1.7
-  abilities:
-  - slotIndex: 0
-    abilityConfig: {fileID: 11400000, guid: 9c898ade16f8e8f4698fa7621abbdcaa, type: 2}
-    overrideData: []
+  abilities: []
   abilityDamageConfig: {fileID: 11400000, guid: 996a32c765e145648b4b6bc3b6069be5, type: 2}
   abilityStunOnConfig: {fileID: 11400000, guid: 08c8164129580c4458d36c00722ea171, type: 2}
   abilityStunOffConfig: {fileID: 11400000, guid: 70c6a8822f0293b4e8cc53980c5f2bfd, type: 2}
   abilityDeadConfig: {fileID: 11400000, guid: 6aed9abc74ddf234da313a1c220c5f1c, type: 2}
   abilityReviveConfig: {fileID: 11400000, guid: 5503bce4d4d286744ae475667b53235e, type: 2}
   defaultWeapon: {fileID: 11400000, guid: cf1b7d5a7d625d142a4158015ad69575, type: 2}
-  isHasDroid: 1
+  isHasDroid: 0

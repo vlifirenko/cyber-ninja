@@ -31,10 +31,14 @@ MonoBehaviour:
   minMouseMagnitude: 1.5
   mouseMagnitudeOffset: 0.2
   minMouseMagnitudeTemp: 1.7
-  abilities: []
+  abilities:
+  - slotIndex: 0
+    abilityConfig: {fileID: 11400000, guid: 9c898ade16f8e8f4698fa7621abbdcaa, type: 2}
+    overrideData: []
   abilityDamageConfig: {fileID: 11400000, guid: 996a32c765e145648b4b6bc3b6069be5, type: 2}
   abilityStunOnConfig: {fileID: 11400000, guid: 08c8164129580c4458d36c00722ea171, type: 2}
   abilityStunOffConfig: {fileID: 11400000, guid: 70c6a8822f0293b4e8cc53980c5f2bfd, type: 2}
   abilityDeadConfig: {fileID: 11400000, guid: 6aed9abc74ddf234da313a1c220c5f1c, type: 2}
   abilityReviveConfig: {fileID: 11400000, guid: 5503bce4d4d286744ae475667b53235e, type: 2}
   defaultWeapon: {fileID: 11400000, guid: cf1b7d5a7d625d142a4158015ad69575, type: 2}
+  isHasDroid: 0
