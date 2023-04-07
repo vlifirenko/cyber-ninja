@@ -1,5 +1,4 @@
-﻿using System;
-using CyberNinja.Views.Core;
+﻿using CyberNinja.Views.Core;
 using UnityEngine;
 
 namespace CyberNinja.Views

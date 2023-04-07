@@ -796,6 +796,34 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Mine"",
+            ""id"": ""51f97dca-19b9-4cb7-be6c-b08e83392653"",
+            ""actions"": [
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""4fe846d7-f6f3-4907-bedb-93b392f95bd8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3a299e99-74df-4abb-8f89-916805285eba"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -855,6 +883,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m__Player_Use = m__Player.FindAction("Use", throwIfNotFound: true);
         m__Player_Aim = m__Player.FindAction("Aim", throwIfNotFound: true);
         m__Player_Droid_Shoot = m__Player.FindAction("Droid_Shoot", throwIfNotFound: true);
+        // Mine
+        m_Mine = asset.FindActionMap("Mine", throwIfNotFound: true);
+        m_Mine_Select = m_Mine.FindAction("Select", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1153,6 +1184,39 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         }
     }
     public _PlayerActions @_Player => new _PlayerActions(this);
+
+    // Mine
+    private readonly InputActionMap m_Mine;
+    private IMineActions m_MineActionsCallbackInterface;
+    private readonly InputAction m_Mine_Select;
+    public struct MineActions
+    {
+        private @Controls m_Wrapper;
+        public MineActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Select => m_Wrapper.m_Mine_Select;
+        public InputActionMap Get() { return m_Wrapper.m_Mine; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MineActions set) { return set.Get(); }
+        public void SetCallbacks(IMineActions instance)
+        {
+            if (m_Wrapper.m_MineActionsCallbackInterface != null)
+            {
+                @Select.started -= m_Wrapper.m_MineActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_MineActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_MineActionsCallbackInterface.OnSelect;
+            }
+            m_Wrapper.m_MineActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
+            }
+        }
+    }
+    public MineActions @Mine => new MineActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1200,5 +1264,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnUse(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnDroid_Shoot(InputAction.CallbackContext context);
+    }
+    public interface IMineActions
+    {
+        void OnSelect(InputAction.CallbackContext context);
     }
 }
