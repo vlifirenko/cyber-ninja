@@ -1,13 +1,18 @@
-﻿using CyberNinja.Models;
+﻿using System;
+using CyberNinja.Models;
 using CyberNinja.Models.Config;
 using CyberNinja.Utils;
 using CyberNinja.Views;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Leopotam.EcsLite.Unity.Ugui;
+using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
+using UnityEngine.UI;
+using Observable = UniRx.Observable;
 
 namespace CyberNinja.Ecs.Systems.Mine
 {
@@ -28,13 +33,14 @@ namespace CyberNinja.Ecs.Systems.Mine
 
             controls.Mine.Enable();
             controls.Mine.Select.performed += OnMouseClick;
+            
+            _minePopup.UpgradeButton.onClick.AddListener(OnMineUpgradeButton);
         }
 
         public void Run(IEcsSystems systems)
         {
             var ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-            if (!EventSystem.current.IsPointerOverGameObject() &&
-                Physics.Raycast(ray, out var hit, Mathf.Infinity, _mineConfig.Value.mineCellLayer))
+            if (Physics.Raycast(ray, out var hit, Mathf.Infinity, _mineConfig.Value.mineCellLayer))
             {
                 var mineCell = hit.transform.parent.GetComponent<MineCell>();
                 if (mineCell.MineCircle == EMineCircle.Core)
@@ -70,7 +76,17 @@ namespace CyberNinja.Ecs.Systems.Mine
                 return;
 
             _selectedMineCell = _hoveredMineCell;
-            _minePopup.Inner.gameObject.SetActive(true);
+
+            Observable.Timer(TimeSpan.FromSeconds(0.1f))
+                .Subscribe(_ => _minePopup.Inner.gameObject.SetActive(true));
+        }
+
+        private void OnMineUpgradeButton()
+        {
+            if (_selectedMineCell == null)
+                return;
+            
+            Debug.Log($"upgrade {_selectedMineCell.name}");
         }
     }
 }
