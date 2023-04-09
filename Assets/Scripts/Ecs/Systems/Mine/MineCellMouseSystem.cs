@@ -27,6 +27,7 @@ namespace CyberNinja.Ecs.Systems.Mine
 
         [EcsUguiNamed(UiConst.MinePopup)] private MinePopup _minePopup;
         [EcsUguiNamed(UiConst.MessageText)] private TMP_Text _messageText;
+        [EcsUguiNamed(UiConst.Canvas)] private Canvas _canvas;
 
         public void Init(IEcsSystems systems)
         {
@@ -79,6 +80,9 @@ namespace CyberNinja.Ecs.Systems.Mine
 
             _selectedMineCell = _hoveredMineCell;
 
+            var position = _canvas.WorldToCanvasPosition(_selectedMineCell.Transform.position);
+            position += new Vector3(_minePopup.Offset.x, _minePopup.Offset.y);
+            _minePopup.Window.anchoredPosition = position;
             Observable.Timer(TimeSpan.FromSeconds(0.1f))
                 .Subscribe(_ => _minePopup.Inner.gameObject.SetActive(true));
         }

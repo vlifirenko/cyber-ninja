@@ -9,5 +9,6 @@
         public const string ResourcesText = "resources-text";
         public const string MessageText = "message-text";
         public const string MinePopup = "mine-popup";
+        public const string Canvas = "canvas";
     }
 }

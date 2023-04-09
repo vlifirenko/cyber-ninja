@@ -12,6 +12,8 @@ namespace CyberNinja.Views
         [SerializeField] private TMP_Text nameText;
         [SerializeField] private TMP_Text levelText;
         [SerializeField] private GameObject inner;
+        [SerializeField] private RectTransform window;
+        [SerializeField] private Vector2 offset = new Vector2(0, 100);
 
         public Button CloseButton => closeButton;
 
@@ -22,5 +24,9 @@ namespace CyberNinja.Views
         public TMP_Text LevelText => levelText;
 
         public GameObject Inner => inner;
+
+        public RectTransform Window => window;
+
+        public Vector2 Offset => offset;
     }
 }

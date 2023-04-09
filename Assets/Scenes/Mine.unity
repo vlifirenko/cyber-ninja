@@ -1229,6 +1229,8 @@ MonoBehaviour:
   nameText: {fileID: 825704173}
   levelText: {fileID: 271118485}
   inner: {fileID: 1774133279}
+  window: {fileID: 138876815}
+  offset: {x: 0, y: 100}
 --- !u!1001 &627618793
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2482,19 +2484,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 663243124797258679, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8835934
+      value: 0.88359344
       objectReference: {fileID: 0}
     - target: {fileID: 663243124797258679, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.26984456
+      value: 0.26984453
       objectReference: {fileID: 0}
     - target: {fileID: 663243124797258679, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.36599642
+      value: -0.36599636
       objectReference: {fileID: 0}
     - target: {fileID: 663243124797258679, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.1117733
+      value: 0.11177326
       objectReference: {fileID: 0}
     - target: {fileID: 1147349365556241131, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_FollowOffset.y
@@ -2510,7 +2512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2089856319450136476, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8835934
+      value: 0.88359344
       objectReference: {fileID: 0}
     - target: {fileID: 2089856319450136476, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2518,11 +2520,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2089856319450136476, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.36599642
+      value: -0.36599636
       objectReference: {fileID: 0}
     - target: {fileID: 2089856319450136476, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.1117733
+      value: 0.11177327
       objectReference: {fileID: 0}
     - target: {fileID: 4560385789221715945, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2538,19 +2540,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4560385789221715945, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8835934
+      value: 0.88359344
       objectReference: {fileID: 0}
     - target: {fileID: 4560385789221715945, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.26984456
+      value: 0.26984453
       objectReference: {fileID: 0}
     - target: {fileID: 4560385789221715945, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.36599642
+      value: -0.36599636
       objectReference: {fileID: 0}
     - target: {fileID: 4560385789221715945, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.1117733
+      value: 0.11177326
       objectReference: {fileID: 0}
     - target: {fileID: 6759741975342567758, guid: 5a919448245572743b7c97565b708747, type: 3}
       propertyPath: m_RootOrder
@@ -4799,6 +4801,7 @@ GameObject:
   - component: {fileID: 377733298439893016}
   - component: {fileID: 377733298439893013}
   - component: {fileID: 5722894323663729803}
+  - component: {fileID: 5722894323663729804}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4940,3 +4943,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b063c93934787408083465660cb96d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5722894323663729804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377733298439893019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2bb647df7944f4b8f1a565fb2bc704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _widgetName: canvas
+  _emitter: {fileID: 0}
+  _nameRegistrationType: 1
+  _selectable: {fileID: 0}
