@@ -46,8 +46,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mineCircle: 0
+  mineCellState: 0
   defaultMaterial: {fileID: 2100000, guid: 83499ee76684b3f42affeaa05d273f80, type: 2}
+  level2Material: {fileID: 2100000, guid: d77463f3e92b1fa4bbee55d60a31cc58, type: 2}
+  level3Material: {fileID: 2100000, guid: c8462bf66f775b64eaac00baa2effeed, type: 2}
   hoverMaterial: {fileID: 2100000, guid: 8db2527120d3bec46b03fe869dc8a9bf, type: 2}
+  _isHovered: 0
 --- !u!1 &501111185327158315
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,7 +80,7 @@ Transform:
   m_GameObject: {fileID: 501111185327158315}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2, y: 1.5, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 501111184620992681}

@@ -1,4 +1,5 @@
-﻿using CyberNinja.Views.Core;
+﻿using System;
+using CyberNinja.Views.Core;
 using UnityEngine;
 
 namespace CyberNinja.Views
@@ -6,16 +7,20 @@ namespace CyberNinja.Views
     public class MineCell : AView
     {
         [SerializeField] private EMineCircle mineCircle;
+        [SerializeField] private EMineCellState mineCellState;
         [SerializeField] private Material defaultMaterial;
+        [SerializeField] private Material level2Material;
+        [SerializeField] private Material level3Material;
         [SerializeField] private Material hoverMaterial;
 
-        [SerializeField]private bool _isHovered;
+        [SerializeField] private bool _isHovered;
         private Renderer _renderer;
 
         protected override void Awake()
         {
             base.Awake();
             _renderer = GetComponentInChildren<Renderer>();
+            mineCellState = EMineCellState.Level1;
         }
 
         public EMineCircle MineCircle => mineCircle;
@@ -23,18 +28,31 @@ namespace CyberNinja.Views
         public bool IsHovered
         {
             get => _isHovered;
-            set => _isHovered = value;
-        }
+            set
+            {
+                if (mineCircle != EMineCircle.Core)
+                {
+                    if (!_isHovered && value)
+                        _renderer.material = hoverMaterial;
+                    else if (_isHovered && !value)
+                    {
+                        switch (mineCellState)
+                        {
+                            case EMineCellState.Level1:
+                                _renderer.material = defaultMaterial;
+                                break;
+                            case EMineCellState.Level2:
+                                break;
+                            case EMineCellState.Level3:
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
+                    }
+                }
 
-        private void Update()
-        {
-            if (mineCircle == EMineCircle.Core)
-                return;
-            
-            if (_isHovered && _renderer.material != hoverMaterial)
-                _renderer.material = hoverMaterial;
-            else if (!_isHovered && _renderer.material != defaultMaterial)
-                _renderer.material = defaultMaterial;
+                _isHovered = value;
+            }
         }
     }
 
@@ -44,5 +62,13 @@ namespace CyberNinja.Views
         Core = 10,
         Inner = 20,
         Outer = 30
+    }
+
+    public enum EMineCellState
+    {
+        None = 0,
+        Level1 = 10,
+        Level2 = 20,
+        Level3 = 30
     }
 }
