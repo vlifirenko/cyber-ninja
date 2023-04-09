@@ -6,6 +6,7 @@ using CyberNinja.Views;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Leopotam.EcsLite.Unity.Ugui;
+using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -25,6 +26,7 @@ namespace CyberNinja.Ecs.Systems.Mine
         private MineCell _selectedMineCell;
 
         [EcsUguiNamed(UiConst.MinePopup)] private MinePopup _minePopup;
+        [EcsUguiNamed(UiConst.MessageText)] private TMP_Text _messageText;
 
         public void Init(IEcsSystems systems)
         {
@@ -85,8 +87,36 @@ namespace CyberNinja.Ecs.Systems.Mine
         {
             if (_selectedMineCell == null)
                 return;
-            
-            Debug.Log($"upgrade {_selectedMineCell.name}");
+            if (_selectedMineCell.MineCellState == EMineCellState.Level3)
+                return;
+
+            var resourcesLeft = _gameData.Value.playerResources.Map[EResourceType.Resource1]; 
+            if (_selectedMineCell.MineCellState == EMineCellState.Level1)
+            {
+                if (resourcesLeft < _mineConfig.Value.mineUpgrade2Cost)
+                {
+                    _messageText.text = $"Not enough {EResourceType.Resource1}";
+                    Observable.Timer(TimeSpan.FromSeconds(2))
+                        .Subscribe(_ => _messageText.text = "");
+                    return;
+                }
+
+                _gameData.Value.playerResources.Map[EResourceType.Resource1] -= _mineConfig.Value.mineUpgrade2Cost;
+                _selectedMineCell.MineCellState = EMineCellState.Level2;
+            }
+            else if (_selectedMineCell.MineCellState == EMineCellState.Level2)
+            {
+                if (resourcesLeft < _mineConfig.Value.mineUpgrade3Cost)
+                {
+                    _messageText.text = $"Not enough {EResourceType.Resource1}";
+                    Observable.Timer(TimeSpan.FromSeconds(2))
+                        .Subscribe(_ => _messageText.text = "");
+                    return;
+                }
+                
+                _gameData.Value.playerResources.Map[EResourceType.Resource1] -= _mineConfig.Value.mineUpgrade3Cost;
+                _selectedMineCell.MineCellState = EMineCellState.Level3;
+            }
         }
     }
 }

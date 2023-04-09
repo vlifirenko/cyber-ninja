@@ -15,7 +15,7 @@ MonoBehaviour:
   isOuterCircleUnlocked: 0
   startResources:
   - type: 10
-    value: 500
+    value: 5000
   - type: 20
     value: 200
   - type: 30
@@ -25,3 +25,5 @@ MonoBehaviour:
   mineCellLayer:
     serializedVersion: 2
     m_Bits: 512
+  mineUpgrade2Cost: 200
+  mineUpgrade3Cost: 500

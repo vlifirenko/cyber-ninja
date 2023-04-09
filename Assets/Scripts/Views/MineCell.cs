@@ -42,8 +42,10 @@ namespace CyberNinja.Views
                                 _renderer.material = defaultMaterial;
                                 break;
                             case EMineCellState.Level2:
+                                _renderer.material = level2Material;
                                 break;
                             case EMineCellState.Level3:
+                                _renderer.material = level3Material;
                                 break;
                             default:
                                 throw new ArgumentOutOfRangeException();
@@ -53,6 +55,12 @@ namespace CyberNinja.Views
 
                 _isHovered = value;
             }
+        }
+
+        public EMineCellState MineCellState
+        {
+            get => mineCellState;
+            set => mineCellState = value;
         }
     }
 

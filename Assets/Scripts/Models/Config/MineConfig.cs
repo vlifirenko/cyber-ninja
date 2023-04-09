@@ -11,6 +11,8 @@ namespace CyberNinja.Models.Config
         public float outerCircleUnlockCost = 100;
         public int startColonyLevel = 1;
         public LayerMask mineCellLayer;
+        public float mineUpgrade2Cost = 200f;
+        public float mineUpgrade3Cost = 500f;
     }
 
     [Serializable]
