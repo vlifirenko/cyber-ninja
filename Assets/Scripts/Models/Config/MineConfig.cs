@@ -6,7 +6,6 @@ namespace CyberNinja.Models.Config
     [CreateAssetMenu(menuName = "Config/Mine", fileName = "Mine")]
     public class MineConfig : ScriptableObject
     {
-        public bool isOuterCircleUnlocked;
         public StartResource[] startResources;
         public int outerCircleUnlockCost = 100;
         public int startColonyLevel = 1;

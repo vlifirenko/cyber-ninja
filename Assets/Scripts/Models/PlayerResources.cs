@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CyberNinja.Models
 {
@@ -8,8 +7,7 @@ namespace CyberNinja.Models
     public class PlayerResources
     {
         public List<ResourceItem> items = new();
-
-
+        
         public void Add(EResourceType resourceType, float value)
         {
             items.Add(new ResourceItem

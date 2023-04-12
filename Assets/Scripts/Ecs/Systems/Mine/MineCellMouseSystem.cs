@@ -130,9 +130,9 @@ namespace CyberNinja.Ecs.Systems.Mine
             cell.MineCellState = state;
             _gameData.Value.playerResources.Update(resourceType,-cost);
             if (cell.MineCircle == EMineCircle.Inner)
-                _gameData.Value.mine.innerCircle.rooms[cell.Index].level = state;
+                _gameData.Value.mine.innerCircle.Update(cell.Index, state);
             if (cell.MineCircle == EMineCircle.Outer)
-                _gameData.Value.mine.outerCircle.rooms[cell.Index].level = state;
+                _gameData.Value.mine.outerCircle.Update(cell.Index, state);
             
             SaveService.Save(_gameData.Value);
         }

@@ -21,7 +21,10 @@ namespace CyberNinja.Ecs.Systems.Mine
         private EcsCustomInject<SaveService> _saveService;
 
         [EcsUguiNamed(UiConst.BuyOuterCircle)] private Button _buyOuterCircleButton;
-        [EcsUguiNamed(UiConst.ColonyLevelText)] private TMP_Text _colonyLevelText;
+
+        [EcsUguiNamed(UiConst.ColonyLevelText)]
+        private TMP_Text _colonyLevelText;
+
         [EcsUguiNamed(UiConst.MessageText)] private TMP_Text _messageText;
 
         public void Init(IEcsSystems systems)
@@ -30,23 +33,12 @@ namespace CyberNinja.Ecs.Systems.Mine
 
             mine.innerCircle = new MineCircle();
             for (var i = 0; i < 9; i++)
-            {
-                var room = new MineRoom
-                {
-                    level = EMineCellState.Level1
-                };
-                mine.innerCircle.rooms.Add(i, room);
-            }
+                mine.innerCircle.Add(i, EMineCellState.Level1);
+
             mine.outerCircle = new MineCircle();
             for (var i = 0; i < 12; i++)
-            {
-                var room = new MineRoom
-                {
-                    level = EMineCellState.Level1
-                };
-                mine.outerCircle.rooms.Add(i, room);
-            }
-            
+                mine.outerCircle.Add(i, EMineCellState.Level1);
+
             // resources
             if (_gameData.Value.playerResources.items.Count == 0)
             {
@@ -57,7 +49,7 @@ namespace CyberNinja.Ecs.Systems.Mine
             var input = _gameData.Value.Controls;
             // debug
             input.Debug.Enable();
-            input.Debug.AddResource1.performed += _ 
+            input.Debug.AddResource1.performed += _
                 =>
             {
                 _gameData.Value.playerResources.Update(EResourceType.Resource1, 100);
@@ -68,10 +60,23 @@ namespace CyberNinja.Ecs.Systems.Mine
             _gameData.Value.colonyLevel = _mineConfig.Value.startColonyLevel;
             _colonyLevelText.text = $"Colony level: {_gameData.Value.colonyLevel}";
 
-            if (_mineConfig.Value.isOuterCircleUnlocked)
+            if (_gameData.Value.mine.isOuterMineOpened)
                 UnlockOuterCircle();
             else
                 _buyOuterCircleButton.onClick.AddListener(OnBuyOuterCircle);
+
+            // prepare mine cells
+            var cells = _sceneView.Value.Cells;
+            foreach (var cell in cells)
+            {
+                if (cell.MineCircle == EMineCircle.Inner)
+                {
+                    //todo _gameData.Value.mine.innerCircle.rooms
+                }
+                else if (cell.MineCircle == EMineCircle.Inner)
+                {
+                }
+            }
         }
 
         private void OnBuyOuterCircle()
@@ -82,7 +87,7 @@ namespace CyberNinja.Ecs.Systems.Mine
                 _messageText.text = $"Not enough {EResourceType.Resource1}";
                 Observable.Timer(TimeSpan.FromSeconds(2))
                     .Subscribe(_ => _messageText.text = "");
-                
+
                 return;
             }
 
@@ -99,11 +104,13 @@ namespace CyberNinja.Ecs.Systems.Mine
                 if (cell.MineCircle == EMineCircle.Outer)
                     cell.gameObject.SetActive(true);
             }
-            
+
             _buyOuterCircleButton.gameObject.SetActive(false);
-            
-            _gameData.Value.mine.isOuterMineOpened = true;
-            SaveService.Save(_gameData.Value);
+            if (!_gameData.Value.mine.isOuterMineOpened)
+            {
+                _gameData.Value.mine.isOuterMineOpened = true;
+                SaveService.Save(_gameData.Value);
+            }
         }
     }
 }
