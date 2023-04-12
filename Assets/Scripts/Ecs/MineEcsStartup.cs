@@ -1,4 +1,5 @@
-﻿using CyberNinja.Ecs.Systems.Mine;
+﻿using CyberNinja.Ecs.Systems.Game;
+using CyberNinja.Ecs.Systems.Mine;
 using CyberNinja.Models;
 using CyberNinja.Models.Config;
 using CyberNinja.Services;
@@ -34,18 +35,21 @@ namespace CyberNinja.Ecs
         {
             var world = new EcsWorld();
 
-            _gameData = new GameData();
+            var saveService = new SaveService();
+            _gameData = SaveService.Load();
 
             EcsPhysicsEvents.ecsWorld = world;
 
             _vfxService = new VfxService(world);
             _timeService = new TimeService();
             _playerService = new PlayerService(world);
+            var mineService = new MineService();
 
             _systems = new EcsSystems(world);
             _systems
 
                 // init
+                .Add(new InitInputSystem())
                 .Add(new InitMineSystem())
 
                 // game
@@ -61,7 +65,7 @@ namespace CyberNinja.Ecs
 #endif
                 .Inject(_gameData, sceneView)
                 .Inject(layersConfig, globalUnitConfig, audioConfig, inputConfig, mineConfig)
-                .Inject(_timeService, _playerService)
+                .Inject(_timeService, _playerService, saveService, mineService)
                 .Inject()
                 .InjectUgui(uguiEmitter)
                 .DelHerePhysics()

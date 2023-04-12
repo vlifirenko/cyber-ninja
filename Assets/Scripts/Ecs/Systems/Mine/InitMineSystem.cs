@@ -1,6 +1,7 @@
 ﻿using System;
 using CyberNinja.Models;
 using CyberNinja.Models.Config;
+using CyberNinja.Services;
 using CyberNinja.Utils;
 using CyberNinja.Views;
 using Leopotam.EcsLite;
@@ -17,6 +18,7 @@ namespace CyberNinja.Ecs.Systems.Mine
         private EcsCustomInject<MineSceneView> _sceneView;
         private EcsCustomInject<MineConfig> _mineConfig;
         private EcsCustomInject<GameData> _gameData;
+        private EcsCustomInject<SaveService> _saveService;
 
         [EcsUguiNamed(UiConst.BuyOuterCircle)] private Button _buyOuterCircleButton;
         [EcsUguiNamed(UiConst.ColonyLevelText)] private TMP_Text _colonyLevelText;
@@ -24,9 +26,45 @@ namespace CyberNinja.Ecs.Systems.Mine
 
         public void Init(IEcsSystems systems)
         {
-            foreach (var startResource in _mineConfig.Value.startResources)
-                _gameData.Value.playerResources.Map.Add(startResource.type, startResource.value);
+            var mine = _gameData.Value.mine;
 
+            mine.innerCircle = new MineCircle();
+            for (var i = 0; i < 9; i++)
+            {
+                var room = new MineRoom
+                {
+                    level = EMineCellState.Level1
+                };
+                mine.innerCircle.rooms.Add(i, room);
+            }
+            mine.outerCircle = new MineCircle();
+            for (var i = 0; i < 12; i++)
+            {
+                var room = new MineRoom
+                {
+                    level = EMineCellState.Level1
+                };
+                mine.outerCircle.rooms.Add(i, room);
+            }
+            
+            // resources
+            if (_gameData.Value.playerResources.items.Count == 0)
+            {
+                foreach (var startResource in _mineConfig.Value.startResources)
+                    _gameData.Value.playerResources.Add(startResource.type, startResource.value);
+            }
+
+            var input = _gameData.Value.Controls;
+            // debug
+            input.Debug.Enable();
+            input.Debug.AddResource1.performed += _ 
+                =>
+            {
+                _gameData.Value.playerResources.Update(EResourceType.Resource1, 100);
+                SaveService.Save(_gameData.Value);
+            };
+
+            // ui
             _gameData.Value.colonyLevel = _mineConfig.Value.startColonyLevel;
             _colonyLevelText.text = $"Colony level: {_gameData.Value.colonyLevel}";
 
@@ -39,7 +77,7 @@ namespace CyberNinja.Ecs.Systems.Mine
         private void OnBuyOuterCircle()
         {
             // todo temp data
-            if (_gameData.Value.playerResources.Map[EResourceType.Resource1] < _mineConfig.Value.outerCircleUnlockCost)
+            if (_gameData.Value.playerResources.Get(EResourceType.Resource1) < _mineConfig.Value.outerCircleUnlockCost)
             {
                 _messageText.text = $"Not enough {EResourceType.Resource1}";
                 Observable.Timer(TimeSpan.FromSeconds(2))
@@ -48,7 +86,7 @@ namespace CyberNinja.Ecs.Systems.Mine
                 return;
             }
 
-            _gameData.Value.playerResources.Map[EResourceType.Resource1] -= _mineConfig.Value.outerCircleUnlockCost;
+            _gameData.Value.playerResources.Update(EResourceType.Resource1, -_mineConfig.Value.outerCircleUnlockCost);
             UnlockOuterCircle();
         }
 
@@ -63,6 +101,9 @@ namespace CyberNinja.Ecs.Systems.Mine
             }
             
             _buyOuterCircleButton.gameObject.SetActive(false);
+            
+            _gameData.Value.mine.isOuterMineOpened = true;
+            SaveService.Save(_gameData.Value);
         }
     }
 }

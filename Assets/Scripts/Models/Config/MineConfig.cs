@@ -8,7 +8,7 @@ namespace CyberNinja.Models.Config
     {
         public bool isOuterCircleUnlocked;
         public StartResource[] startResources;
-        public float outerCircleUnlockCost = 100;
+        public int outerCircleUnlockCost = 100;
         public int startColonyLevel = 1;
         public LayerMask mineCellLayer;
         public float mineUpgrade2Cost = 200f;

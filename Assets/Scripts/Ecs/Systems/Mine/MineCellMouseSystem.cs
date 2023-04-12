@@ -1,6 +1,7 @@
 ﻿using System;
 using CyberNinja.Models;
 using CyberNinja.Models.Config;
+using CyberNinja.Services;
 using CyberNinja.Utils;
 using CyberNinja.Views;
 using Leopotam.EcsLite;
@@ -21,6 +22,7 @@ namespace CyberNinja.Ecs.Systems.Mine
     {
         private EcsCustomInject<MineConfig> _mineConfig;
         private EcsCustomInject<GameData> _gameData;
+        private EcsCustomInject<SaveService> _saveService;
 
         private MineCell _hoveredMineCell;
         private MineCell _selectedMineCell;
@@ -36,7 +38,7 @@ namespace CyberNinja.Ecs.Systems.Mine
 
             controls.Mine.Enable();
             controls.Mine.Select.performed += OnMouseClick;
-            
+
             _minePopup.UpgradeButton.onClick.AddListener(OnMineUpgradeButton);
         }
 
@@ -94,7 +96,7 @@ namespace CyberNinja.Ecs.Systems.Mine
             if (_selectedMineCell.MineCellState == EMineCellState.Level3)
                 return;
 
-            var resourcesLeft = _gameData.Value.playerResources.Map[EResourceType.Resource1]; 
+            var resourcesLeft = _gameData.Value.playerResources.Get(EResourceType.Resource1);
             if (_selectedMineCell.MineCellState == EMineCellState.Level1)
             {
                 if (resourcesLeft < _mineConfig.Value.mineUpgrade2Cost)
@@ -105,8 +107,8 @@ namespace CyberNinja.Ecs.Systems.Mine
                     return;
                 }
 
-                _gameData.Value.playerResources.Map[EResourceType.Resource1] -= _mineConfig.Value.mineUpgrade2Cost;
-                _selectedMineCell.MineCellState = EMineCellState.Level2;
+                UpgradeMineRoom(EResourceType.Resource1, _mineConfig.Value.mineUpgrade2Cost,
+                    _selectedMineCell, EMineCellState.Level2);
             }
             else if (_selectedMineCell.MineCellState == EMineCellState.Level2)
             {
@@ -117,10 +119,22 @@ namespace CyberNinja.Ecs.Systems.Mine
                         .Subscribe(_ => _messageText.text = "");
                     return;
                 }
-                
-                _gameData.Value.playerResources.Map[EResourceType.Resource1] -= _mineConfig.Value.mineUpgrade3Cost;
-                _selectedMineCell.MineCellState = EMineCellState.Level3;
+
+                UpgradeMineRoom(EResourceType.Resource1, _mineConfig.Value.mineUpgrade3Cost,
+                    _selectedMineCell, EMineCellState.Level3);
             }
+        }
+
+        private void UpgradeMineRoom(EResourceType resourceType, float cost, MineCell cell, EMineCellState state)
+        {
+            cell.MineCellState = state;
+            _gameData.Value.playerResources.Update(resourceType,-cost);
+            if (cell.MineCircle == EMineCircle.Inner)
+                _gameData.Value.mine.innerCircle.rooms[cell.Index].level = state;
+            if (cell.MineCircle == EMineCircle.Outer)
+                _gameData.Value.mine.outerCircle.rooms[cell.Index].level = state;
+            
+            SaveService.Save(_gameData.Value);
         }
     }
 }

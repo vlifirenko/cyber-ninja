@@ -18,8 +18,8 @@ namespace CyberNinja.Ecs.Systems.Mine
         {
             var sb = new StringBuilder();
             
-            foreach (var (key, value) in _gameData.Value.playerResources.Map)
-                sb.Append($"{key}: {value}\n");
+            foreach (var item in _gameData.Value.playerResources.items)
+                sb.Append($"{item.type}: {item.value}\n");
 
             _resourcesText.text = sb.ToString();
         }

@@ -824,6 +824,54 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Debug"",
+            ""id"": ""672023f1-bbe0-4316-88c0-b087b3ac3b3c"",
+            ""actions"": [
+                {
+                    ""name"": ""AddResource1"",
+                    ""type"": ""Button"",
+                    ""id"": ""ebab8bc2-45ce-4850-aa72-02e675c77927"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ResetMine"",
+                    ""type"": ""Button"",
+                    ""id"": ""85afc0da-6256-4593-a2fa-fa9b70cb5f12"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""97d2ed15-94fc-405d-9e7a-a013411f6aca"",
+                    ""path"": ""<Keyboard>/numpadPlus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AddResource1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9c27b7f0-d0dd-4a94-9475-f41410bc960e"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetMine"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -886,6 +934,10 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // Mine
         m_Mine = asset.FindActionMap("Mine", throwIfNotFound: true);
         m_Mine_Select = m_Mine.FindAction("Select", throwIfNotFound: true);
+        // Debug
+        m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
+        m_Debug_AddResource1 = m_Debug.FindAction("AddResource1", throwIfNotFound: true);
+        m_Debug_ResetMine = m_Debug.FindAction("ResetMine", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1217,6 +1269,47 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         }
     }
     public MineActions @Mine => new MineActions(this);
+
+    // Debug
+    private readonly InputActionMap m_Debug;
+    private IDebugActions m_DebugActionsCallbackInterface;
+    private readonly InputAction m_Debug_AddResource1;
+    private readonly InputAction m_Debug_ResetMine;
+    public struct DebugActions
+    {
+        private @Controls m_Wrapper;
+        public DebugActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @AddResource1 => m_Wrapper.m_Debug_AddResource1;
+        public InputAction @ResetMine => m_Wrapper.m_Debug_ResetMine;
+        public InputActionMap Get() { return m_Wrapper.m_Debug; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DebugActions set) { return set.Get(); }
+        public void SetCallbacks(IDebugActions instance)
+        {
+            if (m_Wrapper.m_DebugActionsCallbackInterface != null)
+            {
+                @AddResource1.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnAddResource1;
+                @AddResource1.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnAddResource1;
+                @AddResource1.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnAddResource1;
+                @ResetMine.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnResetMine;
+                @ResetMine.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnResetMine;
+                @ResetMine.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnResetMine;
+            }
+            m_Wrapper.m_DebugActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @AddResource1.started += instance.OnAddResource1;
+                @AddResource1.performed += instance.OnAddResource1;
+                @AddResource1.canceled += instance.OnAddResource1;
+                @ResetMine.started += instance.OnResetMine;
+                @ResetMine.performed += instance.OnResetMine;
+                @ResetMine.canceled += instance.OnResetMine;
+            }
+        }
+    }
+    public DebugActions @Debug => new DebugActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1268,5 +1361,10 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     public interface IMineActions
     {
         void OnSelect(InputAction.CallbackContext context);
+    }
+    public interface IDebugActions
+    {
+        void OnAddResource1(InputAction.CallbackContext context);
+        void OnResetMine(InputAction.CallbackContext context);
     }
 }

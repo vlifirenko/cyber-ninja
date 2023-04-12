@@ -802,6 +802,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Debug",
+            "id": "672023f1-bbe0-4316-88c0-b087b3ac3b3c",
+            "actions": [
+                {
+                    "name": "AddResource1",
+                    "type": "Button",
+                    "id": "ebab8bc2-45ce-4850-aa72-02e675c77927",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ResetMine",
+                    "type": "Button",
+                    "id": "85afc0da-6256-4593-a2fa-fa9b70cb5f12",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "97d2ed15-94fc-405d-9e7a-a013411f6aca",
+                    "path": "<Keyboard>/numpadPlus",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AddResource1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9c27b7f0-d0dd-4a94-9475-f41410bc960e",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetMine",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

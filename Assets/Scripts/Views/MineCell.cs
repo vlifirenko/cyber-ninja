@@ -7,6 +7,7 @@ namespace CyberNinja.Views
     public class MineCell : AView
     {
         [SerializeField] private EMineCircle mineCircle;
+        [SerializeField] private int index;
         [SerializeField] private EMineCellState mineCellState;
         [SerializeField] private Material defaultMaterial;
         [SerializeField] private Material level2Material;
@@ -62,6 +63,8 @@ namespace CyberNinja.Views
             get => mineCellState;
             set => mineCellState = value;
         }
+
+        public int Index => index;
     }
 
     public enum EMineCircle
