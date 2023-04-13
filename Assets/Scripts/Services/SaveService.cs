@@ -18,6 +18,8 @@ namespace CyberNinja.Services
             var gameData = JsonUtility.FromJson<GameData>(json);
             if (gameData == null)
                 gameData = new GameData();
+            else
+                Debug.Log(json);
 
             return gameData;
         }

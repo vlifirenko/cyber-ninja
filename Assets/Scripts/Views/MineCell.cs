@@ -15,7 +15,7 @@ namespace CyberNinja.Views
         [SerializeField] private Material hoverMaterial;
 
         [SerializeField] private bool _isHovered;
-        private Renderer _renderer;
+        [SerializeField]private Renderer _renderer;
 
         protected override void Awake()
         {
@@ -61,7 +61,25 @@ namespace CyberNinja.Views
         public EMineCellState MineCellState
         {
             get => mineCellState;
-            set => mineCellState = value;
+            set
+            {
+                mineCellState = value;
+                
+                switch (mineCellState)
+                {
+                    case EMineCellState.Level1:
+                        _renderer.material = defaultMaterial;
+                        break;
+                    case EMineCellState.Level2:
+                        _renderer.material = level2Material;
+                        break;
+                    case EMineCellState.Level3:
+                        _renderer.material = level3Material;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
         }
 
         public int Index => index;

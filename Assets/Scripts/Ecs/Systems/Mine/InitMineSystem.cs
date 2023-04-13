@@ -31,13 +31,19 @@ namespace CyberNinja.Ecs.Systems.Mine
         {
             var mine = _gameData.Value.mine;
 
-            mine.innerCircle = new MineCircle();
-            for (var i = 0; i < 9; i++)
-                mine.innerCircle.Add(i, EMineCellState.Level1);
+            if (mine.innerCircle.rooms.Count == 0)
+            {
+                mine.innerCircle = new MineCircle();
+                for (var i = 0; i < 9; i++)
+                    mine.innerCircle.Add(i, EMineCellState.Level1);
+            }
 
-            mine.outerCircle = new MineCircle();
-            for (var i = 0; i < 12; i++)
-                mine.outerCircle.Add(i, EMineCellState.Level1);
+            if (mine.outerCircle.rooms.Count == 0)
+            {
+                mine.outerCircle = new MineCircle();
+                for (var i = 0; i < 16; i++)
+                    mine.outerCircle.Add(i, EMineCellState.Level1);
+            }
 
             // resources
             if (_gameData.Value.playerResources.items.Count == 0)
@@ -71,10 +77,13 @@ namespace CyberNinja.Ecs.Systems.Mine
             {
                 if (cell.MineCircle == EMineCircle.Inner)
                 {
-                    //todo _gameData.Value.mine.innerCircle.rooms
+                    var cellState = _gameData.Value.mine.innerCircle.Get(cell.Index);
+                    cell.MineCellState = cellState;
                 }
-                else if (cell.MineCircle == EMineCircle.Inner)
+                else if (cell.MineCircle == EMineCircle.Outer)
                 {
+                    var cellState = _gameData.Value.mine.outerCircle.Get(cell.Index);
+                    cell.MineCellState = cellState;
                 }
             }
         }

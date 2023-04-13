@@ -46,12 +46,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mineCircle: 0
+  index: 0
   mineCellState: 0
   defaultMaterial: {fileID: 2100000, guid: 83499ee76684b3f42affeaa05d273f80, type: 2}
   level2Material: {fileID: 2100000, guid: d77463f3e92b1fa4bbee55d60a31cc58, type: 2}
   level3Material: {fileID: 2100000, guid: c8462bf66f775b64eaac00baa2effeed, type: 2}
   hoverMaterial: {fileID: 2100000, guid: 8db2527120d3bec46b03fe869dc8a9bf, type: 2}
   _isHovered: 0
+  _renderer: {fileID: 501111185327158318}
 --- !u!1 &501111185327158315
 GameObject:
   m_ObjectHideFlags: 0
