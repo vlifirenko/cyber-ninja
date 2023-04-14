@@ -2866,6 +2866,7 @@ GameObject:
   - component: {fileID: 257477169553422038}
   - component: {fileID: 7763710290644284987}
   - component: {fileID: 313845925514411860}
+  - component: {fileID: 3122023650276419867}
   m_Layer: 0
   m_Name: wall_R_cube
   m_TagString: Untagged
@@ -3155,6 +3156,19 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!65 &3122023650276419867
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893017863967223703}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.1350541}
+  m_Center: {x: 9.770888e-16, y: 0, z: -0.067527056}
 --- !u!1 &1933250609060580429
 GameObject:
   m_ObjectHideFlags: 0
@@ -3885,6 +3899,7 @@ GameObject:
   - component: {fileID: 6704073856448897372}
   - component: {fileID: 6704073856448897373}
   - component: {fileID: 6704073856448897374}
+  - component: {fileID: 2682412724139818340}
   m_Layer: 0
   m_Name: wall_R_cube_01
   m_TagString: Untagged
@@ -4169,11 +4184,24 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 197
+  m_VersionIndex: 200
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!65 &2682412724139818340
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6704073856448897368}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.1260629}
+  m_Center: {x: -1.0539524e-15, y: 0, z: 0.063031435}
 --- !u!1 &6704073857185393209
 GameObject:
   m_ObjectHideFlags: 0
@@ -4240,7 +4268,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.06666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 295c3c6b1a7a9b6419c05e560d7672df, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 4545eccac9af08d47aca5dc5804aca10, type: 2}
 --- !u!114 &7691806700871435869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4265,6 +4293,7 @@ GameObject:
   - component: {fileID: 6704073857611975666}
   - component: {fileID: 6704073857611975667}
   - component: {fileID: 6704073857611975676}
+  - component: {fileID: 2870788389742033341}
   m_Layer: 0
   m_Name: wall_L_cube_01
   m_TagString: Untagged
@@ -4549,11 +4578,24 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 185
+  m_VersionIndex: 188
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!65 &2870788389742033341
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6704073857611975678}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99999994, y: 1, z: 1.1252692}
+  m_Center: {x: -3.1216383e-16, y: 0, z: 0.06263459}
 --- !u!1 &6704073857864733012
 GameObject:
   m_ObjectHideFlags: 0
@@ -7813,6 +7855,7 @@ GameObject:
   - component: {fileID: 1628032325453897385}
   - component: {fileID: 9144617656939515311}
   - component: {fileID: 4486501751049569104}
+  - component: {fileID: 8600083089454948365}
   m_Layer: 0
   m_Name: wall_L_cube
   m_TagString: Untagged
@@ -8102,6 +8145,19 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!65 &8600083089454948365
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8978240637648085014}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99999994, y: 1, z: 1.1235852}
+  m_Center: {x: -3.292972e-16, y: 0, z: -0.061792612}
 --- !u!1 &9039531217473694462
 GameObject:
   m_ObjectHideFlags: 0
