@@ -26,7 +26,12 @@ namespace CyberNinja.Views
         public Transform CameraBase => cameraBase;
         public Transform CameraAim => cameraAim;
         public CinemachineFreeLook CameraIsometric => cameraIsometric;
-        public Transform Target => target;
+        public Transform Target
+        {
+            get => target;
+            set => target = value;
+        }
+
         public float DefaultSmooth => defaultSmooth;
         public float BlendSmooth => blendSmooth;
         public float BlendLerp => blendLerp;

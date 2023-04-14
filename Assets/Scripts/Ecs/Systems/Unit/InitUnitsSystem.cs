@@ -31,13 +31,7 @@ namespace CyberNinja.Ecs.Systems.Unit
 
                 if (view.CompareTag(Tag.Player))
                 {
-                    var playerPool = _world.Value.GetPool<PlayerComponent>();
-                    playerPool.Add(entity);
-
-                    _unitService.Value.Player = _world.Value.PackEntity(entity);
-
-                    if (view.Config.isHasDroid)
-                        CreateDroid(entity);
+                    
                 }
                 else
                 {
@@ -52,22 +46,6 @@ namespace CyberNinja.Ecs.Systems.Unit
                     _aiService.Value.InitUnit(entity);
                 }
             }
-        }
-
-        private void CreateDroid(int entity)
-        {
-            var unit = _world.Value.GetPool<UnitComponent>().Get(entity);
-            var position = new Vector3(
-                Random.Range(-1f, 1f),
-                _globalUnitConfig.Value.droidYSpawnPosition,
-                Random.Range(-1f, 1f));
-
-            unit.View.DroidView.Transform.localPosition = position;
-            unit.View.DroidView.Transform.parent = null;
-            unit.View.DroidView.Show();
-
-
-            _world.Value.GetPool<DroidComponent>().Add(entity).DroidView = unit.View.DroidView;
         }
     }
 }

@@ -1,12 +1,15 @@
 ﻿using CyberNinja.Views.Core;
+using UnityEngine;
 
 namespace CyberNinja.Views
 {
     public class RoomView : AView
     {
-        private EMineCellState _level;
-        private EMineCircle _circle;
-        private int _index;
+        [SerializeField] private Transform playerSpawn; 
+        
+        [SerializeField] private EMineCellState _level;
+        [SerializeField] private EMineCircle _circle;
+        [SerializeField] private int _index;
 
         public EMineCellState Level
         {
@@ -25,5 +28,7 @@ namespace CyberNinja.Views
             get => _index;
             set => _index = value;
         }
+
+        public Transform PlayerSpawn => playerSpawn;
     }
 }
