@@ -6,6 +6,7 @@ using CyberNinja.Ecs.Systems.Game;
 using CyberNinja.Ecs.Systems.Item;
 using CyberNinja.Ecs.Systems.Player;
 using CyberNinja.Ecs.Systems.Player.Droid;
+using CyberNinja.Ecs.Systems.Room;
 using CyberNinja.Ecs.Systems.SceneObjects;
 using CyberNinja.Ecs.Systems.Ui;
 using CyberNinja.Ecs.Systems.Unit;
@@ -86,6 +87,9 @@ namespace CyberNinja.Ecs
                 .Add(new CameraMovementSystem())
                 .Add(new AudioSystem())
                 .Add(new TimeSystem())
+                
+                // rooms
+                .Add(new InitRoomsSystem())
 
                 // trigger
                 .Add(new PlayerTriggerSystem())

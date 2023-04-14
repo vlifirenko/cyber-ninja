@@ -4,7 +4,6 @@ using CyberNinja.Views.Unit;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Serialization;
 
 namespace CyberNinja.Views
 {
@@ -16,7 +15,9 @@ namespace CyberNinja.Views
         [SerializeField] private Volume volume;
         [SerializeField] private DoorContainer doorContainer;
         [SerializeField] private UnitContainer unitContainer;
-        [FormerlySerializedAs("itemContainer")] [SerializeField] private SceneObjectContainer sceneObjectContainer;
+        [SerializeField] private SceneObjectContainer sceneObjectContainer;
+        [SerializeField] private RoomView roomPrefab;
+        [SerializeField] private Transform roomContainer;
 
         public CameraView CameraView => cameraView;
         public UnitView PlayerView => playerView;
@@ -25,5 +26,9 @@ namespace CyberNinja.Views
         public DoorContainer DoorContainer => doorContainer;
         public UnitContainer UnitContainer => unitContainer;
         public SceneObjectContainer SceneObjectContainer => sceneObjectContainer;
+
+        public RoomView RoomPrefab => roomPrefab;
+
+        public Transform RoomContainer => roomContainer;
     }
 }
