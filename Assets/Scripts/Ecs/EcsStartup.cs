@@ -1,3 +1,4 @@
+using CyberNinja.Ecs.Components.Room;
 using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Ecs.Systems.Ability;
 using CyberNinja.Ecs.Systems.Ai;
@@ -78,7 +79,6 @@ namespace CyberNinja.Ecs
             _systems
 
                 // init
-                .Add(new InitUnitsSystem())
                 .Add(new InitInputSystem())
                 .Add(new InitUiSystem())
 
@@ -90,6 +90,7 @@ namespace CyberNinja.Ecs
                 
                 // rooms
                 .Add(new InitRoomsSystem())
+                .Add(new UpdateRoomSystem())
 
                 // trigger
                 .Add(new PlayerTriggerSystem())
@@ -123,7 +124,7 @@ namespace CyberNinja.Ecs
                 .Add(new HealthEventSystem())
                 .Add(new EnergyEventSystem())
                 .Add(new DroidMovementSystem())
-                .Add(new FindTargetsSystem())
+                //todo fix .Add(new FindTargetsSystem())
                 .Add(new DroidShootSystem())
                 .Add(new DamageSystem())
 
@@ -149,6 +150,7 @@ namespace CyberNinja.Ecs
                 
                 //
                 .DelHere<PickupComponent>()
+                .DelHere<UpdateRoomComponent>()
 #if UNITY_EDITOR
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif

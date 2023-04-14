@@ -1,11 +1,14 @@
 ﻿using CyberNinja.Views.Core;
+using CyberNinja.Views.Unit;
 using UnityEngine;
 
 namespace CyberNinja.Views
 {
     public class RoomView : AView
     {
-        [SerializeField] private Transform playerSpawn; 
+        [SerializeField] private Transform playerSpawn;
+        [SerializeField] private UnitView[] enemies;
+
         
         [SerializeField] private EMineCellState _level;
         [SerializeField] private EMineCircle _circle;
@@ -30,5 +33,6 @@ namespace CyberNinja.Views
         }
 
         public Transform PlayerSpawn => playerSpawn;
+        public UnitView[] Enemies => enemies;
     }
 }

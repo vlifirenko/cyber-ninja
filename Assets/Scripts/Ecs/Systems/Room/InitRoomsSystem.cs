@@ -1,4 +1,5 @@
-﻿using CyberNinja.Ecs.Components.Unit;
+﻿using CyberNinja.Ecs.Components.Room;
+using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models.Config;
 using CyberNinja.Services.Unit;
 using CyberNinja.Views;
@@ -125,6 +126,8 @@ namespace CyberNinja.Ecs.Systems.Room
 
         private void InitStartRoom()
         {
+            var entity = _world.Value.NewEntity();
+            _world.Value.GetPool<UpdateRoomComponent>().Add(entity).Room = _startRoom;
         }
     }
 }

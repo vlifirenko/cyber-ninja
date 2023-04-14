@@ -96,7 +96,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1835845968204741265, guid: c2e163ccfc1ff954dae0d2cbc1b797e2, type: 3}
       propertyPath: m_Name
-      value: character_Enemy
+      value: Unit_Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 1937197219883906936, guid: c2e163ccfc1ff954dae0d2cbc1b797e2, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -118,6 +118,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7936525248888036600, guid: c2e163ccfc1ff954dae0d2cbc1b797e2, type: 3}
+      propertyPath: config
+      value: 
+      objectReference: {fileID: 11400000, guid: 082146cc7d3c9104f9a878b204a9d052, type: 2}
     - target: {fileID: 7936525248888036600, guid: c2e163ccfc1ff954dae0d2cbc1b797e2, type: 3}
       propertyPath: m_Enabled
       value: 1
