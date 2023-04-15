@@ -6,5 +6,6 @@ namespace CyberNinja.Ecs.Components.Room
     {
         public RoomView Room;
         public bool IsSpawnEnemy;
+        public bool IsRoomClear;
     }
 }

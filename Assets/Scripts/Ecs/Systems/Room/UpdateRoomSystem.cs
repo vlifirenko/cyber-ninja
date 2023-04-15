@@ -39,6 +39,8 @@ namespace CyberNinja.Ecs.Systems.Room
 
                 if (updateRoom.IsSpawnEnemy)
                     SpawnEnemies(room);
+                else if (updateRoom.IsRoomClear)
+                    RoomClear(room);
             }
         }
 
@@ -84,6 +86,11 @@ namespace CyberNinja.Ecs.Systems.Room
 
                 instance.Show();
             }
+        }
+
+        private void RoomClear(RoomView room)
+        {
+            Debug.Log("RoomClear");
         }
     }
 }
