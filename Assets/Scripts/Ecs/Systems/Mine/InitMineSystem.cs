@@ -15,7 +15,7 @@ namespace CyberNinja.Ecs.Systems.Mine
 {
     public class InitMineSystem : IEcsInitSystem
     {
-        private EcsCustomInject<MineSceneView> _sceneView;
+        private EcsCustomInject<LobbySceneView> _sceneView;
         private EcsCustomInject<MineConfig> _mineConfig;
         private EcsCustomInject<GameData> _gameData;
         private EcsCustomInject<SaveService> _saveService;
@@ -31,14 +31,14 @@ namespace CyberNinja.Ecs.Systems.Mine
         {
             var mine = _gameData.Value.mine;
 
-            if (mine.innerCircle.rooms.Count == 0)
+            if (mine.innerCircle == null || mine.innerCircle.rooms.Count == 0)
             {
                 mine.innerCircle = new MineCircle();
                 for (var i = 0; i < 9; i++)
                     mine.innerCircle.Add(i, EMineCellState.Level1);
             }
 
-            if (mine.outerCircle.rooms.Count == 0)
+            if (mine.outerCircle == null || mine.outerCircle.rooms.Count == 0)
             {
                 mine.outerCircle = new MineCircle();
                 for (var i = 0; i < 16; i++)
@@ -58,7 +58,7 @@ namespace CyberNinja.Ecs.Systems.Mine
             input.Debug.AddResource1.performed += _
                 =>
             {
-                _gameData.Value.playerResources.Update(EResourceType.Resource1, 100);
+                _gameData.Value.playerResources.Update(EResourceType.Cobalt, 100);
                 SaveService.Save(_gameData.Value);
             };
 
@@ -91,16 +91,16 @@ namespace CyberNinja.Ecs.Systems.Mine
         private void OnBuyOuterCircle()
         {
             // todo temp data
-            if (_gameData.Value.playerResources.Get(EResourceType.Resource1) < _mineConfig.Value.outerCircleUnlockCost)
+            if (_gameData.Value.playerResources.Get(EResourceType.Cobalt) < _mineConfig.Value.outerCircleUnlockCost)
             {
-                _messageText.text = $"Not enough {EResourceType.Resource1}";
+                _messageText.text = $"Not enough {EResourceType.Cobalt}";
                 Observable.Timer(TimeSpan.FromSeconds(2))
                     .Subscribe(_ => _messageText.text = "");
 
                 return;
             }
 
-            _gameData.Value.playerResources.Update(EResourceType.Resource1, -_mineConfig.Value.outerCircleUnlockCost);
+            _gameData.Value.playerResources.Update(EResourceType.Cobalt, -_mineConfig.Value.outerCircleUnlockCost);
             UnlockOuterCircle();
         }
 

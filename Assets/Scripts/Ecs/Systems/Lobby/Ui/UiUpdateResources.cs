@@ -6,7 +6,7 @@ using Leopotam.EcsLite.Di;
 using Leopotam.EcsLite.Unity.Ugui;
 using TMPro;
 
-namespace CyberNinja.Ecs.Systems.Mine
+namespace CyberNinja.Ecs.Systems.Lobby.Ui
 {
     public class UiUpdateResources : IEcsRunSystem
     {

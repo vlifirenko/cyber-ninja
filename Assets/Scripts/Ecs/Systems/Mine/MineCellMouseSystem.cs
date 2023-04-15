@@ -96,31 +96,31 @@ namespace CyberNinja.Ecs.Systems.Mine
             if (_selectedMineCell.MineCellState == EMineCellState.Level3)
                 return;
 
-            var resourcesLeft = _gameData.Value.playerResources.Get(EResourceType.Resource1);
+            var resourcesLeft = _gameData.Value.playerResources.Get(EResourceType.Cobalt);
             if (_selectedMineCell.MineCellState == EMineCellState.Level1)
             {
                 if (resourcesLeft < _mineConfig.Value.mineUpgrade2Cost)
                 {
-                    _messageText.text = $"Not enough {EResourceType.Resource1}";
+                    _messageText.text = $"Not enough {EResourceType.Cobalt}";
                     Observable.Timer(TimeSpan.FromSeconds(2))
                         .Subscribe(_ => _messageText.text = "");
                     return;
                 }
 
-                UpgradeMineRoom(EResourceType.Resource1, _mineConfig.Value.mineUpgrade2Cost,
+                UpgradeMineRoom(EResourceType.Cobalt, _mineConfig.Value.mineUpgrade2Cost,
                     _selectedMineCell, EMineCellState.Level2);
             }
             else if (_selectedMineCell.MineCellState == EMineCellState.Level2)
             {
                 if (resourcesLeft < _mineConfig.Value.mineUpgrade3Cost)
                 {
-                    _messageText.text = $"Not enough {EResourceType.Resource1}";
+                    _messageText.text = $"Not enough {EResourceType.Cobalt}";
                     Observable.Timer(TimeSpan.FromSeconds(2))
                         .Subscribe(_ => _messageText.text = "");
                     return;
                 }
 
-                UpgradeMineRoom(EResourceType.Resource1, _mineConfig.Value.mineUpgrade3Cost,
+                UpgradeMineRoom(EResourceType.Cobalt, _mineConfig.Value.mineUpgrade3Cost,
                     _selectedMineCell, EMineCellState.Level3);
             }
         }

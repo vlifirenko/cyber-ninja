@@ -12,14 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbe57f63e0246898265a48f95fab746, type: 3}
   m_Name: Mine
   m_EditorClassIdentifier: 
-  isOuterCircleUnlocked: 0
   startResources:
   - type: 10
     value: 5000
   - type: 20
     value: 200
-  - type: 30
-    value: 10
   outerCircleUnlockCost: 100
   startColonyLevel: 1
   mineCellLayer:
@@ -27,3 +24,6 @@ MonoBehaviour:
     m_Bits: 512
   mineUpgrade2Cost: 200
   mineUpgrade3Cost: 500
+  unitPartLayer:
+    serializedVersion: 2
+    m_Bits: 2048

@@ -53,8 +53,11 @@ namespace CyberNinja.Models
     public enum EResourceType
     {
         None = 0,
-        Resource1 = 10,
-        Resource2 = 20,
-        Resource3 = 30
+        Magnesium = 10,
+        Silicon = 20,
+        Lithium = 30,
+        Tungsten = 40,
+        Cobalt = 50,
+        Tantalum  = 60,
     }
 }

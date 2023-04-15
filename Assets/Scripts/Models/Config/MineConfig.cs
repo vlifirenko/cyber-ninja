@@ -12,6 +12,7 @@ namespace CyberNinja.Models.Config
         public LayerMask mineCellLayer;
         public float mineUpgrade2Cost = 200f;
         public float mineUpgrade3Cost = 500f;
+        public LayerMask unitPartLayer;
     }
 
     [Serializable]
