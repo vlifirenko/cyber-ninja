@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using CyberNinja.Ecs.Components.Room;
 using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models;
@@ -13,8 +14,11 @@ using CyberNinja.Views.Unit;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Leopotam.EcsLite.Unity.Ugui;
+using TMPro;
+using UniRx;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace CyberNinja.Ecs.Systems.Room
 {
@@ -31,6 +35,8 @@ namespace CyberNinja.Ecs.Systems.Room
 
         [EcsUguiNamed(UiConst.HealthSliderContainer)]
         private UiHealthSliderContainer _healthSliderContainer;
+
+        [EcsUguiNamed(UiConst.RoomClearText)] private TMP_Text _roomClearText;
 
         public void Run(IEcsSystems systems)
         {
@@ -53,7 +59,6 @@ namespace CyberNinja.Ecs.Systems.Room
                 for (var i = 0; i < enemyItem.amount; i++)
                     SpawnEnemy(room, enemyItem.type);
             }
-                
         }
 
         private void SpawnEnemy(RoomView room, EEnemyType type)
@@ -97,7 +102,7 @@ namespace CyberNinja.Ecs.Systems.Room
 
             var nextIndex = room.Index + 1;
             RoomView nextRoom = null;
-            
+
             foreach (var item in _gameData.Value.rooms)
             {
                 if (item.Index == nextIndex)
@@ -114,8 +119,12 @@ namespace CyberNinja.Ecs.Systems.Room
             player.View.Transform.position = nextRoom.PlayerSpawn.position;
             player.View.NavMeshAgent.enabled = true;
             //player.View.Transform.rotation = nextRoom.PlayerSpawn.rotation;
-            
+
             SpawnEnemies(nextRoom);
+
+            _roomClearText.text = $"ROOM {room.Index + 1} IS CLEAR!";
+            Observable.Timer(TimeSpan.FromSeconds(2f))
+                .Subscribe(_ => _roomClearText.text = $"");
         }
     }
 }

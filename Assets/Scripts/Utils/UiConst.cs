@@ -10,5 +10,6 @@
         public const string MessageText = "message-text";
         public const string MinePopup = "mine-popup";
         public const string Canvas = "canvas";
+        public const string RoomClearText = "room-clear-text";
     }
 }
