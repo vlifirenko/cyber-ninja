@@ -28,6 +28,12 @@ namespace CyberNinja.Ecs.Systems.Room
             var isRoomClear = true;
             foreach (var item in roomConfig.enemies)
             {
+                if (!enemy.Room.EnemyKillMap.ContainsKey(item.type))
+                {
+                    isRoomClear = false;
+                    break;
+                }
+                
                 if (enemy.Room.EnemyKillMap[item.type] < item.amount)
                 {
                     isRoomClear = false;

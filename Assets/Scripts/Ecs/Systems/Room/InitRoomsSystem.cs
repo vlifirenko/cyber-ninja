@@ -1,5 +1,6 @@
 ﻿using CyberNinja.Ecs.Components.Room;
 using CyberNinja.Ecs.Components.Unit;
+using CyberNinja.Models;
 using CyberNinja.Models.Config;
 using CyberNinja.Services.Unit;
 using CyberNinja.Views;
@@ -14,6 +15,7 @@ namespace CyberNinja.Ecs.Systems.Room
         private EcsCustomInject<SceneView> _sceneView;
         private EcsCustomInject<UnitService> _unitService;
         private EcsCustomInject<GlobalUnitConfig> _globalUnitConfig;
+        private EcsCustomInject<GameData> _gameData;
         private EcsWorldInject _world;
 
         private RoomView _startRoom;
@@ -87,6 +89,8 @@ namespace CyberNinja.Ecs.Systems.Room
 
                 if (i == 0)
                     _startRoom = instance;
+                
+                _gameData.Value.rooms.Add(instance);
             }
         }
 

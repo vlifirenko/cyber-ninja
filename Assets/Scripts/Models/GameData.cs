@@ -17,6 +17,7 @@ namespace CyberNinja.Models
         public PlayerResources playerResources = new PlayerResources();
         public int colonyLevel;
         public Mine mine = new Mine();
+        public List<RoomView> rooms = new List<RoomView>();
     }
 
     [Serializable]

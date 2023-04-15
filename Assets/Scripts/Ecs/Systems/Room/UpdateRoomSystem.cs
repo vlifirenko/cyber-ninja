@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using CyberNinja.Ecs.Components.Room;
 using CyberNinja.Ecs.Components.Unit;
+using CyberNinja.Models;
 using CyberNinja.Models.Config;
 using CyberNinja.Models.Enums;
 using CyberNinja.Services;
@@ -26,6 +27,7 @@ namespace CyberNinja.Ecs.Systems.Room
         private readonly EcsCustomInject<IAiService> _aiService;
         private readonly EcsCustomInject<UnitService> _unitService;
         private EcsCustomInject<GlobalUnitConfig> _globalUnitConfig;
+        private EcsCustomInject<GameData> _gameData;
 
         [EcsUguiNamed(UiConst.HealthSliderContainer)]
         private UiHealthSliderContainer _healthSliderContainer;
@@ -90,7 +92,30 @@ namespace CyberNinja.Ecs.Systems.Room
 
         private void RoomClear(RoomView room)
         {
-            Debug.Log("RoomClear");
+            if (room.Index > 8)
+                return;
+
+            var nextIndex = room.Index + 1;
+            RoomView nextRoom = null;
+            
+            foreach (var item in _gameData.Value.rooms)
+            {
+                if (item.Index == nextIndex)
+                {
+                    nextRoom = item;
+                    break;
+                }
+            }
+
+            _unitService.Value.Player.Unpack(_world.Value, out var playerEntity);
+            var player = _unitService.Value.GetUnit(playerEntity);
+
+            player.View.NavMeshAgent.enabled = false;
+            player.View.Transform.position = nextRoom.PlayerSpawn.position;
+            player.View.NavMeshAgent.enabled = true;
+            //player.View.Transform.rotation = nextRoom.PlayerSpawn.rotation;
+            
+            SpawnEnemies(nextRoom);
         }
     }
 }
