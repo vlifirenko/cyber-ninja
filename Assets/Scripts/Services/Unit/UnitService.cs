@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CyberNinja.Ecs.Components.Ai;
 using CyberNinja.Ecs.Components.Unit;
+using CyberNinja.Events;
 using CyberNinja.Models;
 using CyberNinja.Models.Config;
 using CyberNinja.Models.Enums;
@@ -200,6 +201,8 @@ namespace CyberNinja.Services.Unit
                 ref var enemy = ref _world.GetPool<EnemyComponent>().Get(entity);
                 enemy.HealthSlider.gameObject.SetActive(false);
             }
+            
+            EnemyEventsHolder.InvokeOnKillEnemy(entity);
         }
 
         public bool AddState(int entity, EUnitState state, float value = 0)

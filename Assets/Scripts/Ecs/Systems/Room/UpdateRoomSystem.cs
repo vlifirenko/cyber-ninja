@@ -74,6 +74,8 @@ namespace CyberNinja.Ecs.Systems.Room
                 var enemy = new EnemyComponent();
                 var uiSlider = Object.Instantiate(_healthSliderContainer.Prefab, _healthSliderContainer.Container);
 
+                enemy.Type = item.type;
+                enemy.Room = room;
                 enemy.HealthSlider = uiSlider;
                 uiSlider.gameObject.SetActive(true);
 

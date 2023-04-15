@@ -105,6 +105,8 @@ namespace CyberNinja.Ecs
                 // player
                 .Add(new PlayerActionSystem())
 
+                // enemy
+                .Add(new OnKillEnemySystem())
                 // ai
                 .Add(new AiUpdateStateSystem())
                 .Add(new AiIdleSystem())
@@ -126,7 +128,6 @@ namespace CyberNinja.Ecs
                 .Add(new DroidMovementSystem())
                 //todo fix .Add(new FindTargetsSystem())
                 .Add(new DroidShootSystem())
-                .Add(new DamageSystem())
 
                 // ability
                 .Add(new InitAbilitiesSystem())

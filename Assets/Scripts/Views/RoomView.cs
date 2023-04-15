@@ -1,6 +1,8 @@
-﻿using CyberNinja.Models.Config;
+﻿using System;
+using System.Collections.Generic;
+using CyberNinja.Models.Config;
+using CyberNinja.Models.Enums;
 using CyberNinja.Views.Core;
-using CyberNinja.Views.Unit;
 using UnityEngine;
 
 namespace CyberNinja.Views
@@ -10,7 +12,6 @@ namespace CyberNinja.Views
         [SerializeField] private Transform playerSpawn;
         [SerializeField] private Transform[] enemySpawnPoints;
         [SerializeField] private RoomConfig roomConfig;
-        //[SerializeField] private UnitView[] enemies;
 
         [SerializeField] private EMineCellState _level;
         [SerializeField] private EMineCircle _circle;
@@ -39,5 +40,7 @@ namespace CyberNinja.Views
         public RoomConfig RoomConfig => roomConfig;
 
         public Transform[] EnemySpawnPoints => enemySpawnPoints;
+        
+        public Dictionary<EEnemyType, int> EnemyKillMap { get; set; } = new Dictionary<EEnemyType, int>();
     }
 }
