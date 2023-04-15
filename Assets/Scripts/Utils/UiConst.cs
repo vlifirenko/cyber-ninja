@@ -12,5 +12,7 @@
         public const string Canvas = "canvas";
         public const string RoomClearText = "room-clear-text";
         public const string UpgradeWindow = "upgrade-window";
+        public const string ZoomInButton = "zoom-in-button";
+        public const string ZoomOutButton = "zoom-out-button";
     }
 }

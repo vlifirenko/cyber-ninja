@@ -27,3 +27,4 @@ MonoBehaviour:
   unitPartLayer:
     serializedVersion: 2
     m_Bits: 2048
+  zoomSpeed: 1.5

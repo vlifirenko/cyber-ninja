@@ -1,5 +1,6 @@
 ﻿using CyberNinja.Ecs.Systems.Army;
 using CyberNinja.Ecs.Systems.Game;
+using CyberNinja.Ecs.Systems.Lobby.Camera;
 using CyberNinja.Ecs.Systems.Lobby.Ui;
 using CyberNinja.Ecs.Systems.Lobby.Upgrade;
 using CyberNinja.Ecs.Systems.Mine;
@@ -67,7 +68,8 @@ namespace CyberNinja.Ecs
                 // ui
                 .Add(new InitLobbyUiSystem())
                 .Add(new UiUpdateResources())
-                .Add(new SelectUnitPartSystem())
+                .Add(new CameraZoomSystem())
+                //.Add(new SelectUnitPartSystem())
                 
                 //
                 //.DelHere<PickupComponent>()

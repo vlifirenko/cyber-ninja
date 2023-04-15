@@ -8,11 +8,14 @@ namespace CyberNinja.Views
         [SerializeField] private MineCell[] cells;
         [SerializeField] private UnitConfig firstArmyUnitConfig;
         [SerializeField] private Camera upgradeCamera;
+        [SerializeField] private CameraView cameraView;
 
         public MineCell[] Cells => cells;
 
         public UnitConfig FirstArmyUnitConfig => firstArmyUnitConfig;
 
         public Camera UpgradeCamera => upgradeCamera;
+
+        public CameraView CameraView => cameraView;
     }
 }
