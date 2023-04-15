@@ -1,6 +1,8 @@
-﻿using CyberNinja.Ecs.Components.Room;
+﻿using System.Linq;
+using CyberNinja.Ecs.Components.Room;
 using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models.Config;
+using CyberNinja.Models.Enums;
 using CyberNinja.Services;
 using CyberNinja.Services.Unit;
 using CyberNinja.Utils;
@@ -10,6 +12,7 @@ using CyberNinja.Views.Unit;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Leopotam.EcsLite.Unity.Ugui;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace CyberNinja.Ecs.Systems.Room
@@ -34,26 +37,50 @@ namespace CyberNinja.Ecs.Systems.Room
                 var updateRoom = _updateRoomPool.Value.Get(entity);
                 var room = updateRoom.Room;
 
-                SpawnEnemies(room.Enemies);
+                if (updateRoom.IsSpawnEnemy)
+                    SpawnEnemies(room);
             }
         }
 
-        public void SpawnEnemies(UnitView[] list)
+        private void SpawnEnemies(RoomView room)
         {
-            foreach (var view in list)
+            foreach (var enemyItem in room.RoomConfig.enemies)
             {
-                var entity = _unitService.Value.CreateUnit(view);
+                for (var i = 0; i < enemyItem.amount; i++)
+                    SpawnEnemy(room, enemyItem.type);
+            }
+                
+        }
+
+        private void SpawnEnemy(RoomView room, EEnemyType type)
+        {
+            var spawnPoints = room.EnemySpawnPoints.ToList();
+            if (spawnPoints.Count == 0)
+            {
+                Debug.LogError("spawnPoints.Count == 0");
+                return;
+            }
+
+            var spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
+            spawnPoints.Remove(spawnPoint);
+
+            var enemies = _sceneView.Value.Enemies.Where(item => item.type == type);
+            foreach (var item in enemies)
+            {
+                var instance = Object.Instantiate(item.view, spawnPoint.position, spawnPoint.rotation,
+                    _sceneView.Value.UnitContainer.Transform);
+                var entity = _unitService.Value.CreateUnit(instance);
                 var enemyPool = _world.Value.GetPool<EnemyComponent>();
                 var enemy = new EnemyComponent();
-                var instance = Object.Instantiate(_healthSliderContainer.Prefab, _healthSliderContainer.Container);
+                var uiSlider = Object.Instantiate(_healthSliderContainer.Prefab, _healthSliderContainer.Container);
 
-                enemy.HealthSlider = instance;
-                instance.gameObject.SetActive(true);
+                enemy.HealthSlider = uiSlider;
+                uiSlider.gameObject.SetActive(true);
 
                 enemyPool.Add(entity) = enemy;
                 _aiService.Value.InitUnit(entity);
-                
-                view.Show();
+
+                instance.Show();
             }
         }
     }

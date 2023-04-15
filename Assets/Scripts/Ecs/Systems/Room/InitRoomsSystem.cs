@@ -127,7 +127,11 @@ namespace CyberNinja.Ecs.Systems.Room
         private void InitStartRoom()
         {
             var entity = _world.Value.NewEntity();
-            _world.Value.GetPool<UpdateRoomComponent>().Add(entity).Room = _startRoom;
+            _world.Value.GetPool<UpdateRoomComponent>().Add(entity) = new UpdateRoomComponent
+            {
+                Room = _startRoom,
+                IsSpawnEnemy = true
+            };
         }
     }
 }

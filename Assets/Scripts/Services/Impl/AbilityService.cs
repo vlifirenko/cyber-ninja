@@ -85,11 +85,11 @@ namespace CyberNinja.Services.Impl
             }
             else if (_world.GetPool<AbilityCooldownComponent>().Has(abilityEntity))
             {
-                Debug.Log("Ability has cooldown");
+                //Debug.Log("Ability has cooldown");
             }
             else if (_world.GetPool<AbilityBlockedComponent>().Has(abilityEntity))
             {
-                Debug.Log("Ability is blocked");
+                //Debug.Log("Ability is blocked");
             }
             else
             {

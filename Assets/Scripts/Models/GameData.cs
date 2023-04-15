@@ -14,9 +14,9 @@ namespace CyberNinja.Models
         public bool isMusicMute;
         public bool isEffectsMute;
         public bool isEnvironmentMute;
-        public PlayerResources playerResources = new();
+        public PlayerResources playerResources = new PlayerResources();
         public int colonyLevel;
-        public Mine mine = new();
+        public Mine mine = new Mine();
     }
 
     [Serializable]
@@ -32,7 +32,7 @@ namespace CyberNinja.Models
     {
         //public Dictionary<int, MineRoom> rooms = new();
         
-        public List<MineRoom> rooms = new();
+        public List<MineRoom> rooms = new List<MineRoom>();
 
         public void Add(int index, EMineCellState cellState)
         {

@@ -1,3 +1,5 @@
+using System;
+using CyberNinja.Models.Enums;
 using CyberNinja.Views.Containers;
 using CyberNinja.Views.Core;
 using CyberNinja.Views.Unit;
@@ -11,6 +13,7 @@ namespace CyberNinja.Views
     {
         [SerializeField] private CameraView cameraView;
         [SerializeField] private UnitView playerView;
+        [SerializeField] private EnemyViewItem[] enemies;
         [SerializeField] private StudioEventEmitter fmodEventEmitter;
         [SerializeField] private Volume volume;
         [SerializeField] private DoorContainer doorContainer;
@@ -30,5 +33,14 @@ namespace CyberNinja.Views
         public RoomView RoomPrefab => roomPrefab;
 
         public Transform RoomContainer => roomContainer;
+
+        public EnemyViewItem[] Enemies => enemies;
+    }
+
+    [Serializable]
+    public class EnemyViewItem
+    {
+        public EEnemyType type;
+        public UnitView view;
     }
 }

@@ -6,7 +6,7 @@ namespace CyberNinja.Models
     [Serializable]
     public class PlayerResources
     {
-        public List<ResourceItem> items = new();
+        public List<ResourceItem> items = new List<ResourceItem>();
         
         public void Add(EResourceType resourceType, float value)
         {
