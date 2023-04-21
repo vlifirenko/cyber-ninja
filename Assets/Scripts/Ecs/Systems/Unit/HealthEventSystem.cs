@@ -10,7 +10,7 @@ namespace CyberNinja.Ecs.Systems.Unit
     public class HealthEventSystem : IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<HealthComponent>> _filter;
-        private readonly EcsCustomInject<IUnitService> _unitService;
+        private readonly EcsCustomInject<UnitService> _unitService;
         private readonly EcsPoolInject<HealthComponent> _healthPool;
 
         public void Run(IEcsSystems systems)

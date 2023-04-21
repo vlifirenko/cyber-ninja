@@ -1,6 +1,7 @@
 ﻿using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models.Config;
 using CyberNinja.Services;
+using CyberNinja.Services.Impl;
 using CyberNinja.Services.Unit;
 using CyberNinja.Utils;
 using CyberNinja.Views;
@@ -17,10 +18,10 @@ namespace CyberNinja.Ecs.Systems.Unit
         private EcsPoolInject<PickupComponent> _pickupPool;
         private EcsPoolInject<WeaponComponent> _weaponPool;
         private EcsPoolInject<TriggerComponent> _triggerPool;
-        private EcsCustomInject<IUnitService> _unitService;
-        private EcsCustomInject<IItemService> _itemService;
+        private EcsCustomInject<UnitService> _unitService;
+        private EcsCustomInject<ItemService> _itemService;
         private EcsCustomInject<GlobalUnitConfig> _globalUnitConfig;
-        private EcsCustomInject<IAbilityService> _abilityService;
+        private EcsCustomInject<AbilityService> _abilityService;
         private EcsWorldInject _world;
         private readonly EcsCustomInject<CanvasView> _canvasView;
 
@@ -40,7 +41,7 @@ namespace CyberNinja.Ecs.Systems.Unit
                     else
                     {
                         _uiItemPopup.Hide();
-                        AddAttackAbility();
+                        AddAttackAbility(entity);
                     }
 
                     EquipWeapon(entity, pickup);
@@ -82,13 +83,14 @@ namespace CyberNinja.Ecs.Systems.Unit
             _itemService.Value.TryEquip(weaponEntity.Value, _world.Value.PackEntityWithWorld(unit));
         }
 
-        private void AddAttackAbility()
+        private void AddAttackAbility(int entity)
         {
-            var abilityItem = _globalUnitConfig.Value.skillWeaponHitConfig;
+            var unit = _unitService.Value.GetUnit(entity);
+            var ability = unit.Config.Abilities[0];
             if (_unitService.Value.Player.Unpack(_world.Value, out var player))
             {
-                _abilityService.Value.CreateAbility(abilityItem, player);
-                _canvasView.Value.AbilityImages[abilityItem.slotIndex].sprite = abilityItem.abilityConfig.icon;
+                _abilityService.Value.CreateAbility(ability, player);
+                _canvasView.Value.AbilityImages[ability.slotIndex].sprite = ability.abilityConfig.icon;
             }
         }
     }

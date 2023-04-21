@@ -1,4 +1,5 @@
 ﻿using CyberNinja.Models.Ability;
+using CyberNinja.Views.Projectile;
 using UnityEngine;
 
 namespace CyberNinja.Models.Config
@@ -19,6 +20,14 @@ namespace CyberNinja.Models.Config
         public float defaultMoveSpeed = 5f;
 
         [Space]
-        public AbilityItem skillWeaponHitConfig;
+        public float droidYSpawnPosition = 2f;
+        public float droidMoveDistance = 2f;
+        public float droidSpeed = 2f;
+        public float lookingTargetDistance = 50f;
+        public DroidProjectile droidProjectile;
+        public float droidShootReloadTime = 0.25f;
+        public float droidShootSpeed = 2f;
+        public float droidHitDistance = 1f;
+        public float droidDamage = 10f;
     }
 }

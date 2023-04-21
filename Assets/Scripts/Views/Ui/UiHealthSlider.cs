@@ -8,9 +8,12 @@ namespace CyberNinja.Views.Ui
     {
         [SerializeField] private Slider slider;
         [SerializeField] private Vector2 offset;
+        [SerializeField] private GameObject target;
 
         public Slider Slider => slider;
 
         public Vector2 Offset => offset;
+
+        public GameObject Target => target;
     }
 }

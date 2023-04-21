@@ -2,24 +2,26 @@
 using System.Collections.Generic;
 using CyberNinja.Ecs.Components.Ai;
 using CyberNinja.Ecs.Components.Unit;
+using CyberNinja.Events;
+using CyberNinja.Models;
 using CyberNinja.Models.Config;
 using CyberNinja.Models.Enums;
+using CyberNinja.Services.Impl;
 using CyberNinja.Utils;
 using CyberNinja.Views;
 using CyberNinja.Views.Core;
 using CyberNinja.Views.Unit;
 using Leopotam.EcsLite;
-using Leopotam.EcsLite.Di;
 using UnityEngine;
 
 namespace CyberNinja.Services.Unit
 {
-    public class UnitService : IUnitService
+    public class UnitService
     {
         private readonly EcsWorld _world;
         private readonly GlobalUnitConfig _globalUnitConfig;
-        private readonly IVfxService _vfxService;
-        private readonly IItemService _itemService;
+        private readonly VfxService _vfxService;
+        private readonly ItemService _itemService;
         private readonly EcsPool<StunComponent> _stunPool;
         private readonly EcsPool<KnockoutComponent> _knockoutPool;
         private readonly EcsPool<DeadComponent> _deadPool;
@@ -37,8 +39,8 @@ namespace CyberNinja.Services.Unit
 
         private EcsPackedEntity _playerEntity;
 
-        public UnitService(EcsWorld world, GlobalUnitConfig globalUnitConfig, CanvasView canvasView, IVfxService vfxService,
-            IItemService itemService)
+        public UnitService(EcsWorld world, GlobalUnitConfig globalUnitConfig, CanvasView canvasView, VfxService vfxService,
+            ItemService itemService)
         {
             _world = world;
             _globalUnitConfig = globalUnitConfig;
@@ -61,7 +63,7 @@ namespace CyberNinja.Services.Unit
             _triggerPool = _world.GetPool<TriggerComponent>();
         }
 
-        public IAbilityService AbilityService { get; set; }
+        public AbilityService AbilityService { get; set; }
 
         public int CreateUnit(UnitView view)
         {
@@ -113,10 +115,10 @@ namespace CyberNinja.Services.Unit
             {
                 var weaponEntity = _itemService.CreateItem(unit.Config.DefaultWeapon);
                 _itemService.TryEquip(weaponEntity, _world.PackEntityWithWorld(entity));
-                
-                AbilityService.CreateAbility(_globalUnitConfig.skillWeaponHitConfig, entity);
-                _canvasView.AbilityImages[_globalUnitConfig.skillWeaponHitConfig.slotIndex].sprite =
-                    _globalUnitConfig.skillWeaponHitConfig.abilityConfig.icon;
+
+                var ability = unit.Config.Abilities[0];
+                AbilityService.CreateAbility(ability, entity);
+                _canvasView.AbilityImages[ability.slotIndex].sprite = ability.abilityConfig.icon;
             }
 
             if (view.IsFreeze)
@@ -124,14 +126,26 @@ namespace CyberNinja.Services.Unit
 
             view.Entity = _world.PackEntity(entity);
 
+            _world.GetPool<TargetsComponent>().Add(entity).Targets = new List<Target>();
+
             return entity;
         }
 
         public void AddDamage(int entity, float damage, Transform damageOrigin)
         {
+            var damageFactor = _damageFactorPool.Get(entity);
+            // todo move to system
+            /*_world.GetPool<DamageComponent>().Add(entity) = new DamageComponent
+            {
+                Value = new Damage
+                {
+                    value = damageFactor.PhysicalFactor,
+                    damageOrigin = damageOrigin
+                }
+            };*/
+            //
             ref var health = ref _healthPool.Get(entity);
             var unit = _unitPool.Get(entity);
-            var damageFactor = _damageFactorPool.Get(entity);
 
             var damageMath = damage - damage * damageFactor.PhysicalFactor / 100;
             var newHealth = Mathf.Clamp(health.Current - damageMath, 0f, health.Max);
@@ -159,6 +173,8 @@ namespace CyberNinja.Services.Unit
 
         private void Dead(int entity)
         {
+            // todo move to system
+            
             AddState(entity, EUnitState.Dead);
             AddState(entity, EUnitState.Knockout);
 
@@ -181,7 +197,12 @@ namespace CyberNinja.Services.Unit
                 aiTask.Value = EAiTaskType.Dead;
                 if (_world.GetPool<AiTargetComponent>().Has(entity))
                     _world.GetPool<AiTargetComponent>().Del(entity);
+
+                ref var enemy = ref _world.GetPool<EnemyComponent>().Get(entity);
+                enemy.HealthSlider.gameObject.SetActive(false);
             }
+            
+            EnemyEventsHolder.InvokeOnKillEnemy(entity);
         }
 
         public bool AddState(int entity, EUnitState state, float value = 0)

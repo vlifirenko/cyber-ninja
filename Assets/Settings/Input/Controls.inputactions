@@ -477,6 +477,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Aim",
+                    "type": "Button",
+                    "id": "3cb0e9e9-f358-4b5c-9d63-70bb8c3d9a70",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Droid_Shoot",
+                    "type": "PassThrough",
+                    "id": "00e5fe76-9cfb-4e9a-86aa-8c5b608403ae",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -510,17 +528,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Ability01_Tap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fc0c3ab9-7b8f-42bd-a8bb-8922a51a9a20",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Ability02_Tap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -741,6 +748,104 @@
                     "processors": "",
                     "groups": "",
                     "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5144f4a-c5b0-46ae-8350-9b6af22a08fc",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "12e1d83f-05fd-4a36-8424-624abda32cef",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Droid_Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Mine",
+            "id": "51f97dca-19b9-4cb7-be6c-b08e83392653",
+            "actions": [
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "4fe846d7-f6f3-4907-bedb-93b392f95bd8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3a299e99-74df-4abb-8f89-916805285eba",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Debug",
+            "id": "672023f1-bbe0-4316-88c0-b087b3ac3b3c",
+            "actions": [
+                {
+                    "name": "AddResource1",
+                    "type": "Button",
+                    "id": "ebab8bc2-45ce-4850-aa72-02e675c77927",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ResetMine",
+                    "type": "Button",
+                    "id": "85afc0da-6256-4593-a2fa-fa9b70cb5f12",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "97d2ed15-94fc-405d-9e7a-a013411f6aca",
+                    "path": "<Keyboard>/numpadPlus",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AddResource1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9c27b7f0-d0dd-4a94-9475-f41410bc960e",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetMine",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

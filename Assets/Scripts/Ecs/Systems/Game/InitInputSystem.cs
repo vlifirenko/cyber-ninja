@@ -22,13 +22,13 @@ namespace CyberNinja.Ecs.Systems.Game
 
         public void Init(IEcsSystems systems)
         {
-            foreach (var entity in _filter.Value)
+            /*foreach (var entity in _filter.Value)
             {
-                ref var player = ref _playerPool.Value.Get(entity);
+                ref var player = ref _playerPool.Value.Get(entity);*/
 
                 _controls = new Controls();
                 _controls.Enable();
-                player.Controls = _controls;
+                _gameData.Value.Controls = _controls;
 
                 _controls._Game.Quitgame.performed += ctx => _gameService.Value.QuitGame();
                 _controls._Game.RestartLevel.performed += ctx => _gameService.Value.ReloadLevel();
@@ -38,7 +38,7 @@ namespace CyberNinja.Ecs.Systems.Game
                 _controls._Game.Screenshot.performed += ctx => _gameService.Value.Screenshot();
 
                 _gameData.Value.inputType = _inputConfig.Value.defaultInputType;
-            }
+            //}
         }
 
         public void Destroy(IEcsSystems systems) => _controls.Disable();

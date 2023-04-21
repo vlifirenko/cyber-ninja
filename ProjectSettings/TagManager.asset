@@ -17,10 +17,10 @@ TagManager:
   - Projection
   - Attack
   - PostProcessing
-  - 
+  - MineCell
   - WorldTrigger
-  - 
-  - 
+  - UnitPart
+  - LobbyMine
   - 
   - 
   - EnvSolid

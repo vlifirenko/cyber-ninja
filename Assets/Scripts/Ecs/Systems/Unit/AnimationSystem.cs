@@ -18,7 +18,7 @@ namespace CyberNinja.Ecs.Systems.Unit
 
         private readonly EcsFilterInject<Inc<UnitComponent, MoveVectorComponent>, Exc<DeadComponent>> _filter;
         private readonly EcsCustomInject<GlobalUnitConfig> _characterConfig;
-        private readonly EcsCustomInject<IUnitService> _unitService;
+        private readonly EcsCustomInject<UnitService> _unitService;
         private readonly EcsPoolInject<VectorsComponent> _vectorsPool;
         private readonly EcsPoolInject<MoveVectorComponent> _moveVectorPool;
         private readonly EcsPoolInject<VectorLookComponent> _vectorLookPool;

@@ -499,6 +499,24 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""3cb0e9e9-f358-4b5c-9d63-70bb8c3d9a70"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Droid_Shoot"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""00e5fe76-9cfb-4e9a-86aa-8c5b608403ae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -532,17 +550,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Ability01_Tap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fc0c3ab9-7b8f-42bd-a8bb-8922a51a9a20"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Ability02_Tap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -765,6 +772,104 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Use"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5144f4a-c5b0-46ae-8350-9b6af22a08fc"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""12e1d83f-05fd-4a36-8424-624abda32cef"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Droid_Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Mine"",
+            ""id"": ""51f97dca-19b9-4cb7-be6c-b08e83392653"",
+            ""actions"": [
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""4fe846d7-f6f3-4907-bedb-93b392f95bd8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3a299e99-74df-4abb-8f89-916805285eba"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Debug"",
+            ""id"": ""672023f1-bbe0-4316-88c0-b087b3ac3b3c"",
+            ""actions"": [
+                {
+                    ""name"": ""AddResource1"",
+                    ""type"": ""Button"",
+                    ""id"": ""ebab8bc2-45ce-4850-aa72-02e675c77927"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ResetMine"",
+                    ""type"": ""Button"",
+                    ""id"": ""85afc0da-6256-4593-a2fa-fa9b70cb5f12"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""97d2ed15-94fc-405d-9e7a-a013411f6aca"",
+                    ""path"": ""<Keyboard>/numpadPlus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AddResource1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9c27b7f0-d0dd-4a94-9475-f41410bc960e"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetMine"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -824,6 +929,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m__Player_Action03_Tap = m__Player.FindAction("Action03_Tap", throwIfNotFound: true);
         m__Player_Action04_Tap = m__Player.FindAction("Action04_Tap", throwIfNotFound: true);
         m__Player_Use = m__Player.FindAction("Use", throwIfNotFound: true);
+        m__Player_Aim = m__Player.FindAction("Aim", throwIfNotFound: true);
+        m__Player_Droid_Shoot = m__Player.FindAction("Droid_Shoot", throwIfNotFound: true);
+        // Mine
+        m_Mine = asset.FindActionMap("Mine", throwIfNotFound: true);
+        m_Mine_Select = m_Mine.FindAction("Select", throwIfNotFound: true);
+        // Debug
+        m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
+        m_Debug_AddResource1 = m_Debug.FindAction("AddResource1", throwIfNotFound: true);
+        m_Debug_ResetMine = m_Debug.FindAction("ResetMine", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1008,6 +1122,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m__Player_Action03_Tap;
     private readonly InputAction m__Player_Action04_Tap;
     private readonly InputAction m__Player_Use;
+    private readonly InputAction m__Player_Aim;
+    private readonly InputAction m__Player_Droid_Shoot;
     public struct _PlayerActions
     {
         private @Controls m_Wrapper;
@@ -1023,6 +1139,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Action03_Tap => m_Wrapper.m__Player_Action03_Tap;
         public InputAction @Action04_Tap => m_Wrapper.m__Player_Action04_Tap;
         public InputAction @Use => m_Wrapper.m__Player_Use;
+        public InputAction @Aim => m_Wrapper.m__Player_Aim;
+        public InputAction @Droid_Shoot => m_Wrapper.m__Player_Droid_Shoot;
         public InputActionMap Get() { return m_Wrapper.m__Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1065,6 +1183,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Use.started -= m_Wrapper.m__PlayerActionsCallbackInterface.OnUse;
                 @Use.performed -= m_Wrapper.m__PlayerActionsCallbackInterface.OnUse;
                 @Use.canceled -= m_Wrapper.m__PlayerActionsCallbackInterface.OnUse;
+                @Aim.started -= m_Wrapper.m__PlayerActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m__PlayerActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m__PlayerActionsCallbackInterface.OnAim;
+                @Droid_Shoot.started -= m_Wrapper.m__PlayerActionsCallbackInterface.OnDroid_Shoot;
+                @Droid_Shoot.performed -= m_Wrapper.m__PlayerActionsCallbackInterface.OnDroid_Shoot;
+                @Droid_Shoot.canceled -= m_Wrapper.m__PlayerActionsCallbackInterface.OnDroid_Shoot;
             }
             m_Wrapper.m__PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1102,10 +1226,90 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Use.started += instance.OnUse;
                 @Use.performed += instance.OnUse;
                 @Use.canceled += instance.OnUse;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
+                @Droid_Shoot.started += instance.OnDroid_Shoot;
+                @Droid_Shoot.performed += instance.OnDroid_Shoot;
+                @Droid_Shoot.canceled += instance.OnDroid_Shoot;
             }
         }
     }
     public _PlayerActions @_Player => new _PlayerActions(this);
+
+    // Mine
+    private readonly InputActionMap m_Mine;
+    private IMineActions m_MineActionsCallbackInterface;
+    private readonly InputAction m_Mine_Select;
+    public struct MineActions
+    {
+        private @Controls m_Wrapper;
+        public MineActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Select => m_Wrapper.m_Mine_Select;
+        public InputActionMap Get() { return m_Wrapper.m_Mine; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MineActions set) { return set.Get(); }
+        public void SetCallbacks(IMineActions instance)
+        {
+            if (m_Wrapper.m_MineActionsCallbackInterface != null)
+            {
+                @Select.started -= m_Wrapper.m_MineActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_MineActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_MineActionsCallbackInterface.OnSelect;
+            }
+            m_Wrapper.m_MineActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
+            }
+        }
+    }
+    public MineActions @Mine => new MineActions(this);
+
+    // Debug
+    private readonly InputActionMap m_Debug;
+    private IDebugActions m_DebugActionsCallbackInterface;
+    private readonly InputAction m_Debug_AddResource1;
+    private readonly InputAction m_Debug_ResetMine;
+    public struct DebugActions
+    {
+        private @Controls m_Wrapper;
+        public DebugActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @AddResource1 => m_Wrapper.m_Debug_AddResource1;
+        public InputAction @ResetMine => m_Wrapper.m_Debug_ResetMine;
+        public InputActionMap Get() { return m_Wrapper.m_Debug; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DebugActions set) { return set.Get(); }
+        public void SetCallbacks(IDebugActions instance)
+        {
+            if (m_Wrapper.m_DebugActionsCallbackInterface != null)
+            {
+                @AddResource1.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnAddResource1;
+                @AddResource1.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnAddResource1;
+                @AddResource1.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnAddResource1;
+                @ResetMine.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnResetMine;
+                @ResetMine.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnResetMine;
+                @ResetMine.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnResetMine;
+            }
+            m_Wrapper.m_DebugActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @AddResource1.started += instance.OnAddResource1;
+                @AddResource1.performed += instance.OnAddResource1;
+                @AddResource1.canceled += instance.OnAddResource1;
+                @ResetMine.started += instance.OnResetMine;
+                @ResetMine.performed += instance.OnResetMine;
+                @ResetMine.canceled += instance.OnResetMine;
+            }
+        }
+    }
+    public DebugActions @Debug => new DebugActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1151,5 +1355,16 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnAction03_Tap(InputAction.CallbackContext context);
         void OnAction04_Tap(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
+        void OnDroid_Shoot(InputAction.CallbackContext context);
+    }
+    public interface IMineActions
+    {
+        void OnSelect(InputAction.CallbackContext context);
+    }
+    public interface IDebugActions
+    {
+        void OnAddResource1(InputAction.CallbackContext context);
+        void OnResetMine(InputAction.CallbackContext context);
     }
 }

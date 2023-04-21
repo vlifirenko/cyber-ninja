@@ -31,6 +31,7 @@ namespace CyberNinja.Views
         [VerticalGroup("PARAMETERS/HIT_Activate/1"), GUIColor(.6f, .6f, 1f), OnValueChanged("UpdateVfxParameters"), Range(0, 1), SerializeField] private float vfxBlood;
 
         [FoldoutGroup("TRANSFORM"), ToggleLeft, SerializeField] private bool vfxGlobalRotation;
+        [FoldoutGroup("CUSTOM"), SerializeField] private VfxElectricArc vfxElectricArc;
         
         private bool _activatePhase;
         private float _currentPhaseTime;
@@ -51,6 +52,8 @@ namespace CyberNinja.Views
         {
             set => vfxBlood = value;
         }
+
+        public VfxElectricArc VfxElectricArc => vfxElectricArc;
 
         public void Start()
         {

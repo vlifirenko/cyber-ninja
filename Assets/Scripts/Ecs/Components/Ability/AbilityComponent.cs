@@ -10,5 +10,6 @@ namespace CyberNinja.Ecs.Components.Ability
         public AbilityConfig AbilityConfig;
         public AbilityOverrideItem[] OverrideData;
         public EcsPackedEntity Owner;
+        public EcsPackedEntity Target;
     }
 }

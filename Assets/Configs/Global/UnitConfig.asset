@@ -25,3 +25,12 @@ MonoBehaviour:
     slotIndex: 0
     abilityConfig: {fileID: 11400000, guid: 9c898ade16f8e8f4698fa7621abbdcaa, type: 2}
     overrideData: []
+  droidYSpawnPosition: 2
+  droidMoveDistance: 2
+  droidSpeed: 0.01
+  lookingTargetDistance: 25
+  droidProjectile: {fileID: 1898050158055525068, guid: 7f58bb57df8ba7e41b1b2b434ebda2fd, type: 3}
+  droidShootReloadTime: 0.25
+  droidShootSpeed: 0.005
+  droidHitDistance: 2
+  droidDamage: 10

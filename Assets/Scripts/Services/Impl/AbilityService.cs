@@ -15,20 +15,20 @@ using UnityEngine;
 
 namespace CyberNinja.Services.Impl
 {
-    public class AbilityService : IAbilityService, IDestroyable
+    public class AbilityService : IDestroyable
     {
         private readonly EcsWorld _world;
         private readonly GlobalUnitConfig _globalUnitConfig;
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
         private readonly EcsPool<AbilityEnabledComponent> _enabledPool;
         private readonly LayersConfig _layersConfig;
-        private readonly IUnitService _unitService;
+        private readonly UnitService _unitService;
         private readonly IDoorService _doorService;
-        private readonly IVfxService _vfxService;
+        private readonly VfxService _vfxService;
         private readonly ISceneService _sceneService;
-        
+
         public AbilityService(EcsWorld world, GlobalUnitConfig globalUnitConfig, LayersConfig layersConfig,
-            IUnitService unitService, IDoorService doorService, IVfxService vfxService, ISceneService sceneService)
+            UnitService unitService, IDoorService doorService, VfxService vfxService, ISceneService sceneService)
         {
             _world = world;
             _globalUnitConfig = globalUnitConfig;
@@ -85,11 +85,11 @@ namespace CyberNinja.Services.Impl
             }
             else if (_world.GetPool<AbilityCooldownComponent>().Has(abilityEntity))
             {
-                Debug.Log("Ability has cooldown");
+                //Debug.Log("Ability has cooldown");
             }
             else if (_world.GetPool<AbilityBlockedComponent>().Has(abilityEntity))
             {
-                Debug.Log("Ability is blocked");
+                //Debug.Log("Ability is blocked");
             }
             else
             {
@@ -156,11 +156,22 @@ namespace CyberNinja.Services.Impl
 
             if (ability.AbilityConfig.VFX)
             {
-                Observable.Timer(TimeSpan.FromSeconds(ability.AbilityConfig.vfxSpawnDelay))
-                    .Subscribe(_ => _vfxService.SpawnVfx(ownerEntity, ability.AbilityConfig))
-                    .AddTo(_disposable);
+                if (ability.Target.Unpack(_world, out var targetEntity))
+                {
+                    var targetUnit = _unitService.GetUnit(targetEntity);
+                    Observable.Timer(TimeSpan.FromSeconds(ability.AbilityConfig.vfxSpawnDelay))
+                        .Subscribe(_ => _vfxService.SpawnVfx(ownerEntity, ability.AbilityConfig, false, 0,
+                            0, null, targetUnit.View.Transform))
+                        .AddTo(_disposable);
+                }
+                else
+                {
+                    Observable.Timer(TimeSpan.FromSeconds(ability.AbilityConfig.vfxSpawnDelay))
+                        .Subscribe(_ => _vfxService.SpawnVfx(ownerEntity, ability.AbilityConfig))
+                        .AddTo(_disposable);
+                }
             }
-            
+
             if (ability.AbilityConfig.ANIMATOR)
             {
                 var unit = _unitService.GetUnit(ownerEntity);
@@ -200,7 +211,7 @@ namespace CyberNinja.Services.Impl
                 else
                     _unitService.AddState(ownerEntity, EUnitState.Stationary, ability.AbilityConfig.stationaryTime);
             }
-            
+
             if (ability.AbilityConfig.SHIELD)
             {
                 ref var damageFactor = ref _world.GetPool<DamageFactorComponent>().Get(ownerEntity);
@@ -218,7 +229,7 @@ namespace CyberNinja.Services.Impl
                     })
                     .AddTo(_disposable);
             }
-            
+
             if (ability.AbilityConfig.DASH)
                 _unitService.TryDash(ownerEntity, ability.AbilityConfig, false, Vector3.zero);
         }
@@ -228,6 +239,8 @@ namespace CyberNinja.Services.Impl
             var ability = _world.GetPool<AbilityComponent>().Get(abilityEntity);
             if (ability.AbilityConfig.abilityType == EAbilityType.Skill)
                 Attack(abilityEntity);
+            else if (ability.AbilityConfig.abilityType == EAbilityType.EnemyShoot)
+                EnemyShoot(abilityEntity);
             else if (ability.AbilityConfig.abilityType == EAbilityType.Action &&
                      ability.AbilityConfig.actionType == EActionType.Outer)
                 Action(abilityEntity);
@@ -254,7 +267,8 @@ namespace CyberNinja.Services.Impl
             float tempRadius;
             if (ability.AbilityConfig.useRadius)
                 tempRadius = ability.AbilityConfig.radius;
-            else tempRadius = 1000;
+            else
+                tempRadius = 1000;
 
             var hitColliders = Physics.OverlapSphere(spawnCenter, tempRadius);
             foreach (var hit in hitColliders)
@@ -319,6 +333,7 @@ namespace CyberNinja.Services.Impl
                     var doorView = hit.GetComponent<DoorView>();
                     _doorService.TryActivateDoor(doorView, ownerEntity);
                 }
+
                 //todo
                 /*else if (hit.CompareTag(Tag.Item))
                 {
@@ -328,6 +343,68 @@ namespace CyberNinja.Services.Impl
 
                     _itemService.ActivateItem(itemEntity);
                 }*/
+            }
+        }
+
+        private void EnemyShoot(int abilityEntity)
+        {
+            Debug.Log("enemy shoot");
+
+            var ability = _world.GetPool<AbilityComponent>().Get(abilityEntity);
+            if (!ability.Owner.Unpack(_world, out var ownerEntity))
+                return;
+
+            var owner = _unitService.GetUnit(ownerEntity);
+            var vfxSpawnPoint = owner.View.VfxSpawnPoint;
+            var spawnCenter = ability.AbilityConfig.vfxGameobject != null
+                ? vfxSpawnPoint.position
+                : owner.View.Transform.position;
+
+            spawnCenter = spawnCenter +
+                          vfxSpawnPoint.forward * ability.AbilityConfig.vfxPosition.z +
+                          vfxSpawnPoint.right * ability.AbilityConfig.vfxPosition.x +
+                          Vector3.up * ability.AbilityConfig.vfxPosition.y;
+
+            float tempRadius;
+            if (ability.AbilityConfig.useRadius)
+                tempRadius = ability.AbilityConfig.radius;
+            else
+                tempRadius = 1000;
+
+            var hitColliders = Physics.OverlapSphere(spawnCenter, tempRadius);
+            foreach (var hit in hitColliders)
+            {
+                if (hit.transform.parent == null)
+                    continue;
+                if (hit.transform.parent.transform.parent == owner.View.Transform)
+                    continue;
+                if (_layersConfig.attackLayer.value != 1 << hit.gameObject.layer)
+                    continue;
+
+                //var forward = owner.View.Transform.TransformDirection(Vector3.forward);
+                //var direction = (hit.transform.position - owner.View.Transform.position).normalized;
+                //var dotProduct = Vector3.Dot(forward, direction);
+
+                //float tempAngle;
+                //if (ability.AbilityConfig.useAngle)
+                //    tempAngle = ability.AbilityConfig.angle;
+                //else
+                //    tempAngle = 1;
+//
+                //var angle = tempAngle;
+                //var anglePercent = (180f - angle) / 180f;
+                //if (dotProduct >= anglePercent)
+                //{
+                var targetView = hit.transform.parent.transform.parent.GetComponent<UnitView>();
+                if (!targetView)
+                    return;
+                if (!targetView.Entity.Unpack(_world, out var targetEntity))
+                    return;
+                if (_unitService.HasState(targetEntity, EUnitState.Dead))
+                    return;
+
+                TargetHitLogic(ability.AbilityConfig, targetView.Transform, targetEntity);
+                //}
             }
         }
 

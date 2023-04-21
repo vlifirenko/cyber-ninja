@@ -10,7 +10,7 @@ namespace CyberNinja.Ecs.Systems.SceneObjects
 {
     public class UseSceneObjectSystem : IEcsInitSystem
     {
-        private readonly EcsCustomInject<IUnitService> _unitService;
+        private readonly EcsCustomInject<UnitService> _unitService;
         
         public void Init(IEcsSystems systems)
         {

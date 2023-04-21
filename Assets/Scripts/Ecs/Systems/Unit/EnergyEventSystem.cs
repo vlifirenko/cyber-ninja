@@ -14,7 +14,7 @@ namespace CyberNinja.Ecs.Systems.Unit
     public class EnergyEventSystem : IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<EnergyComponent>> _filter;
-        private readonly EcsCustomInject<IUnitService> _unitService;
+        private readonly EcsCustomInject<UnitService> _unitService;
         private readonly EcsPoolInject<EnergyComponent> _energyPool;
 
         public void Run(IEcsSystems systems)

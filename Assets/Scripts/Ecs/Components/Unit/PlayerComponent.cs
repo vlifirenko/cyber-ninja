@@ -2,6 +2,5 @@
 {
     public struct PlayerComponent
     {
-        public Controls Controls;
     }
 }

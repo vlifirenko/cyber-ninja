@@ -1,3 +1,4 @@
+using CyberNinja.Ecs.Components.Room;
 using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Ecs.Systems.Ability;
 using CyberNinja.Ecs.Systems.Ai;
@@ -5,6 +6,8 @@ using CyberNinja.Ecs.Systems.Door;
 using CyberNinja.Ecs.Systems.Game;
 using CyberNinja.Ecs.Systems.Item;
 using CyberNinja.Ecs.Systems.Player;
+using CyberNinja.Ecs.Systems.Player.Droid;
+using CyberNinja.Ecs.Systems.Room;
 using CyberNinja.Ecs.Systems.SceneObjects;
 using CyberNinja.Ecs.Systems.Ui;
 using CyberNinja.Ecs.Systems.Unit;
@@ -38,15 +41,15 @@ namespace CyberNinja.Ecs
         private EcsSystems _systems;
 
         private IAiService _aiService;
-        private IUnitService _unitService;
-        private IAbilityService _abilityService;
+        private UnitService _unitService;
+        private AbilityService _abilityService;
         private IDoorService _doorService;
-        private IVfxService _vfxService;
+        private VfxService _vfxService;
         private ISceneService _sceneService;
         private IGameService _gameService;
         private ITimeService _timeService;
-        private IItemService _itemService;
-        private IPlayerService _playerService;
+        private ItemService _itemService;
+        private PlayerService _playerService;
 
         private GameData _gameData;
 
@@ -76,7 +79,6 @@ namespace CyberNinja.Ecs
             _systems
 
                 // init
-                .Add(new InitUnitsSystem())
                 .Add(new InitInputSystem())
                 .Add(new InitUiSystem())
 
@@ -85,6 +87,10 @@ namespace CyberNinja.Ecs
                 .Add(new CameraMovementSystem())
                 .Add(new AudioSystem())
                 .Add(new TimeSystem())
+                
+                // rooms
+                .Add(new InitRoomsSystem())
+                .Add(new UpdateRoomSystem())
 
                 // trigger
                 .Add(new PlayerTriggerSystem())
@@ -99,6 +105,8 @@ namespace CyberNinja.Ecs
                 // player
                 .Add(new PlayerActionSystem())
 
+                // enemy
+                .Add(new OnKillEnemySystem())
                 // ai
                 .Add(new AiUpdateStateSystem())
                 .Add(new AiIdleSystem())
@@ -113,10 +121,13 @@ namespace CyberNinja.Ecs
                 .Add(new AbilityInputBlockSystem())
                 .Add(new HealthRegenerationSystem())
                 .Add(new EnergyRegenerationSystem())
-                .Add(new DamageFactorSystem())
+                .Add(new CalculateDamageFactorSystem())
                 .Add(new ReviveSystem())
                 .Add(new HealthEventSystem())
                 .Add(new EnergyEventSystem())
+                .Add(new DroidMovementSystem())
+                //todo fix .Add(new FindTargetsSystem())
+                .Add(new DroidShootSystem())
 
                 // ability
                 .Add(new InitAbilitiesSystem())
@@ -140,6 +151,7 @@ namespace CyberNinja.Ecs
                 
                 //
                 .DelHere<PickupComponent>()
+                .DelHere<UpdateRoomComponent>()
 #if UNITY_EDITOR
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif

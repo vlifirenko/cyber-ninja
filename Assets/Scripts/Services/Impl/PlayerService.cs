@@ -4,7 +4,7 @@ using Leopotam.EcsLite;
 
 namespace CyberNinja.Services.Impl
 {
-    public class PlayerService : IPlayerService
+    public class PlayerService
     {
         private readonly EcsWorld _world;
         private readonly EcsPool<PlayerComponent> _playerPool;
@@ -15,12 +15,6 @@ namespace CyberNinja.Services.Impl
             _world = world;
             _playerFilter = _world.Filter<PlayerComponent>().End();
             _playerPool = _world.GetPool<PlayerComponent>();
-        }
-
-        public Controls GetInput()
-        {
-            var player = _playerPool.Get(GetEntity());
-            return player.Controls;
         }
 
         public int GetEntity()

@@ -14,7 +14,7 @@ namespace CyberNinja.Ecs.Systems.Ai
         private readonly EcsFilterInject<Inc<AiTaskComponent, AiTargetComponent>, Exc<KnockoutComponent, FreezeComponent>> _filter;
         private readonly EcsPoolInject<AiTaskComponent> _aiTaskPool;
         private readonly EcsPoolInject<AiTargetComponent> _aiTargetPool;
-        private readonly EcsCustomInject<IUnitService> _unitService;
+        private readonly EcsCustomInject<UnitService> _unitService;
 
         public void Run(IEcsSystems systems)
         {
