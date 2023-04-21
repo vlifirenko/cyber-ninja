@@ -1,14 +1,13 @@
-﻿using System;
-using CyberNinja.Models;
+﻿using CyberNinja.Models;
 using CyberNinja.Models.Config;
 using CyberNinja.Services;
 using CyberNinja.Utils;
 using CyberNinja.Views;
+using CyberNinja.Views.Ui;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Leopotam.EcsLite.Unity.Ugui;
 using TMPro;
-using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -25,7 +24,7 @@ namespace CyberNinja.Ecs.Systems.Lobby.Mine
         private LobbyMine _hoveredMine;
         private LobbyMine _selectedMine;
 
-        [EcsUguiNamed(UiConst.MinePopup)] private MinePopup _minePopup;
+        [EcsUguiNamed(UiConst.LobbyMine)] private UiLobbyMine _lobbyMine;
         [EcsUguiNamed(UiConst.MessageText)] private TMP_Text _messageText;
         [EcsUguiNamed(UiConst.Canvas)] private Canvas _canvas;
 
@@ -45,22 +44,33 @@ namespace CyberNinja.Ecs.Systems.Lobby.Mine
             {
                 var mine = hit.transform.parent.GetComponent<LobbyMine>();
 
-                if (!mine.IsHovered)
-                    mine.IsHovered = true;
+                if (mine == _hoveredMine)
+                    return;
 
                 if (_hoveredMine == null)
-                    _hoveredMine = mine;
-                else if (_hoveredMine != null && _hoveredMine != mine)
-                    UnhoverMineCell(mine);
+                    HoverMine(mine);
+                else if (_hoveredMine != null)
+                {
+                    UnhoverMine(mine);
+                    HoverMine(mine);
+                }
             }
-            else if (_hoveredMine != null)
-                UnhoverMineCell(null);
+            else if (_hoveredMine != null && !EventSystem.current.IsPointerOverGameObject())
+                UnhoverMine(null);
         }
 
-        private void UnhoverMineCell(LobbyMine newMine)
+        private void HoverMine(LobbyMine mine)
         {
-            _minePopup.Inner.gameObject.SetActive(false);
-            _hoveredMine.IsHovered = false;
+            _hoveredMine = mine;
+            
+            var uiPosition = _canvas.WorldToCanvasPosition(mine.Transform.position);
+            _lobbyMine.GetComponent<RectTransform>().anchoredPosition = uiPosition;
+            _lobbyMine.Inner.SetActive(true);
+        }
+
+        private void UnhoverMine(LobbyMine newMine)
+        {
+            _lobbyMine.Inner.SetActive(false);
             _hoveredMine = newMine;
         }
 
