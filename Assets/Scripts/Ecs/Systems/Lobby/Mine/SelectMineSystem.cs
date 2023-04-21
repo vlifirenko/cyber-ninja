@@ -11,6 +11,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace CyberNinja.Ecs.Systems.Lobby.Mine
 {
@@ -18,11 +19,10 @@ namespace CyberNinja.Ecs.Systems.Lobby.Mine
     {
         private EcsCustomInject<LobbyConfig> _lobbyConfig;
         private EcsCustomInject<LayersConfig> _layersConfig;
-        private EcsCustomInject<GameData> _gameData;
+        private EcsCustomInject<LobbyData> _lobbyData;
         private EcsCustomInject<SaveService> _saveService;
 
         private LobbyMine _hoveredMine;
-        private LobbyMine _selectedMine;
 
         [EcsUguiNamed(UiConst.LobbyMine)] private UiLobbyMine _lobbyMine;
         [EcsUguiNamed(UiConst.MessageText)] private TMP_Text _messageText;
@@ -30,11 +30,8 @@ namespace CyberNinja.Ecs.Systems.Lobby.Mine
 
         public void Init(IEcsSystems systems)
         {
-            var controls = new Controls();
-            _gameData.Value.Controls = controls;
-
-            controls.Mine.Enable();
-            controls.Mine.Select.performed += OnMouseClick;
+            _lobbyMine.AttackButton.onClick.AddListener(OnAttackButton);
+            _lobbyMine.ViewButton.onClick.AddListener(OnViewButton);
         }
 
         public void Run(IEcsSystems systems)
@@ -73,21 +70,16 @@ namespace CyberNinja.Ecs.Systems.Lobby.Mine
             _lobbyMine.Inner.SetActive(false);
             _hoveredMine = newMine;
         }
-
-        private void OnMouseClick(InputAction.CallbackContext obj)
+        
+        private void OnViewButton()
         {
-            if (EventSystem.current.IsPointerOverGameObject())
-                return;
-            if (_hoveredMine == null)
-                return;
+            throw new System.NotImplementedException();
+        }
 
-            _selectedMine = _hoveredMine;
-
-            /*var position = _canvas.WorldToCanvasPosition(_selectedMine.Transform.position);
-            position += new Vector3(_minePopup.Offset.x, _minePopup.Offset.y);
-            _minePopup.Window.anchoredPosition = position;
-            Observable.Timer(TimeSpan.FromSeconds(0.1f))
-                .Subscribe(_ => _minePopup.Inner.gameObject.SetActive(true));*/
+        private void OnAttackButton()
+        {
+            SaveService.Save(_lobbyData.Value);
+            SceneManager.LoadScene(_lobbyConfig.Value.gameSceneName);
         }
     }
 }

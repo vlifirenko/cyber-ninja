@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbe57f63e0246898265a48f95fab746, type: 3}
   m_Name: Lobby
   m_EditorClassIdentifier: 
+  gameSceneName: Mine_Build_Rooms
   startResources:
   - type: 10
     value: 5000

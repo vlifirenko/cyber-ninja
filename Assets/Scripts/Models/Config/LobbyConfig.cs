@@ -6,6 +6,7 @@ namespace CyberNinja.Models.Config
     [CreateAssetMenu(menuName = "Config/Lobby", fileName = "Lobby")]
     public class LobbyConfig : ScriptableObject
     {
+        public string gameSceneName;
         public StartResource[] startResources;
         public int outerCircleUnlockCost = 100;
         public int startColonyLevel = 1;

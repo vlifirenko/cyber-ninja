@@ -40,9 +40,8 @@ namespace CyberNinja.Ecs
             var world = new EcsWorld();
 
             var saveService = new SaveService();
-            _gameData = SaveService.Load();
-
-            _lobbyData = new LobbyData();
+            _gameData = SaveService.LoadGameData();
+            _lobbyData = SaveService.LoadLobbyData();
 
             EcsPhysicsEvents.ecsWorld = world;
 
