@@ -5,14 +5,14 @@ using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace CyberNinja.Ecs.Systems.Lobby.Camera
+namespace CyberNinja.Ecs.Systems.Lobby
 {
     public class CameraZoomSystem : IEcsRunSystem
     {
         private EcsFilterInject<Inc<CameraZoomComponent>> _filter;
         private EcsPoolInject<CameraZoomComponent> _pool;
         private EcsCustomInject<LobbySceneView> _sceneView;
-        private EcsCustomInject<MineConfig> _mineConfig;
+        private EcsCustomInject<LobbyConfig> _mineConfig;
 
         public void Run(IEcsSystems systems)
         {

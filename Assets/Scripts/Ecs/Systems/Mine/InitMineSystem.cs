@@ -16,7 +16,7 @@ namespace CyberNinja.Ecs.Systems.Mine
     public class InitMineSystem : IEcsInitSystem
     {
         private EcsCustomInject<LobbySceneView> _sceneView;
-        private EcsCustomInject<MineConfig> _mineConfig;
+        private EcsCustomInject<LobbyConfig> _mineConfig;
         private EcsCustomInject<GameData> _gameData;
         private EcsCustomInject<SaveService> _saveService;
 

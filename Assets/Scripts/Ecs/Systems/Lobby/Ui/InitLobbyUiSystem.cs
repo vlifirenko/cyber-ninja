@@ -28,8 +28,8 @@ namespace CyberNinja.Ecs.Systems.Lobby.Ui
 
             //_upgradeWindow.
 
-            _zoomOutButton.onClick.AddListener(ZoomOut);
-            _zoomInButton.onClick.AddListener(ZoomIn);
+            //_zoomOutButton.onClick.AddListener(ZoomOut);
+            //_zoomInButton.onClick.AddListener(ZoomIn);
 
             _zoomInButton.interactable = false;
         }

@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace CyberNinja.Models.Config
 {
-    [CreateAssetMenu(menuName = "Config/Mine", fileName = "Mine")]
-    public class MineConfig : ScriptableObject
+    [CreateAssetMenu(menuName = "Config/Lobby", fileName = "Lobby")]
+    public class LobbyConfig : ScriptableObject
     {
         public StartResource[] startResources;
         public int outerCircleUnlockCost = 100;
@@ -14,6 +14,9 @@ namespace CyberNinja.Models.Config
         public float mineUpgrade3Cost = 500f;
         public LayerMask unitPartLayer;
         public float zoomSpeed = 1f;
+        [Header("Enemy")]
+        public Vector2 startEnemyCount = new Vector2(5, 10);
+        public Vector2 mineOffset;
     }
 
     [Serializable]

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0dbe57f63e0246898265a48f95fab746, type: 3}
-  m_Name: Mine
+  m_Name: Lobby
   m_EditorClassIdentifier: 
   startResources:
   - type: 10
@@ -28,3 +28,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   zoomSpeed: 1.5
+  startEnemyCount: {x: 5, y: 10}
+  mineOffset: {x: 180, y: 85}

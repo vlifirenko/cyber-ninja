@@ -1,9 +1,7 @@
 ﻿using CyberNinja.Ecs.Systems.Army;
 using CyberNinja.Ecs.Systems.Game;
-using CyberNinja.Ecs.Systems.Lobby.Camera;
+using CyberNinja.Ecs.Systems.Lobby.Mine;
 using CyberNinja.Ecs.Systems.Lobby.Ui;
-using CyberNinja.Ecs.Systems.Lobby.Upgrade;
-using CyberNinja.Ecs.Systems.Mine;
 using CyberNinja.Models;
 using CyberNinja.Models.Config;
 using CyberNinja.Services;
@@ -20,12 +18,13 @@ namespace CyberNinja.Ecs
     public class LobbyEcsStartup : MonoBehaviour
     {
         [SerializeField] private LobbySceneView sceneView;
-        [SerializeField] private MineConfig mineConfig;
+        [SerializeField] private LobbyConfig lobbyConfig;
         [SerializeField] private EcsUguiEmitter uguiEmitter;
         [SerializeField] private LayersConfig layersConfig;
         [SerializeField] private GlobalUnitConfig globalUnitConfig;
         [SerializeField] private AudioConfig audioConfig;
         [SerializeField] private InputConfig inputConfig;
+        [SerializeField] private LobbyCamera lobbyCamera;
 
         private EcsSystems _systems;
 
@@ -57,18 +56,22 @@ namespace CyberNinja.Ecs
 
                 // init
                 .Add(new InitInputSystem())
-                .Add(new InitMineSystem())
+                //.Add(new InitMineSystem())
 
                 // game
-                .Add(new MineCellMouseSystem())
+                //.Add(new MineCellMouseSystem())
                 
                 // army
                 .Add(new AddFirstArmyUnitSystem())
                 
+                // enemy
+                .Add(new InitEnemyMinesSystem())
+                .Add(new SelectMineSystem())
+                
                 // ui
                 .Add(new InitLobbyUiSystem())
                 .Add(new UiUpdateResources())
-                .Add(new CameraZoomSystem())
+                //.Add(new CameraZoomSystem())
                 //.Add(new SelectUnitPartSystem())
                 
                 //
@@ -76,8 +79,8 @@ namespace CyberNinja.Ecs
 #if UNITY_EDITOR
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif
-                .Inject(_gameData, _lobbyData, sceneView)
-                .Inject(layersConfig, globalUnitConfig, audioConfig, inputConfig, mineConfig)
+                .Inject(_gameData, _lobbyData, sceneView, lobbyCamera)
+                .Inject(layersConfig, globalUnitConfig, audioConfig, inputConfig, lobbyConfig)
                 .Inject(_timeService, _playerService, saveService, mineService)
                 .Inject()
                 .InjectUgui(uguiEmitter)

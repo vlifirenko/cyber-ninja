@@ -12,7 +12,7 @@ namespace CyberNinja.Ecs.Systems.Lobby.Upgrade
     {
         private EcsCustomInject<LobbyData> _lobbyData;
         private EcsCustomInject<LobbySceneView> _sceneView;
-        private EcsCustomInject<MineConfig> _mineConfig;
+        private EcsCustomInject<LobbyConfig> _mineConfig;
         
         public void Run(IEcsSystems systems)
         {

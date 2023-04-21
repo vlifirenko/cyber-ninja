@@ -20,7 +20,7 @@ namespace CyberNinja.Ecs.Systems.Mine
 {
     public class MineCellMouseSystem : IEcsInitSystem, IEcsRunSystem
     {
-        private EcsCustomInject<MineConfig> _mineConfig;
+        private EcsCustomInject<LobbyConfig> _mineConfig;
         private EcsCustomInject<GameData> _gameData;
         private EcsCustomInject<SaveService> _saveService;
 

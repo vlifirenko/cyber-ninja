@@ -9,6 +9,7 @@ namespace CyberNinja.Views
         [SerializeField] private UnitConfig firstArmyUnitConfig;
         [SerializeField] private Camera upgradeCamera;
         [SerializeField] private CameraView cameraView;
+        [SerializeField] private LobbyMinesView minesView;
 
         public MineCell[] Cells => cells;
 
@@ -17,5 +18,7 @@ namespace CyberNinja.Views
         public Camera UpgradeCamera => upgradeCamera;
 
         public CameraView CameraView => cameraView;
+
+        public LobbyMinesView MinesView => minesView;
     }
 }
