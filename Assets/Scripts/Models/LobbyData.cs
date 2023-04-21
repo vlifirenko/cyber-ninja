@@ -18,5 +18,6 @@ namespace CyberNinja.Models
     {
         public LobbyMine view;
         public string username;
+        public int level;
     }
 }

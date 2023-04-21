@@ -18,6 +18,7 @@ namespace CyberNinja.Models.Config
         [Header("Enemy")]
         public Vector2 startEnemyCount = new Vector2(5, 10);
         public Vector2 mineOffset;
+        public Vector2Int enemyLevelRange;
     }
 
     [Serializable]

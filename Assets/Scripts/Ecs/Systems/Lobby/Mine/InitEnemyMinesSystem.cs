@@ -1,9 +1,13 @@
-﻿using CyberNinja.Models;
+﻿using System;
+using System.IO;
+using CyberNinja.Models;
 using CyberNinja.Models.Config;
 using CyberNinja.Views;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace CyberNinja.Ecs.Systems.Lobby.Mine
 {
@@ -18,12 +22,16 @@ namespace CyberNinja.Ecs.Systems.Lobby.Mine
             var enemyCount = Random.Range(_lobbyConfig.Value.startEnemyCount.x, _lobbyConfig.Value.startEnemyCount.y);
             for (var i = 0; i < enemyCount; i++)
             {
+                var view = CreateEnemyView();
+                var level = Random.Range(_lobbyConfig.Value.enemyLevelRange.x, _lobbyConfig.Value.enemyLevelRange.y);
                 var enemy = new LobbyEnemy
                 {
-                    view = CreateEnemyView(),
-                    username = GenerateUsername()
+                    view = view,
+                    username = GenerateUsername(),
+                    level = level
                 };
 
+                view.Data = enemy;
                 _lobbyData.Value.lobbyEnemies.Add(enemy);
             }
         }
@@ -48,7 +56,15 @@ namespace CyberNinja.Ecs.Systems.Lobby.Mine
 
         private string GenerateUsername()
         {
-            return "name";
+            const string path = "Assets/Resources/bot_names.txt";
+            var reader = new StreamReader(path);
+            var text = reader.ReadToEnd();
+            var result = text.Split(new string[] {"\n", "\r\n"}, StringSplitOptions.RemoveEmptyEntries);
+            var randomItem = result[Random.Range(0, result.Length)];
+            
+            reader.Close();
+
+            return randomItem;
         }
     }
 }

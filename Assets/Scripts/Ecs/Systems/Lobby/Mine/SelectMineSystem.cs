@@ -59,9 +59,11 @@ namespace CyberNinja.Ecs.Systems.Lobby.Mine
         private void HoverMine(LobbyMine mine)
         {
             _hoveredMine = mine;
-            
+
             var uiPosition = _canvas.WorldToCanvasPosition(mine.Transform.position);
             _lobbyMine.GetComponent<RectTransform>().anchoredPosition = uiPosition;
+            _lobbyMine.UsernameText.text = mine.Data.username.Length == 0 ? "PLAYER" : mine.Data.username;
+            _lobbyMine.LevelText.text = $"LEVEL {mine.Data.level}";
             _lobbyMine.Inner.SetActive(true);
         }
 
@@ -70,10 +72,9 @@ namespace CyberNinja.Ecs.Systems.Lobby.Mine
             _lobbyMine.Inner.SetActive(false);
             _hoveredMine = newMine;
         }
-        
+
         private void OnViewButton()
         {
-            throw new System.NotImplementedException();
         }
 
         private void OnAttackButton()
