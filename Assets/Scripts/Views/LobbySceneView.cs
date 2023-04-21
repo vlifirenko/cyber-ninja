@@ -10,6 +10,7 @@ namespace CyberNinja.Views
         [SerializeField] private Camera upgradeCamera;
         [SerializeField] private CameraView cameraView;
         [SerializeField] private LobbyMinesView minesView;
+        [SerializeField] private WormHole wormHole;
 
         public MineCell[] Cells => cells;
 
@@ -20,5 +21,7 @@ namespace CyberNinja.Views
         public CameraView CameraView => cameraView;
 
         public LobbyMinesView MinesView => minesView;
+
+        public WormHole WormHole => wormHole;
     }
 }

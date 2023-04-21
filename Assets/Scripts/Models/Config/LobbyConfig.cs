@@ -19,6 +19,8 @@ namespace CyberNinja.Models.Config
         public Vector2 startEnemyCount = new Vector2(5, 10);
         public Vector2 mineOffset;
         public Vector2Int enemyLevelRange;
+        public float wormHoleSpeed = 2f;
+        public float minWormHoleTime = 3f;
     }
 
     [Serializable]

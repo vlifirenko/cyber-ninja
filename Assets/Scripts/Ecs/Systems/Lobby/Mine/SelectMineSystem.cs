@@ -1,4 +1,6 @@
-﻿using CyberNinja.Models;
+﻿using System.Collections;
+using System.Collections.Generic;
+using CyberNinja.Models;
 using CyberNinja.Models.Config;
 using CyberNinja.Services;
 using CyberNinja.Utils;
@@ -21,8 +23,11 @@ namespace CyberNinja.Ecs.Systems.Lobby.Mine
         private EcsCustomInject<LayersConfig> _layersConfig;
         private EcsCustomInject<LobbyData> _lobbyData;
         private EcsCustomInject<SaveService> _saveService;
+        private EcsCustomInject<LobbySceneView> _lobbySceneView;
 
         private LobbyMine _hoveredMine;
+        private MeshRenderer _wormHoleRenderer;
+        private float _wormHoleTime;
 
         [EcsUguiNamed(UiConst.LobbyMine)] private UiLobbyMine _lobbyMine;
         [EcsUguiNamed(UiConst.MessageText)] private TMP_Text _messageText;
@@ -36,6 +41,12 @@ namespace CyberNinja.Ecs.Systems.Lobby.Mine
 
         public void Run(IEcsSystems systems)
         {
+            if (_wormHoleRenderer != null)
+                UpdateWormHoleRenderer();
+
+            if (Camera.main == null)
+                return;
+
             var ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out var hit, Mathf.Infinity, _layersConfig.Value.lobbyMine))
             {
@@ -79,8 +90,40 @@ namespace CyberNinja.Ecs.Systems.Lobby.Mine
 
         private void OnAttackButton()
         {
+            _lobbyMine.Inner.gameObject.SetActive(false);
+
+            var wormHole = _lobbySceneView.Value.WormHole;
+            Camera.main.gameObject.SetActive(false);
+            wormHole.Camera.gameObject.SetActive(true);
+            _wormHoleRenderer = wormHole.Renderer;
+
             SaveService.Save(_lobbyData.Value);
-            SceneManager.LoadScene(_lobbyConfig.Value.gameSceneName);
+            _lobbySceneView.Value.StartCoroutine(LoadAsyncScene());
+        }
+
+        private void UpdateWormHoleRenderer()
+        {
+            var material = _wormHoleRenderer.material;
+            material.SetFloat("_Manual_time", Time.time * _lobbyConfig.Value.wormHoleSpeed);
+
+            _wormHoleTime += Time.deltaTime;
+        }
+
+        private IEnumerator LoadAsyncScene()
+        {
+            var asyncLoad = SceneManager.LoadSceneAsync(_lobbyConfig.Value.gameSceneName, LoadSceneMode.Single);
+            asyncLoad.allowSceneActivation = false;
+            while (!asyncLoad.isDone)
+            {
+                if (asyncLoad.progress >= 0.9f && _wormHoleTime >= _lobbyConfig.Value.minWormHoleTime)
+                {
+                    asyncLoad.allowSceneActivation = true;
+                }
+
+                yield return null;
+            }
+
+            //bLoadDone = asyncLoad.isDone;
         }
     }
 }
