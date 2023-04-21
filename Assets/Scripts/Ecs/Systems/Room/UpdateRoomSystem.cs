@@ -30,6 +30,7 @@ namespace CyberNinja.Ecs.Systems.Room
         private readonly EcsCustomInject<SceneView> _sceneView;
         private readonly EcsCustomInject<IAiService> _aiService;
         private readonly EcsCustomInject<UnitService> _unitService;
+        private readonly EcsCustomInject<LayersConfig> _layersConfig;
         private EcsCustomInject<GlobalUnitConfig> _globalUnitConfig;
         private EcsCustomInject<GameData> _gameData;
 
@@ -37,6 +38,9 @@ namespace CyberNinja.Ecs.Systems.Room
         private UiHealthSliderContainer _healthSliderContainer;
 
         [EcsUguiNamed(UiConst.RoomClearText)] private TMP_Text _roomClearText;
+
+        private Transform _openedDoor;
+        private RoomView _nextRoom;
 
         public void Run(IEcsSystems systems)
         {
@@ -50,6 +54,9 @@ namespace CyberNinja.Ecs.Systems.Room
                 else if (updateRoom.IsRoomClear)
                     RoomClear(room);
             }
+
+            if (_openedDoor != null)
+                CheckDoorCollider();
         }
 
         private void SpawnEnemies(RoomView room)
@@ -101,30 +108,46 @@ namespace CyberNinja.Ecs.Systems.Room
                 return;
 
             var nextIndex = room.Index + 1;
-            RoomView nextRoom = null;
 
             foreach (var item in _gameData.Value.rooms)
             {
                 if (item.Index == nextIndex)
                 {
-                    nextRoom = item;
+                    _nextRoom = item;
                     break;
                 }
             }
 
-            _unitService.Value.Player.Unpack(_world.Value, out var playerEntity);
-            var player = _unitService.Value.GetUnit(playerEntity);
-
-            player.View.NavMeshAgent.enabled = false;
-            player.View.Transform.position = nextRoom.PlayerSpawn.position;
-            player.View.NavMeshAgent.enabled = true;
-            //player.View.Transform.rotation = nextRoom.PlayerSpawn.rotation;
-
-            SpawnEnemies(nextRoom);
+            room.Door.gameObject.SetActive(true);
+            _openedDoor = room.Door.transform;
 
             _roomClearText.text = $"ROOM {room.Index + 1} IS CLEAR!";
             Observable.Timer(TimeSpan.FromSeconds(2f))
                 .Subscribe(_ => _roomClearText.text = $"");
+        }
+
+        private void CheckDoorCollider()
+        {
+            var colliders = Physics.SphereCastAll(
+                _openedDoor.position,
+                2f,
+                _openedDoor.forward,
+                0f,
+                _layersConfig.Value.playerLayerMask);
+
+            if (colliders.Length > 0)
+            {
+                _openedDoor = null;
+                
+                _unitService.Value.Player.Unpack(_world.Value, out var playerEntity);
+                var player = _unitService.Value.GetUnit(playerEntity);
+
+                player.View.NavMeshAgent.enabled = false;
+                player.View.Transform.position = _nextRoom.PlayerSpawn.position;
+                player.View.NavMeshAgent.enabled = true;
+
+                SpawnEnemies(_nextRoom);
+            }
         }
     }
 }

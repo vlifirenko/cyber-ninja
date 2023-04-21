@@ -12,6 +12,7 @@ namespace CyberNinja.Views
         [SerializeField] private Transform playerSpawn;
         [SerializeField] private Transform[] enemySpawnPoints;
         [SerializeField] private RoomConfig roomConfig;
+        [SerializeField] private GameObject door;
 
         [SerializeField] private EMineCellState _level;
         [SerializeField] private EMineCircle _circle;
@@ -42,5 +43,7 @@ namespace CyberNinja.Views
         public Transform[] EnemySpawnPoints => enemySpawnPoints;
         
         public Dictionary<EEnemyType, int> EnemyKillMap { get; set; } = new Dictionary<EEnemyType, int>();
+
+        public GameObject Door => door;
     }
 }

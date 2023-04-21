@@ -17,7 +17,10 @@ MonoBehaviour:
     m_Bits: 128
   playerLayerMask:
     serializedVersion: 2
-    m_Bits: 524288
+    m_Bits: 8192
   lobbyMine:
     serializedVersion: 2
     m_Bits: 4096
+  door:
+    serializedVersion: 2
+    m_Bits: 0

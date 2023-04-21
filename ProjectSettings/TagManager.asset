@@ -21,7 +21,7 @@ TagManager:
   - WorldTrigger
   - UnitPart
   - LobbyMine
-  - 
+  - Player
   - 
   - EnvSolid
   - EnvTransparent
