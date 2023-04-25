@@ -18,7 +18,7 @@ namespace CyberNinja.Ecs.Systems.Lobby.Ui
         private EcsFilterInject<Inc<CameraZoomComponent>> _filter;
         private EcsWorldInject _world;
 
-        [EcsUguiNamed(UiConst.UpgradeWindow)] private UiUpgradeWindow _upgradeWindow;
+        [EcsUguiNamed(UiConst.HangarWindow)] private UiHangarWindow _hangarWindow;
         [EcsUguiNamed(UiConst.ZoomOutButton)] private Button _zoomOutButton;
         [EcsUguiNamed(UiConst.ZoomInButton)] private Button _zoomInButton;
 
@@ -26,12 +26,25 @@ namespace CyberNinja.Ecs.Systems.Lobby.Ui
         {
             var armyUnit = _lobbyData.Value.army[0];
 
-            //_upgradeWindow.
-
             //_zoomOutButton.onClick.AddListener(ZoomOut);
             //_zoomInButton.onClick.AddListener(ZoomIn);
 
             _zoomInButton.interactable = false;
+            
+            _hangarWindow.OpenFullButton.onClick.AddListener(OnHangarOpenFull);
+            _hangarWindow.CloseButton.onClick.AddListener(OnHangarClose);
+        }
+
+        private void OnHangarOpenFull()
+        {
+            _hangarWindow.InnerSmall.gameObject.SetActive(false);
+            _hangarWindow.InnerFull.gameObject.SetActive(true);
+        }
+
+        private void OnHangarClose()
+        {
+            _hangarWindow.InnerSmall.gameObject.SetActive(true);
+            _hangarWindow.InnerFull.gameObject.SetActive(false);
         }
 
         private void ZoomOut()
