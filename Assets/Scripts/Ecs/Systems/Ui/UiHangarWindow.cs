@@ -14,6 +14,11 @@ namespace CyberNinja.Ecs.Systems.Ui
         [SerializeField] private Button openFullButton;
         [SerializeField] private Button closeButton;
         [SerializeField] private Button[] armyButtons;
+        [SerializeField] private UiSkillItem attackSkill;
+        [SerializeField] private UiSkillItem blockSkill;
+        [SerializeField] private TMP_Text unitLevelText;
+        [SerializeField] private TMP_Text unitExpText;
+        [SerializeField] private Slider unitExpSlider;
 
         public TMP_Text UpgradeHealthText => upgradeHealthText;
 
@@ -28,5 +33,15 @@ namespace CyberNinja.Ecs.Systems.Ui
         public Button CloseButton => closeButton;
 
         public Button[] ArmyButtons => armyButtons;
+
+        public UiSkillItem AttackSkill => attackSkill;
+
+        public UiSkillItem BlockSkill => blockSkill;
+
+        public TMP_Text UnitLevelText => unitLevelText;
+
+        public TMP_Text UnitExpText => unitExpText;
+
+        public Slider UnitExpSlider => unitExpSlider;
     }
 }

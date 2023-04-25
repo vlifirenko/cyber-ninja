@@ -1,12 +1,11 @@
 ﻿using CyberNinja.Models;
 using CyberNinja.Models.Config;
-using CyberNinja.Views;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 
-namespace CyberNinja.Ecs.Systems.Army
+namespace CyberNinja.Ecs.Systems.Lobby.Army
 {
-    public class AddFirstArmyUnitSystem : IEcsInitSystem
+    public class InitArmySystem : IEcsInitSystem
     {
         private EcsCustomInject<LobbyData> _lobbyData;
         private EcsCustomInject<LobbyConfig> _lobbyConfig;
@@ -17,7 +16,8 @@ namespace CyberNinja.Ecs.Systems.Army
             {
                 var armyUnit = new ArmyUnit
                 {
-                    config = startUnit.Config
+                    config = startUnit.Config,
+                    level = 1
                 };
                 _lobbyData.Value.army.Add(armyUnit);
             }
