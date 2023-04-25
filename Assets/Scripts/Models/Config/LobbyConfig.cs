@@ -1,4 +1,5 @@
 ﻿using System;
+using CyberNinja.Views.Unit;
 using UnityEngine;
 
 namespace CyberNinja.Models.Config
@@ -13,8 +14,9 @@ namespace CyberNinja.Models.Config
         public LayerMask mineCellLayer;
         public float mineUpgrade2Cost = 200f;
         public float mineUpgrade3Cost = 500f;
-        public LayerMask unitPartLayer;
         public float zoomSpeed = 1f;
+        public UnitView[] startUnits;
+        public float hangarCameraSpeed = 2f;
         [Header("Enemy")]
         public Vector2 startEnemyCount = new Vector2(5, 10);
         public Vector2 mineOffset;

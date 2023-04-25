@@ -25,10 +25,9 @@ MonoBehaviour:
     m_Bits: 512
   mineUpgrade2Cost: 200
   mineUpgrade3Cost: 500
-  unitPartLayer:
-    serializedVersion: 2
-    m_Bits: 2048
   zoomSpeed: 1.5
+  startUnits: []
+  hangarCameraSpeed: 5
   startEnemyCount: {x: 5, y: 10}
   mineOffset: {x: 180, y: 85}
   enemyLevelRange: {x: 1, y: 5}

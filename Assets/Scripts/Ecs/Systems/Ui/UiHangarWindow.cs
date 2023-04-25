@@ -13,6 +13,7 @@ namespace CyberNinja.Ecs.Systems.Ui
         [SerializeField] private Button upgradeHealthButton;
         [SerializeField] private Button openFullButton;
         [SerializeField] private Button closeButton;
+        [SerializeField] private Button[] armyButtons;
 
         public TMP_Text UpgradeHealthText => upgradeHealthText;
 
@@ -25,5 +26,7 @@ namespace CyberNinja.Ecs.Systems.Ui
         public Button OpenFullButton => openFullButton;
 
         public Button CloseButton => closeButton;
+
+        public Button[] ArmyButtons => armyButtons;
     }
 }
