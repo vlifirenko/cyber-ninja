@@ -1,5 +1,6 @@
 ﻿using System;
 using CyberNinja.Models.Config;
+using UnityEngine.Serialization;
 
 namespace CyberNinja.Models
 {
@@ -8,7 +9,8 @@ namespace CyberNinja.Models
     {
         public UnitConfig config;
         public float currentHealth;
-        public int experience;
+        public int exp;
+        public int expMax;
         public int level;
         public SkillState attackSkill = new SkillState();
         public SkillState blockSkill = new SkillState();

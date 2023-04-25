@@ -12,14 +12,22 @@ namespace CyberNinja.Ecs.Systems.Lobby.Army
 
         public void Init(IEcsSystems systems)
         {
-            foreach (var startUnit in _lobbyConfig.Value.startUnits)
+            var isFirstUnit = true;
+            foreach (var config in _lobbyConfig.Value.startUnits)
             {
                 var armyUnit = new ArmyUnit
                 {
-                    config = startUnit.Config,
-                    level = 1
+                    config = config,
+                    level = 1,
+                    expMax = 100
                 };
-                _lobbyData.Value.army.Add(armyUnit);
+                _lobbyData.Value.Army.Add(armyUnit);
+
+                if (isFirstUnit)
+                {
+                    _lobbyData.Value.selectedArmyUnit = armyUnit;
+                    isFirstUnit = false;
+                }
             }
         }
     }

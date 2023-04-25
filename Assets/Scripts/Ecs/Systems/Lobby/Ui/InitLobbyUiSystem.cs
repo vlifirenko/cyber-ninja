@@ -43,6 +43,9 @@ namespace CyberNinja.Ecs.Systems.Lobby.Ui
                 var position = i;
                 button.onClick.AddListener(() => OnArmyUnit(position));
             }
+
+            UpdateUnitLevel(_lobbyData.Value.selectedArmyUnit);
+            UpdateUnitSkills(_lobbyData.Value.selectedArmyUnit);
         }
 
         public void Run(IEcsSystems systems)
@@ -62,6 +65,10 @@ namespace CyberNinja.Ecs.Systems.Lobby.Ui
                 {
                     _sceneView.Value.Hangar.HangarCamera.transform.position = _cameraMovingTarget;
                     _isCameraMoving = false;
+
+                    _lobbyData.Value.selectedArmyUnit = _lobbyData.Value.Army[_selectedArmyUnit];
+                    UpdateUnitLevel(_lobbyData.Value.selectedArmyUnit);
+                    UpdateUnitSkills(_lobbyData.Value.selectedArmyUnit);
                 }
             }
         }
@@ -91,6 +98,30 @@ namespace CyberNinja.Ecs.Systems.Lobby.Ui
             _cameraMovingTime = 0f;
             
             _selectedArmyUnit = position;
+        }
+
+        private void UpdateUnitLevel(ArmyUnit unit)
+        {
+            _hangarWindow.UnitLevelText.text = $"LEVEL: {unit.level}";
+            _hangarWindow.UnitExpSlider.value = (float)unit.exp / unit.expMax;
+            _hangarWindow.UnitExpText.text = $"{unit.exp}/{unit.expMax}";
+        }
+        
+        private void UpdateUnitSkills(ArmyUnit unit)
+        {
+            _hangarWindow.AttackSkill.NameText.text = $"ATTACK: {unit.attackSkill.value}";
+            _hangarWindow.AttackSkill.LevelText.text = $"Level: {unit.attackSkill.level}";
+            _hangarWindow.AttackSkill.Slider.value = unit.attackSkill.exp / unit.attackSkill.expMax;
+            _hangarWindow.AttackSkill.SliderText.text = $"{Mathf.CeilToInt(unit.attackSkill.exp / unit.attackSkill.expMax)}%";
+            
+            _hangarWindow.BlockSkill.NameText.text = $"BLOCK: {unit.blockSkill.value}";
+            _hangarWindow.BlockSkill.LevelText.text = $"Level: {unit.blockSkill.level}";
+            _hangarWindow.BlockSkill.Slider.value = unit.blockSkill.exp / unit.blockSkill.expMax;
+            _hangarWindow.BlockSkill.SliderText.text = $"{Mathf.CeilToInt(unit.blockSkill.exp / unit.blockSkill.expMax)}%";
+            
+            _hangarWindow.UnitLevelText.text = $"LEVEL: {unit.level}";
+            _hangarWindow.UnitExpSlider.value = (float)unit.exp / unit.expMax;
+            _hangarWindow.UnitExpText.text = $"{unit.exp}/{unit.expMax}";
         }
 
         private void ZoomOut()

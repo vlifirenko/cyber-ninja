@@ -26,7 +26,10 @@ MonoBehaviour:
   mineUpgrade2Cost: 200
   mineUpgrade3Cost: 500
   zoomSpeed: 1.5
-  startUnits: []
+  startUnits:
+  - {fileID: 11400000, guid: f8e3d6e6d199c454c89dd66d8e44556c, type: 2}
+  - {fileID: 11400000, guid: f8e3d6e6d199c454c89dd66d8e44556c, type: 2}
+  - {fileID: 11400000, guid: f8e3d6e6d199c454c89dd66d8e44556c, type: 2}
   hangarCameraSpeed: 5
   startEnemyCount: {x: 5, y: 10}
   mineOffset: {x: 180, y: 85}
