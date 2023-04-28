@@ -44,7 +44,7 @@ namespace CyberNinja.Ecs.Systems.Lobby.Ui
                 button.onClick.AddListener(() => OnArmyUnit(position));
             }
 
-            UpdateUnitLevel(_lobbyData.Value.selectedArmyUnit);
+            UpdateUnitInfo(_lobbyData.Value.selectedArmyUnit);
             UpdateUnitSkills(_lobbyData.Value.selectedArmyUnit);
         }
 
@@ -67,7 +67,7 @@ namespace CyberNinja.Ecs.Systems.Lobby.Ui
                     _isCameraMoving = false;
 
                     _lobbyData.Value.selectedArmyUnit = _lobbyData.Value.Army[_selectedArmyUnit];
-                    UpdateUnitLevel(_lobbyData.Value.selectedArmyUnit);
+                    UpdateUnitInfo(_lobbyData.Value.selectedArmyUnit);
                     UpdateUnitSkills(_lobbyData.Value.selectedArmyUnit);
                 }
             }
@@ -100,8 +100,10 @@ namespace CyberNinja.Ecs.Systems.Lobby.Ui
             _selectedArmyUnit = position;
         }
 
-        private void UpdateUnitLevel(ArmyUnit unit)
+        private void UpdateUnitInfo(ArmyUnit unit)
         {
+            _hangarWindow.UnitNameText.text = unit.unitConfig.name;
+            _hangarWindow.UnitNameText.color = unit.armyConfig.color;
             _hangarWindow.UnitLevelText.text = $"LEVEL: {unit.level}";
             _hangarWindow.UnitExpSlider.value = (float)unit.exp / unit.expMax;
             _hangarWindow.UnitExpText.text = $"{unit.exp}/{unit.expMax}";

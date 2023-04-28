@@ -15,7 +15,7 @@ namespace CyberNinja.Models.Config
         public float mineUpgrade2Cost = 200f;
         public float mineUpgrade3Cost = 500f;
         public float zoomSpeed = 1f;
-        public UnitConfig[] startUnits;
+        public ArmyConfig[] startArmy;
         public float hangarCameraSpeed = 2f;
         [Header("Enemy")]
         public Vector2 startEnemyCount = new Vector2(5, 10);

@@ -7,7 +7,8 @@ namespace CyberNinja.Models
     [Serializable]
     public class ArmyUnit
     {
-        public UnitConfig config;
+        public UnitConfig unitConfig;
+        public ArmyConfig armyConfig;
         public float currentHealth;
         public int exp;
         public int expMax;
