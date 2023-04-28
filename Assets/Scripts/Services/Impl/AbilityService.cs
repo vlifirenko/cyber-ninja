@@ -277,7 +277,7 @@ namespace CyberNinja.Services.Impl
                     continue;
                 if (hit.transform.parent.transform.parent == owner.View.Transform)
                     continue;
-                if (_layersConfig.attackLayer.value != 1 << hit.gameObject.layer)
+                if (_layersConfig.attackLayer.value != (_layersConfig.attackLayer.value | (1 << hit.gameObject.layer)))
                     continue;
 
                 var forward = owner.View.Transform.TransformDirection(Vector3.forward);
@@ -293,7 +293,7 @@ namespace CyberNinja.Services.Impl
                 var anglePercent = (180f - angle) / 180f;
                 if (dotProduct >= anglePercent)
                 {
-                    var targetView = hit.transform.parent.transform.parent.GetComponent<UnitView>();
+                    var targetView = hit.transform.GetComponent<UnitView>();
                     if (!targetView)
                         return;
                     if (!targetView.Entity.Unpack(_world, out var targetEntity))
