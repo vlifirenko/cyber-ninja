@@ -111,7 +111,7 @@ namespace CyberNinja.Services.Unit
             view.NavMeshAgent.stoppingDistance = view.Config.AttackDistance - 0.1f;
             view.NavMeshAgent.updateRotation = false;
 
-            if (unit.Config.DefaultWeapon != null)
+            if (unit.Config.DefaultWeapon != null && unit.Config.Abilities.Length > 0)
             {
                 var weaponEntity = _itemService.CreateItem(unit.Config.DefaultWeapon);
                 _itemService.TryEquip(weaponEntity, _world.PackEntityWithWorld(entity));
@@ -134,75 +134,16 @@ namespace CyberNinja.Services.Unit
         public void AddDamage(int entity, float damage, Transform damageOrigin)
         {
             var damageFactor = _damageFactorPool.Get(entity);
-            // todo move to system
-            /*_world.GetPool<DamageComponent>().Add(entity) = new DamageComponent
+            var damageMath = damage - damage * damageFactor.PhysicalFactor / 100;
+            // in process
+            _world.GetPool<DamageComponent>().Add(entity) = new DamageComponent
             {
                 Value = new Damage
                 {
-                    value = damageFactor.PhysicalFactor,
+                    value = damageMath,
                     damageOrigin = damageOrigin
                 }
-            };*/
-            //
-            ref var health = ref _healthPool.Get(entity);
-            var unit = _unitPool.Get(entity);
-
-            var damageMath = damage - damage * damageFactor.PhysicalFactor / 100;
-            var newHealth = Mathf.Clamp(health.Current - damageMath, 0f, health.Max);
-
-            UpdateHealth(entity, newHealth);
-
-            var damageClamped = Mathf.Clamp01(damageMath / _globalUnitConfig.maxDamage);
-            var healthClamped = Mathf.Clamp01(1 - health.Current / health.Max);
-
-            var abilityData = unit.View.Config.AbilityDamageConfig;
-            if (damageMath > 0)
-            {
-                if (abilityData.ANIMATOR)
-                    unit.View.Animator.TriggerAnimations(abilityData);
-                if (abilityData.VFX)
-                    _vfxService.SpawnVfx(entity, abilityData, true, damageClamped, healthClamped, damageOrigin.position);
-
-                var damageClampedLayer = Mathf.Clamp(damageClamped, _globalUnitConfig.minLayerHit, 1); // limit min layer weight
-                unit.View.Animator.SetLayerWeight(2, damageClampedLayer);
-            }
-
-            if (health.Current <= 0)
-                Dead(entity);
-        }
-
-        private void Dead(int entity)
-        {
-            // todo move to system
-            
-            AddState(entity, EUnitState.Dead);
-            AddState(entity, EUnitState.Knockout);
-
-            RemoveState(entity, EUnitState.Stun);
-            RemoveState(entity, EUnitState.Dash);
-            RemoveState(entity, EUnitState.Stationary);
-
-            var unit = _unitPool.Get(entity);
-
-            unit.View.NavMeshAgent.enabled = false;
-
-            if (unit.View.Config.AbilityDeadConfig.ANIMATOR)
-                unit.View.Animator.TriggerAnimations(unit.View.Config.AbilityDeadConfig);
-            if (unit.View.Config.AbilityDeadConfig.VFX)
-                _vfxService.SpawnVfx(entity, unit.View.Config.AbilityDeadConfig);
-
-            if (unit.Config.ControlType == EControlType.AI)
-            {
-                ref var aiTask = ref _world.GetPool<AiTaskComponent>().Get(entity);
-                aiTask.Value = EAiTaskType.Dead;
-                if (_world.GetPool<AiTargetComponent>().Has(entity))
-                    _world.GetPool<AiTargetComponent>().Del(entity);
-
-                ref var enemy = ref _world.GetPool<EnemyComponent>().Get(entity);
-                enemy.HealthSlider.gameObject.SetActive(false);
-            }
-            
-            EnemyEventsHolder.InvokeOnKillEnemy(entity);
+            };
         }
 
         public bool AddState(int entity, EUnitState state, float value = 0)

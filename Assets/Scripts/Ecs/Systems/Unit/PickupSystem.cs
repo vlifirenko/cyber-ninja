@@ -1,5 +1,6 @@
 ﻿using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models.Config;
+using CyberNinja.Models.Enums;
 using CyberNinja.Services;
 using CyberNinja.Services.Impl;
 using CyberNinja.Services.Unit;

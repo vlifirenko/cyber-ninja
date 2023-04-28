@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackLayer:
     serializedVersion: 2
-    m_Bits: 8320
+    m_Bits: 532608
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 8192

@@ -143,6 +143,9 @@ namespace CyberNinja.Ecs
                 // items
                 //.Add(new TryPickupItemService())
                 .Add(new PickupSystem())
+                
+                // damage
+                .Add(new DamageSystem())
 
                 // ui
                 .Add(new PlayerUiSystem())

@@ -61,6 +61,9 @@ namespace CyberNinja.Services.Impl
             if (!success)
                 return;
 
+            if (!_world.GetPool<AbilityComponent>().Has(abilityEntity))
+                return;
+            
             var ability = _world.GetPool<AbilityComponent>().Get(abilityEntity);
             Observable.Timer(TimeSpan.FromSeconds(ability.AbilityConfig.cooldown + 0.01f))
                 .Subscribe(_ => Attack(unitEntity))

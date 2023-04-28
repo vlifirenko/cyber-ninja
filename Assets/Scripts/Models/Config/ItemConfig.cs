@@ -12,11 +12,6 @@ namespace CyberNinja.Models.Config
         public EItemSlot slot;
         public ItemPosition prefab;
         public Sprite icon;
-    }
-
-    public enum EItemType
-    {
-        None = 0,
-        Weapon = 10
+        public AbilityConfig abilityConfig;
     }
 }
