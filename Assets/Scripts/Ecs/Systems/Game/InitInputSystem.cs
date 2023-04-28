@@ -28,7 +28,7 @@ namespace CyberNinja.Ecs.Systems.Game
 
                 _controls = new Controls();
                 _controls.Enable();
-                _gameData.Value.Controls = _controls;
+                _gameData.Value.Input = _controls;
 
                 _controls._Game.Quitgame.performed += ctx => _gameService.Value.QuitGame();
                 _controls._Game.RestartLevel.performed += ctx => _gameService.Value.ReloadLevel();

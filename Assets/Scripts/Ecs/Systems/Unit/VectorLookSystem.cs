@@ -46,9 +46,9 @@ namespace CyberNinja.Ecs.Systems.Unit
                 if (_gameData.Value.inputType == EInputType.Gamepad)
                 {
                     var lookVector3 = new Vector3(
-                        _gameData.Value.Controls._Player.Look.ReadValue<Vector2>().x,
+                        _gameData.Value.Input._Player.Look.ReadValue<Vector2>().x,
                         0,
-                        _gameData.Value.Controls._Player.Look.ReadValue<Vector2>().y);
+                        _gameData.Value.Input._Player.Look.ReadValue<Vector2>().y);
 
                     if (lookVector3 == Vector3.zero)
                     {
@@ -62,7 +62,7 @@ namespace CyberNinja.Ecs.Systems.Unit
                 }
                 else
                 {
-                    var lookVector2 = _gameData.Value.Controls._Player.Look.ReadValue<Vector2>();
+                    var lookVector2 = _gameData.Value.Input._Player.Look.ReadValue<Vector2>();
                     if (lookVector2 == Vector2.zero)
                         lookVector2 = new Vector2(Screen.width / 2f, Screen.height / 2f); // get center of screen
 

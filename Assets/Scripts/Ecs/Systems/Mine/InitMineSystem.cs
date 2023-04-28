@@ -52,7 +52,7 @@ namespace CyberNinja.Ecs.Systems.Mine
                     _gameData.Value.playerResources.Add(startResource.type, startResource.value);
             }
 
-            var input = _gameData.Value.Controls;
+            var input = _gameData.Value.Input;
             // debug
             input.Debug.Enable();
             input.Debug.AddResource1.performed += _

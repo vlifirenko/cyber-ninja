@@ -753,6 +753,17 @@
                 },
                 {
                     "name": "",
+                    "id": "ea1c1429-c9db-4720-b2ec-ff21977492cd",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e5144f4a-c5b0-46ae-8350-9b6af22a08fc",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",

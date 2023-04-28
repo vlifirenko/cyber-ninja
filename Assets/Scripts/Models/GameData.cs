@@ -9,7 +9,7 @@ namespace CyberNinja.Models
     public class GameData
     {
         public EInputType inputType;
-        public Controls Controls;
+        public Controls Input;
         public bool isMasterMute;
         public bool isMusicMute;
         public bool isEffectsMute;

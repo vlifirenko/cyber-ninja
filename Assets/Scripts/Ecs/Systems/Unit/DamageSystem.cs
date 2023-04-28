@@ -72,8 +72,6 @@ namespace CyberNinja.Ecs.Systems.Unit
 
         private void Dead(int entity)
         {
-            // todo move to system
-
             _unitService.Value.AddState(entity, EUnitState.Dead);
             _unitService.Value.AddState(entity, EUnitState.Knockout);
 
@@ -99,9 +97,13 @@ namespace CyberNinja.Ecs.Systems.Unit
 
                 ref var enemy = ref _world.Value.GetPool<EnemyComponent>().Get(entity);
                 enemy.HealthSlider.gameObject.SetActive(false);
+                
+                SpawnLoot(entity);
             }
 
             EnemyEventsHolder.InvokeOnKillEnemy(entity);
         }
+
+        private void SpawnLoot(int entity) => _world.Value.GetPool<SpawnLootComponent>().Add(entity);
     }
 }

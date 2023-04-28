@@ -17,7 +17,7 @@ MonoBehaviour:
   maxChaseDistance: 16
   attackDistance: 2.5
   maxAttackDistance: 3.5
-  maxHealth: 1000
+  maxHealth: 50
   maxEnergy: 100
   healthRegeneration: 0
   energyRegeneration: 0

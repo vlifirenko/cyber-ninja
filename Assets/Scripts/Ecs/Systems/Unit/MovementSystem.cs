@@ -53,7 +53,7 @@ namespace CyberNinja.Ecs.Systems.Unit
         {
             if (isPlayer)
             {
-                var controls = _gameData.Value.Controls;
+                var controls = _gameData.Value.Input;
                 var inputAxis = new Vector2(
                     controls._Player.Move.ReadValue<Vector2>().x,
                     controls._Player.Move.ReadValue<Vector2>().y);

@@ -18,6 +18,7 @@ namespace CyberNinja.Models.Config
         public float layerWeightTreshold = 0.02f;
         [Space]
         public float defaultMoveSpeed = 5f;
+        public float lootRange = 7f;
 
         [Space]
         public float droidYSpawnPosition = 2f;

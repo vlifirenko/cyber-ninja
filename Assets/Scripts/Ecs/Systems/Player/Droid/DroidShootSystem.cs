@@ -25,7 +25,7 @@ namespace CyberNinja.Ecs.Systems.Player.Droid
 
         public void Init(IEcsSystems systems)
         {
-            _gameData.Value.Controls._Player.Droid_Shoot.performed += OnDroidShoot;
+            _gameData.Value.Input._Player.Droid_Shoot.performed += OnDroidShoot;
         }
 
         public void Run(IEcsSystems systems)

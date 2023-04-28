@@ -19,7 +19,7 @@ namespace CyberNinja.Ecs.Systems.Player
 
         public void Run(IEcsSystems systems)
         {
-            var input = _gameData.Value.Controls;
+            var input = _gameData.Value.Input;
             input._Player.Use.performed += OnUse;
         }
 
