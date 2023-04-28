@@ -19,6 +19,7 @@ namespace CyberNinja.Ecs.Systems.Ui
         [SerializeField] private TMP_Text unitLevelText;
         [SerializeField] private TMP_Text unitExpText;
         [SerializeField] private Slider unitExpSlider;
+        [SerializeField] private TMP_Text unitNameText;
 
         public TMP_Text UpgradeHealthText => upgradeHealthText;
 
@@ -43,5 +44,7 @@ namespace CyberNinja.Ecs.Systems.Ui
         public TMP_Text UnitExpText => unitExpText;
 
         public Slider UnitExpSlider => unitExpSlider;
+
+        public TMP_Text UnitNameText => unitNameText;
     }
 }

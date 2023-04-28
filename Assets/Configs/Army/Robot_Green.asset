@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f7cbcf5d3a483c9c5291399b8e0825, type: 3}
+  m_Name: Robot_Green
+  m_EditorClassIdentifier: 
+  name: Robot green
+  unitConfig: {fileID: 11400000, guid: f8e3d6e6d199c454c89dd66d8e44556c, type: 2}
+  startLevel: 1
+  startExp: 0
+  maxExp: 100
+  color: {r: 0.29490057, g: 0.9716981, b: 0.087086126, a: 1}
