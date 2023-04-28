@@ -47,7 +47,7 @@ MonoBehaviour:
   useRadius: 1
   radius: 3
   useAngle: 1
-  angle: 25
+  angle: 35
   STATIONARY: 0
   stationaryTime: 0.18
   STUN: 0

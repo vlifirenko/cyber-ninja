@@ -146,6 +146,7 @@ namespace CyberNinja.Ecs
                 
                 // damage
                 .Add(new DamageSystem())
+                //.Add(new PushSystem())
 
                 // ui
                 .Add(new PlayerUiSystem())
@@ -155,6 +156,7 @@ namespace CyberNinja.Ecs
                 //
                 .DelHere<PickupComponent>()
                 .DelHere<UpdateRoomComponent>()
+                .DelHere<PushComponent>()    // todo debug
 #if UNITY_EDITOR
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif

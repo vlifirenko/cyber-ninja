@@ -131,7 +131,7 @@ namespace CyberNinja.Services.Unit
             return entity;
         }
 
-        public void AddDamage(int entity, float damage, Transform damageOrigin)
+        public void AddDamage(int entity, float damage, Transform damageOrigin, Transform attacker)
         {
             var damageFactor = _damageFactorPool.Get(entity);
             var damageMath = damage - damage * damageFactor.PhysicalFactor / 100;
@@ -141,7 +141,8 @@ namespace CyberNinja.Services.Unit
                 Value = new Damage
                 {
                     value = damageMath,
-                    damageOrigin = damageOrigin
+                    damageOrigin = damageOrigin,
+                    attacker =  attacker
                 }
             };
         }

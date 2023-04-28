@@ -29,8 +29,6 @@ namespace CyberNinja.Ecs.Systems.Unit
 
                 ref var health = ref _world.Value.GetPool<HealthComponent>().Get(entity);
                 var unit = _world.Value.GetPool<UnitComponent>().Get(entity);
-
-                //var damageMath = damage - damage * damageFactor.PhysicalFactor / 100;
                 var newHealth = Mathf.Clamp(health.Current - damage.value, 0f, health.Max);
 
                 _unitService.Value.UpdateHealth(entity, newHealth);
@@ -50,6 +48,19 @@ namespace CyberNinja.Ecs.Systems.Unit
                     var damageClampedLayer =
                         Mathf.Clamp(damageClamped, _globalUnitConfig.Value.minLayerHit, 1); // limit min layer weight
                     unit.View.Animator.SetLayerWeight(2, damageClampedLayer);
+
+                    // push
+                    if (!_world.Value.GetPool<PushComponent>().Has(entity))
+                    {
+                        var direction = unit.View.Transform.position - damage.attacker.position;
+                        _world.Value.GetPool<PushComponent>().Add(entity) = new PushComponent
+                        {
+                            Directon = direction.normalized,
+                            CurrentTime = 0f,
+                            TargetTime = 5f,
+                            Speed = 5f
+                        };
+                    }
                 }
 
                 if (health.Current <= 0)
