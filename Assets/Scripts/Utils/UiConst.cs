@@ -15,5 +15,6 @@
         public const string ZoomInButton = "zoom-in-button";
         public const string ZoomOutButton = "zoom-out-button";
         public const string LobbyMine = "lobby-mine";
+        public const string CollectLootText = "collect-loot-text";
     }
 }

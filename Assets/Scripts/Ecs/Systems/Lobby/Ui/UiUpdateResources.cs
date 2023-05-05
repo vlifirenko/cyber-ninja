@@ -17,6 +17,7 @@ namespace CyberNinja.Ecs.Systems.Lobby.Ui
 
         public void Run(IEcsSystems systems)
         {
+            // todo remove from update to observable
             var sb = new StringBuilder();
             
             foreach (var item in _gameData.Value.playerResources.items)

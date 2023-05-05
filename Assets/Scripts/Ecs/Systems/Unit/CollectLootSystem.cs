@@ -1,9 +1,12 @@
-﻿using CyberNinja.Ecs.Components.Unit;
+﻿using System;
+using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models;
 using CyberNinja.Models.Config;
 using CyberNinja.Models.Data;
+using CyberNinja.Utils;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using Leopotam.EcsLite.Unity.Ugui;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,6 +20,8 @@ namespace CyberNinja.Ecs.Systems.Unit
         private EcsCustomInject<LayersConfig> _layersConfig;
         private EcsCustomInject<GameData> _gameData;
 
+        [EcsUguiNamed(UiConst.CollectLootText)] private CanvasGroup _collectLootText;
+        
         private int _colliders;
 
         public void Init(IEcsSystems systems)
@@ -37,6 +42,11 @@ namespace CyberNinja.Ecs.Systems.Unit
                     unit.View.Transform.forward, 0f, _layersConfig.Value.loot);
 
                 _colliders = colliders.Length;
+
+                if (_colliders > 0 && _collectLootText.alpha == 0f)
+                    _collectLootText.alpha = 1f;
+                else if (_colliders == 0 && Math.Abs(_collectLootText.alpha - 1f) < 0.01f)
+                    _collectLootText.alpha = 0f;
             }
         }
 
