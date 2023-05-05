@@ -8,5 +8,6 @@ namespace CyberNinja.Ecs.Components.Unit
     {
         public UnitView View;
         public UnitConfig Config;
+        public ItemConfig WeaponConfig;
     }
 }

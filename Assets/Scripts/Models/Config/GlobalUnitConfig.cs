@@ -1,6 +1,7 @@
 ﻿using CyberNinja.Models.Ability;
 using CyberNinja.Views.Projectile;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace CyberNinja.Models.Config
 {
@@ -31,8 +32,8 @@ namespace CyberNinja.Models.Config
         public float droidHitDistance = 1f;
         public float droidDamage = 10f;
 
-        [Header("Push")]
-        public float pushLength = 0.5f;
+        [FormerlySerializedAs("pushLength")] [Header("Push")]
+        public float pushDuration = 0.5f;
         public float pushSpeed = 10f;
     }
 }

@@ -3,6 +3,7 @@ using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models;
 using CyberNinja.Models.Config;
 using CyberNinja.Models.Data;
+using CyberNinja.Models.Unit;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
@@ -35,8 +36,11 @@ namespace CyberNinja.Ecs.Systems.Unit
                         {
                             Directon = direction.normalized,
                             CurrentTime = 0f,
-                            TargetTime = _globalUnitConfig.Value.pushLength,
-                            Speed = _globalUnitConfig.Value.pushSpeed
+                            Push = new Push
+                            {
+                                duration = _globalUnitConfig.Value.pushDuration,
+                                speed = _globalUnitConfig.Value.pushSpeed
+                            }
                         };
                     }
                 }
@@ -53,11 +57,11 @@ namespace CyberNinja.Ecs.Systems.Unit
                 push.CurrentTime += Time.deltaTime;
 
                 var speed = _world.Value.GetPool<SpeedComponent>().Get(entity);
-                var targetTranslation = push.Directon * Time.deltaTime * push.Speed;
+                var targetTranslation = push.Directon * Time.deltaTime * push.Push.speed;
 
                 unit.View.NavMeshAgent.Move(targetTranslation);
 
-                if (push.CurrentTime >= push.TargetTime)
+                if (push.CurrentTime >= push.Push.duration)
                     _pushPool.Value.Del(entity);
 
                 //var targetDebugLine = unit.View.Transform.position + targetTranslation;

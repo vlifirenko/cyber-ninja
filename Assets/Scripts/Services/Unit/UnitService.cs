@@ -118,6 +118,7 @@ namespace CyberNinja.Services.Unit
             {
                 var weaponConfig = unit.Config.DefaultWeapon;
                 var weaponEntity = _itemService.CreateItem(weaponConfig);
+                
                 _itemService.TryEquip(weaponEntity, _world.PackEntityWithWorld(entity));
 
                 var abilityItem = new AbilityItem()
@@ -127,6 +128,8 @@ namespace CyberNinja.Services.Unit
                 };
                 AbilityService.CreateAbility(abilityItem, entity);
                 _canvasView.AbilityImages[abilityItem.slotIndex].sprite = abilityItem.abilityConfig.icon;
+
+                unit.WeaponConfig = weaponConfig;
             }
 
             if (view.IsFreeze)
@@ -352,7 +355,7 @@ namespace CyberNinja.Services.Unit
 
             return view;
         }
-        
+
         private void ToggleStun(int entity)
         {
             var unit = _unitPool.Get(entity);

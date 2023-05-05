@@ -5,6 +5,7 @@ using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models.Ability;
 using CyberNinja.Models.Config;
 using CyberNinja.Models.Enums;
+using CyberNinja.Models.Unit;
 using CyberNinja.Services.Unit;
 using CyberNinja.Utils;
 using CyberNinja.Views;
@@ -104,9 +105,11 @@ namespace CyberNinja.Services.Impl
             var ability = _world.GetPool<AbilityComponent>().Get(abilityEntity);
             if (!ability.Owner.Unpack(_world, out var ownerEntity))
                 return;
-
             if (_unitService.HasState(ownerEntity, EUnitState.Dash))
                 return;
+            
+            if (ability.AbilityConfig.debug)
+                Debug.Log($"ActivateAbility {ability.AbilityConfig.abilityName}");
 
             if (ability.AbilityConfig.inputBlockable)
             {
@@ -302,6 +305,25 @@ namespace CyberNinja.Services.Impl
                         return;
 
                     TargetHitLogic(ability.AbilityConfig, targetView.Transform, targetEntity, owner.View.Transform);
+                }
+                
+                // move forward
+                if (!_world.GetPool<PushComponent>().Has(ownerEntity))
+                {
+                    var unit = _world.GetPool<UnitComponent>().Get(ownerEntity);
+                    var pushDirection = unit.View.Transform.forward;
+                    var weaponConfig = unit.WeaponConfig;
+                    
+                    _world.GetPool<PushComponent>().Add(ownerEntity) = new PushComponent
+                    {
+                        Directon = pushDirection.normalized,
+                        CurrentTime = 0f,
+                        Push = new Push
+                        {
+                            duration = weaponConfig.ownerPush.duration,
+                            speed = weaponConfig.ownerPush.speed
+                        }
+                    };
                 }
             }
         }

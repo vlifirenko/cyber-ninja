@@ -3,6 +3,7 @@ using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Events;
 using CyberNinja.Models.Config;
 using CyberNinja.Models.Enums;
+using CyberNinja.Models.Unit;
 using CyberNinja.Services.Impl;
 using CyberNinja.Services.Unit;
 using CyberNinja.Utils;
@@ -57,8 +58,11 @@ namespace CyberNinja.Ecs.Systems.Unit
                         {
                             Directon = direction.normalized,
                             CurrentTime = 0f,
-                            TargetTime = _globalUnitConfig.Value.pushLength,
-                            Speed = _globalUnitConfig.Value.pushSpeed
+                            Push = new Push
+                            {
+                                duration = _globalUnitConfig.Value.pushDuration,
+                                speed = _globalUnitConfig.Value.pushSpeed
+                            }
                         };
                     }
                 }

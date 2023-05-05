@@ -43,4 +43,4 @@ MonoBehaviour:
         max: 10
       minResources: 1
       maxResources: 3
-  debug_NoSpawnEnemies: 1
+  debug_NoSpawnEnemies: 0

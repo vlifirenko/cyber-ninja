@@ -18,3 +18,9 @@ MonoBehaviour:
   prefab: {fileID: 2463986128750946153, guid: 6d2f8b33ea10859449b955b8d7b70647, type: 3}
   icon: {fileID: 21300000, guid: 66d252edf94c25a40895bee5a459e94d, type: 3}
   abilityConfig: {fileID: 11400000, guid: 68703d473c8c695419369a597e7fa394, type: 2}
+  ownerPush:
+    speed: 10
+    duration: 0.01
+  targetPush:
+    speed: 12
+    duration: 0.015

@@ -76,5 +76,7 @@ namespace CyberNinja.Models.Config
 
         [FoldoutGroup("FLAGS", Expanded = true)]
         [VerticalGroup("FLAGS/1")] [ToggleLeft] public bool inputBlockable;
+
+        public bool debug;
     }
 }

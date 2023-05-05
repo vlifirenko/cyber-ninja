@@ -1897,7 +1897,7 @@ MonoBehaviour:
   playerView: {fileID: 8974790029585941629, guid: 0eff7d2004a75254f814bc370de2346b, type: 3}
   enemies:
   - type: 10
-    view: {fileID: 3599100598901881508, guid: 669477fe030bc6443a1a0edfead593ce, type: 3}
+    view: {fileID: 3599100598901881508, guid: b7782b1de23c00d4d954521563defbd6, type: 3}
   - type: 20
     view: {fileID: 6549365303516833475, guid: 16c485018eb9e67419f954a4fabfdc3d, type: 3}
   fmodEventEmitter: {fileID: 1910917314}
