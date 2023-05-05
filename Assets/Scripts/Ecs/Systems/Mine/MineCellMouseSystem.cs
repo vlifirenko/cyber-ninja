@@ -3,6 +3,7 @@ using CyberNinja.Models;
 using CyberNinja.Models.Army;
 using CyberNinja.Models.Config;
 using CyberNinja.Models.Data;
+using CyberNinja.Models.Enums;
 using CyberNinja.Services;
 using CyberNinja.Utils;
 using CyberNinja.Views;
@@ -98,7 +99,7 @@ namespace CyberNinja.Ecs.Systems.Mine
             if (_selectedMineCell.MineCellState == EMineCellState.Level3)
                 return;
 
-            var resourcesLeft = _gameData.Value.playerResources.Get(EResourceType.Cobalt);
+            var resourcesLeft = _gameData.Value.playerResources.GetItem(EResourceType.Cobalt);
             if (_selectedMineCell.MineCellState == EMineCellState.Level1)
             {
                 if (resourcesLeft < _mineConfig.Value.mineUpgrade2Cost)
@@ -130,7 +131,7 @@ namespace CyberNinja.Ecs.Systems.Mine
         private void UpgradeMineRoom(EResourceType resourceType, float cost, MineCell cell, EMineCellState state)
         {
             cell.MineCellState = state;
-            _gameData.Value.playerResources.Update(resourceType,-cost);
+            _gameData.Value.playerResources.UpdateItem(resourceType,-cost);
             if (cell.MineCircle == EMineCircle.Inner)
                 _gameData.Value.mine.innerCircle.Update(cell.Index, state);
             if (cell.MineCircle == EMineCircle.Outer)

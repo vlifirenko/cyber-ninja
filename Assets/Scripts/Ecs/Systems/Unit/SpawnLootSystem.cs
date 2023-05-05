@@ -2,6 +2,7 @@
 using CyberNinja.Models;
 using CyberNinja.Models.Army;
 using CyberNinja.Models.Config;
+using CyberNinja.Models.Enums;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
@@ -57,6 +58,9 @@ namespace CyberNinja.Ecs.Systems.Unit
         {
             var spawnPosition = position + new Vector3(Random.Range(-2f, 2f), .8f, Random.Range(-2f, 2f));
             var instance = Object.Instantiate(_gamePrefabsConfig.Value.loot, spawnPosition, Quaternion.identity);
+
+            instance.Type = type;
+            instance.Amount = amount;
         }
     }
 }

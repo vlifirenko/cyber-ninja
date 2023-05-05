@@ -5,6 +5,7 @@ using CyberNinja.Ecs.Systems.Ai;
 using CyberNinja.Ecs.Systems.Door;
 using CyberNinja.Ecs.Systems.Game;
 using CyberNinja.Ecs.Systems.Item;
+using CyberNinja.Ecs.Systems.Lobby.Ui;
 using CyberNinja.Ecs.Systems.Player;
 using CyberNinja.Ecs.Systems.Player.Droid;
 using CyberNinja.Ecs.Systems.Room;
@@ -157,6 +158,7 @@ namespace CyberNinja.Ecs
                 .Add(new PlayerUiSystem())
                 .Add(new ItemPopupSystem())
                 .Add(new UiUpdateEnemyHealthSystem())
+                .Add(new UiUpdateResources())
                 
                 //
                 .DelHere<PickupComponent>()

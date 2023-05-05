@@ -4,11 +4,13 @@ using CyberNinja.Models;
 using CyberNinja.Models.Config;
 using CyberNinja.Models.Data;
 using CyberNinja.Utils;
+using CyberNinja.Views;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Leopotam.EcsLite.Unity.Ugui;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Object = UnityEngine.Object;
 
 namespace CyberNinja.Ecs.Systems.Unit
 {
@@ -50,6 +52,24 @@ namespace CyberNinja.Ecs.Systems.Unit
             }
         }
 
-        private void OnUse(InputAction.CallbackContext obj) => Debug.Log(_colliders);
+        private void OnUse(InputAction.CallbackContext obj)
+        {
+            foreach (var entity in _filter.Value)
+            {
+                var unit = _world.Value.GetPool<UnitComponent>().Get(entity);
+                var position = unit.View.Transform.position;
+                
+                var colliders = Physics.SphereCastAll(position, _globalUnitConfig.Value.lootRange,
+                    unit.View.Transform.forward, 0f, _layersConfig.Value.loot);
+
+                foreach (var collider in colliders)
+                {
+                    var lootView = collider.transform.parent.GetComponent<LootView>();
+                    
+                    _gameData.Value.playerResources.UpdateItem(lootView.Type, lootView.Amount);
+                    Object.Destroy(collider.transform.gameObject);
+                }
+            }
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using CyberNinja.Models.Enums;
+using UnityEngine;
 
 namespace CyberNinja.Models.Army
 {
@@ -8,7 +10,7 @@ namespace CyberNinja.Models.Army
     {
         public List<ResourceItem> items = new List<ResourceItem>();
         
-        public void Add(EResourceType resourceType, float value)
+        public void AddItem(EResourceType resourceType, float value)
         {
             items.Add(new ResourceItem
             {
@@ -17,19 +19,23 @@ namespace CyberNinja.Models.Army
             });
         }
 
-        public void Update(EResourceType resourceType, float delta)
+        public void UpdateItem(EResourceType resourceType, float delta)
         {
+            var isUpdated = false;
             foreach (var item in items)
             {
                 if (item.type == resourceType)
                 {
                     item.value += delta;
+                    isUpdated = true;
                     break;
                 }
             }
+            if (!isUpdated)
+                AddItem(resourceType, delta);
         }
 
-        public float Get(EResourceType resourceType)
+        public float GetItem(EResourceType resourceType)
         {
             foreach (var item in items)
             {
@@ -41,23 +47,5 @@ namespace CyberNinja.Models.Army
 
             return 0f;
         }
-    }
-
-    [Serializable]
-    public class ResourceItem
-    {
-        public EResourceType type;
-        public float value;
-    }
-
-    public enum EResourceType
-    {
-        None = 0,
-        Magnesium = 10,
-        Silicon = 20,
-        Lithium = 30,
-        Tungsten = 40,
-        Cobalt = 50,
-        Tantalum  = 60,
     }
 }

@@ -3,6 +3,7 @@ using CyberNinja.Models;
 using CyberNinja.Models.Army;
 using CyberNinja.Models.Config;
 using CyberNinja.Models.Data;
+using CyberNinja.Models.Enums;
 using CyberNinja.Models.Mine;
 using CyberNinja.Services;
 using CyberNinja.Utils;
@@ -52,7 +53,7 @@ namespace CyberNinja.Ecs.Systems.Mine
             if (_gameData.Value.playerResources.items.Count == 0)
             {
                 foreach (var startResource in _mineConfig.Value.startResources)
-                    _gameData.Value.playerResources.Add(startResource.type, startResource.value);
+                    _gameData.Value.playerResources.AddItem(startResource.type, startResource.value);
             }
 
             var input = _gameData.Value.Input;
@@ -61,7 +62,7 @@ namespace CyberNinja.Ecs.Systems.Mine
             input.Debug.AddResource1.performed += _
                 =>
             {
-                _gameData.Value.playerResources.Update(EResourceType.Cobalt, 100);
+                _gameData.Value.playerResources.UpdateItem(EResourceType.Cobalt, 100);
                 SaveService.Save(_gameData.Value);
             };
 
@@ -94,7 +95,7 @@ namespace CyberNinja.Ecs.Systems.Mine
         private void OnBuyOuterCircle()
         {
             // todo temp data
-            if (_gameData.Value.playerResources.Get(EResourceType.Cobalt) < _mineConfig.Value.outerCircleUnlockCost)
+            if (_gameData.Value.playerResources.GetItem(EResourceType.Cobalt) < _mineConfig.Value.outerCircleUnlockCost)
             {
                 _messageText.text = $"Not enough {EResourceType.Cobalt}";
                 Observable.Timer(TimeSpan.FromSeconds(2))
@@ -103,7 +104,7 @@ namespace CyberNinja.Ecs.Systems.Mine
                 return;
             }
 
-            _gameData.Value.playerResources.Update(EResourceType.Cobalt, -_mineConfig.Value.outerCircleUnlockCost);
+            _gameData.Value.playerResources.UpdateItem(EResourceType.Cobalt, -_mineConfig.Value.outerCircleUnlockCost);
             UnlockOuterCircle();
         }
 
