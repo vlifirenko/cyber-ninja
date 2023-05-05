@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CyberNinja.Models
+namespace CyberNinja.Models.Mine
 {
     [Serializable]
     public class Mine

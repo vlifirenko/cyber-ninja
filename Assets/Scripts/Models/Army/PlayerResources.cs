@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CyberNinja.Models
+namespace CyberNinja.Models.Army
 {
     [Serializable]
     public class PlayerResources

@@ -4,6 +4,7 @@ using CyberNinja.Ecs.Systems.Lobby.Mine;
 using CyberNinja.Ecs.Systems.Lobby.Ui;
 using CyberNinja.Models;
 using CyberNinja.Models.Config;
+using CyberNinja.Models.Data;
 using CyberNinja.Services;
 using CyberNinja.Services.Impl;
 using CyberNinja.Views;

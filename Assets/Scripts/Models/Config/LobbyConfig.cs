@@ -1,4 +1,5 @@
 ﻿using System;
+using CyberNinja.Models.Army;
 using CyberNinja.Views.Unit;
 using UnityEngine;
 

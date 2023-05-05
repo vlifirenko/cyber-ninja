@@ -1,8 +1,7 @@
 ﻿using System;
 using CyberNinja.Models.Config;
-using UnityEngine.Serialization;
 
-namespace CyberNinja.Models
+namespace CyberNinja.Models.Army
 {
     [Serializable]
     public class ArmyUnit

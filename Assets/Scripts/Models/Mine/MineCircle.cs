@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using CyberNinja.Views;
 
-namespace CyberNinja.Models
+namespace CyberNinja.Models.Mine
 {
     [Serializable]
     public class MineCircle

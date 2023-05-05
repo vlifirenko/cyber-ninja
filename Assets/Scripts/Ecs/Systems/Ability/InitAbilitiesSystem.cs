@@ -1,6 +1,7 @@
 ﻿using CyberNinja.Ecs.Components;
 using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models;
+using CyberNinja.Models.Data;
 using CyberNinja.Services;
 using CyberNinja.Services.Impl;
 using CyberNinja.Services.Unit;

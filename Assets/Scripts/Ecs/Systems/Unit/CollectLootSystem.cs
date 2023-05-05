@@ -1,6 +1,7 @@
 ﻿using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models;
 using CyberNinja.Models.Config;
+using CyberNinja.Models.Data;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;

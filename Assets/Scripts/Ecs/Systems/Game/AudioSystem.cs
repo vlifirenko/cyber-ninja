@@ -1,5 +1,6 @@
 ﻿using CyberNinja.Models;
 using CyberNinja.Models.Config;
+using CyberNinja.Models.Data;
 using CyberNinja.Views;
 using FMOD.Studio;
 using FMODUnity;

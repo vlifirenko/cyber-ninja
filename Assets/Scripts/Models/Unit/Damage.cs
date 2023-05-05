@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace CyberNinja.Models
+namespace CyberNinja.Models.Unit
 {
     [Serializable]
     public class Damage

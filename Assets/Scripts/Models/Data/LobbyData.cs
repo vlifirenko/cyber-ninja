@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using CyberNinja.Models.Army;
 using CyberNinja.Views;
 
-namespace CyberNinja.Models
+namespace CyberNinja.Models.Data
 {
     [Serializable]
     public class LobbyData

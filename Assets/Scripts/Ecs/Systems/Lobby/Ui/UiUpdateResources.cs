@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using CyberNinja.Models;
+using CyberNinja.Models.Data;
 using CyberNinja.Utils;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;

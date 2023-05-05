@@ -2,6 +2,7 @@
 using System.IO;
 using CyberNinja.Models;
 using CyberNinja.Models.Config;
+using CyberNinja.Models.Data;
 using CyberNinja.Views;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;

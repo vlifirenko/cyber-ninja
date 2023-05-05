@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using CyberNinja.Models.Army;
 using CyberNinja.Models.Enums;
 using CyberNinja.Views;
 
-namespace CyberNinja.Models
+namespace CyberNinja.Models.Data
 {
     [Serializable]
     public class GameData
@@ -16,7 +17,7 @@ namespace CyberNinja.Models
         public bool isEnvironmentMute;
         public PlayerResources playerResources = new PlayerResources();
         public int colonyLevel;
-        public Mine mine = new Mine();
+        public Mine.Mine mine = new Mine.Mine();
         public List<RoomView> rooms = new List<RoomView>();
     }
 

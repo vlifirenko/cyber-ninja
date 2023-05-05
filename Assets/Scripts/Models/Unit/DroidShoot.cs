@@ -1,7 +1,7 @@
 ﻿using System;
 using CyberNinja.Views.Projectile;
 
-namespace CyberNinja.Models
+namespace CyberNinja.Models.Unit
 {
     [Serializable]
     public class DroidShoot

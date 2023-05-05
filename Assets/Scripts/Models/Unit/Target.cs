@@ -1,8 +1,7 @@
 ﻿using System;
-using CyberNinja.Views.Ui;
 using CyberNinja.Views.Unit;
 
-namespace CyberNinja.Models
+namespace CyberNinja.Models.Unit
 {
     [Serializable]
     public class Target

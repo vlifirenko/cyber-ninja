@@ -1,6 +1,7 @@
 ﻿using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models;
 using CyberNinja.Models.Config;
+using CyberNinja.Models.Data;
 using CyberNinja.Services;
 using CyberNinja.Views;
 using Leopotam.EcsLite;

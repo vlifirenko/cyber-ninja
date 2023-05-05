@@ -8,6 +8,7 @@ using CyberNinja.Models;
 using CyberNinja.Models.Ability;
 using CyberNinja.Models.Config;
 using CyberNinja.Models.Enums;
+using CyberNinja.Models.Unit;
 using CyberNinja.Services.Impl;
 using CyberNinja.Utils;
 using CyberNinja.Views;

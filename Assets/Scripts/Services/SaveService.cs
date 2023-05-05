@@ -1,4 +1,5 @@
 ﻿using CyberNinja.Models;
+using CyberNinja.Models.Data;
 using UnityEngine;
 
 namespace CyberNinja.Services

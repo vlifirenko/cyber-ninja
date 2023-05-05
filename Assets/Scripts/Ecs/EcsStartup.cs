@@ -13,6 +13,7 @@ using CyberNinja.Ecs.Systems.Ui;
 using CyberNinja.Ecs.Systems.Unit;
 using CyberNinja.Models;
 using CyberNinja.Models.Config;
+using CyberNinja.Models.Data;
 using CyberNinja.Services;
 using CyberNinja.Services.Impl;
 using CyberNinja.Services.Unit;

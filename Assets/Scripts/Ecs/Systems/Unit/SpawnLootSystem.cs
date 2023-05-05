@@ -1,5 +1,6 @@
 ﻿using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Models;
+using CyberNinja.Models.Army;
 using CyberNinja.Models.Config;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;

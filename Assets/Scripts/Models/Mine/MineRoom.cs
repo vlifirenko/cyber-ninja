@@ -1,7 +1,7 @@
 ﻿using System;
 using CyberNinja.Views;
 
-namespace CyberNinja.Models
+namespace CyberNinja.Models.Mine
 {
     [Serializable]
     public class MineRoom

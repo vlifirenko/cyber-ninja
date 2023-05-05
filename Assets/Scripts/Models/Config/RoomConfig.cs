@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using CyberNinja.Models.Army;
 using CyberNinja.Models.Enums;
 using UnityEngine;
 

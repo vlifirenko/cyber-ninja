@@ -332,7 +332,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-80540
+  m_Name: pb_Mesh-1372
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -496,7 +496,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-80576
+  m_Name: pb_Mesh-1408
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -814,7 +814,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-80528
+  m_Name: pb_Mesh-1360
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1081,7 +1081,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1079134085
 Transform:
   m_ObjectHideFlags: 0
@@ -1248,7 +1248,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-80552
+  m_Name: pb_Mesh-1384
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1590,7 +1590,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-80564
+  m_Name: pb_Mesh-1396
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1757,6 +1757,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1602816383499218810, guid: b7782b1de23c00d4d954521563defbd6, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599100598901881508, guid: b7782b1de23c00d4d954521563defbd6, type: 3}
+      propertyPath: isDebugSelected
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5092618355022486732, guid: b7782b1de23c00d4d954521563defbd6, type: 3}
@@ -1893,7 +1897,7 @@ MonoBehaviour:
   playerView: {fileID: 8974790029585941629, guid: 0eff7d2004a75254f814bc370de2346b, type: 3}
   enemies:
   - type: 10
-    view: {fileID: 3599100598901881508, guid: b7782b1de23c00d4d954521563defbd6, type: 3}
+    view: {fileID: 3599100598901881508, guid: 669477fe030bc6443a1a0edfead593ce, type: 3}
   - type: 20
     view: {fileID: 6549365303516833475, guid: 16c485018eb9e67419f954a4fabfdc3d, type: 3}
   fmodEventEmitter: {fileID: 1910917314}

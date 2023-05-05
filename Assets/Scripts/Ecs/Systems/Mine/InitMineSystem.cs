@@ -1,6 +1,9 @@
 ﻿using System;
 using CyberNinja.Models;
+using CyberNinja.Models.Army;
 using CyberNinja.Models.Config;
+using CyberNinja.Models.Data;
+using CyberNinja.Models.Mine;
 using CyberNinja.Services;
 using CyberNinja.Utils;
 using CyberNinja.Views;

@@ -1,4 +1,5 @@
 ﻿using CyberNinja.Models;
+using CyberNinja.Models.Data;
 using CyberNinja.Models.Enums;
 using CyberNinja.Views;
 using Leopotam.EcsLite;
