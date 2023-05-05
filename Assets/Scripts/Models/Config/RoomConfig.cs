@@ -11,6 +11,8 @@ namespace CyberNinja.Models.Config
         public RoomEnemyItem[] enemies;
 
         public RoomEnemyItem GetEnemyByType(EEnemyType type) => enemies.FirstOrDefault(item => item.type == type);
+        
+        public bool debug_NoSpawnEnemies;
     }
     
     [Serializable]

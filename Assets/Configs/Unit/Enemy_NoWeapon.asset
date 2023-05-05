@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlType: 1
   lookRadius: 18
-  maxChaseDistance: 16
+  maxChaseDistance: 22
   attackDistance: 2.5
   maxAttackDistance: 3.5
-  maxHealth: 50
+  maxHealth: 50000000
   maxEnergy: 100
   healthRegeneration: 0
   energyRegeneration: 0

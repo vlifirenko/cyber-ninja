@@ -49,7 +49,9 @@ namespace CyberNinja.Ecs.Systems.Room
                 var updateRoom = _updateRoomPool.Value.Get(entity);
                 var room = updateRoom.Room;
 
-                if (updateRoom.IsSpawnEnemy)
+                if (room.RoomConfig.debug_NoSpawnEnemies)
+                    Debug.Log("room.RoomConfig.debug_NoSpawnEnemies");
+                if (updateRoom.IsSpawnEnemy && !room.RoomConfig.debug_NoSpawnEnemies)
                     SpawnEnemies(room);
                 else if (updateRoom.IsRoomClear)
                     RoomClear(room);

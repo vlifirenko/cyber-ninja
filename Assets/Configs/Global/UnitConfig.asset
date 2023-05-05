@@ -31,3 +31,5 @@ MonoBehaviour:
   droidShootSpeed: 0.005
   droidHitDistance: 2
   droidDamage: 10
+  pushLength: 0.015
+  pushSpeed: 12

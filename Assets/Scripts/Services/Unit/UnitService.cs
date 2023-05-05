@@ -5,6 +5,7 @@ using CyberNinja.Ecs.Components.Debug;
 using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Events;
 using CyberNinja.Models;
+using CyberNinja.Models.Ability;
 using CyberNinja.Models.Config;
 using CyberNinja.Models.Enums;
 using CyberNinja.Services.Impl;
@@ -112,14 +113,19 @@ namespace CyberNinja.Services.Unit
             view.NavMeshAgent.stoppingDistance = view.Config.AttackDistance - 0.1f;
             view.NavMeshAgent.updateRotation = false;
 
-            if (unit.Config.DefaultWeapon != null && unit.Config.Abilities.Length > 0)
+            if (unit.Config.DefaultWeapon != null)
             {
-                var weaponEntity = _itemService.CreateItem(unit.Config.DefaultWeapon);
+                var weaponConfig = unit.Config.DefaultWeapon;
+                var weaponEntity = _itemService.CreateItem(weaponConfig);
                 _itemService.TryEquip(weaponEntity, _world.PackEntityWithWorld(entity));
 
-                var ability = unit.Config.Abilities[0];
-                AbilityService.CreateAbility(ability, entity);
-                _canvasView.AbilityImages[ability.slotIndex].sprite = ability.abilityConfig.icon;
+                var abilityItem = new AbilityItem()
+                {
+                    abilityConfig = weaponConfig.abilityConfig,
+                    slotIndex = 0    // todo debug
+                };
+                AbilityService.CreateAbility(abilityItem, entity);
+                _canvasView.AbilityImages[abilityItem.slotIndex].sprite = abilityItem.abilityConfig.icon;
             }
 
             if (view.IsFreeze)

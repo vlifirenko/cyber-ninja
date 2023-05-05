@@ -17,3 +17,4 @@ MonoBehaviour:
   slot: 10
   prefab: {fileID: 2463986128750946153, guid: d2c5906fc03b1774d8be348d227b1389, type: 3}
   icon: {fileID: 21300000, guid: 5f68b2ee740951f41830ca17d222e8cb, type: 3}
+  abilityConfig: {fileID: 11400000, guid: 9a10bdf6722f68247b31c2caa46be2ef, type: 2}

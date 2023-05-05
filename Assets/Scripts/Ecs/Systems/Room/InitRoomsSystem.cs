@@ -24,7 +24,7 @@ namespace CyberNinja.Ecs.Systems.Room
         {
             SpawnRooms();
             SpawnPlayer();
-            Debug_SpawnEnemies();
+            //Debug_SpawnEnemies();
             InitStartRoom();
         }
 
