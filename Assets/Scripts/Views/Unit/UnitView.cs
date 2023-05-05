@@ -12,6 +12,7 @@ using UnityEngine.Serialization;
 
 namespace CyberNinja.Views.Unit
 {
+    [SelectionBase]
     public class UnitView : AEntityView
     {
         [SerializeField] private UnitConfig config;
@@ -23,6 +24,7 @@ namespace CyberNinja.Views.Unit
         [SerializeField] private DroidView droidView;
         [Header("Enemy")]
         [SerializeField] private bool isFreeze;
+        [SerializeField] private bool isDebugSelected;
 
         public UnitConfig Config => config;
         public Animator Animator => animator;
@@ -34,5 +36,7 @@ namespace CyberNinja.Views.Unit
         public bool IsFreeze => isFreeze;
 
         public DroidView DroidView => droidView;
+
+        public bool IsDebugSelected => isDebugSelected;
     }
 }

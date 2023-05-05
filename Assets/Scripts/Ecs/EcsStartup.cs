@@ -147,7 +147,7 @@ namespace CyberNinja.Ecs
                 
                 // damage
                 .Add(new DamageSystem())
-                //.Add(new PushSystem())
+                .Add(new PushSystem())
                 .Add(new SpawnLootSystem())
                 
                 .Add(new CollectLootSystem())
@@ -160,7 +160,6 @@ namespace CyberNinja.Ecs
                 //
                 .DelHere<PickupComponent>()
                 .DelHere<UpdateRoomComponent>()
-                .DelHere<PushComponent>()    // todo debug
                 .DelHere<SpawnLootComponent>()
 #if UNITY_EDITOR
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())

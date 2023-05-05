@@ -57,8 +57,8 @@ namespace CyberNinja.Ecs.Systems.Unit
                         {
                             Directon = direction.normalized,
                             CurrentTime = 0f,
-                            TargetTime = 5f,
-                            Speed = 5f
+                            TargetTime = _globalUnitConfig.Value.pushLength,
+                            Speed = _globalUnitConfig.Value.pushSpeed
                         };
                     }
                 }

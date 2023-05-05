@@ -857,6 +857,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Push"",
+                    ""type"": ""Button"",
+                    ""id"": ""ecf6c208-8af6-45ec-bbd8-a83310abcb17"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -879,6 +888,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ResetMine"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3bdaa10c-0b0c-43ab-a3f4-ea9f114ae57a"",
+                    ""path"": ""<Keyboard>/f5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Push"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -949,6 +969,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
         m_Debug_AddResource1 = m_Debug.FindAction("AddResource1", throwIfNotFound: true);
         m_Debug_ResetMine = m_Debug.FindAction("ResetMine", throwIfNotFound: true);
+        m_Debug_Push = m_Debug.FindAction("Push", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1340,12 +1361,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IDebugActions> m_DebugActionsCallbackInterfaces = new List<IDebugActions>();
     private readonly InputAction m_Debug_AddResource1;
     private readonly InputAction m_Debug_ResetMine;
+    private readonly InputAction m_Debug_Push;
     public struct DebugActions
     {
         private @Controls m_Wrapper;
         public DebugActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @AddResource1 => m_Wrapper.m_Debug_AddResource1;
         public InputAction @ResetMine => m_Wrapper.m_Debug_ResetMine;
+        public InputAction @Push => m_Wrapper.m_Debug_Push;
         public InputActionMap Get() { return m_Wrapper.m_Debug; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1361,6 +1384,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ResetMine.started += instance.OnResetMine;
             @ResetMine.performed += instance.OnResetMine;
             @ResetMine.canceled += instance.OnResetMine;
+            @Push.started += instance.OnPush;
+            @Push.performed += instance.OnPush;
+            @Push.canceled += instance.OnPush;
         }
 
         private void UnregisterCallbacks(IDebugActions instance)
@@ -1371,6 +1397,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ResetMine.started -= instance.OnResetMine;
             @ResetMine.performed -= instance.OnResetMine;
             @ResetMine.canceled -= instance.OnResetMine;
+            @Push.started -= instance.OnPush;
+            @Push.performed -= instance.OnPush;
+            @Push.canceled -= instance.OnPush;
         }
 
         public void RemoveCallbacks(IDebugActions instance)
@@ -1444,5 +1473,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnAddResource1(InputAction.CallbackContext context);
         void OnResetMine(InputAction.CallbackContext context);
+        void OnPush(InputAction.CallbackContext context);
     }
 }

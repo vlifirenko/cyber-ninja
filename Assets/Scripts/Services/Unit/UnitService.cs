@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CyberNinja.Ecs.Components.Ai;
+using CyberNinja.Ecs.Components.Debug;
 using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Events;
 using CyberNinja.Models;
@@ -123,6 +124,9 @@ namespace CyberNinja.Services.Unit
 
             if (view.IsFreeze)
                 _world.GetPool<FreezeComponent>().Add(entity);
+            
+            if (view.IsDebugSelected)
+                _world.GetPool<DebugSelectedComponent>().Add(entity);
 
             view.Entity = _world.PackEntity(entity);
 
