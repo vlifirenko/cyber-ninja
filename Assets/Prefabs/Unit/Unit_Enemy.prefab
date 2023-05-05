@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: smoothRotation
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 7936525248888036600, guid: c2e163ccfc1ff954dae0d2cbc1b797e2, type: 3}
+      propertyPath: isDebugSelected
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8880444737385368110, guid: c2e163ccfc1ff954dae0d2cbc1b797e2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

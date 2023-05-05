@@ -34,21 +34,21 @@ namespace CyberNinja.Ecs.Systems.Ability
             {
                 var player = _playerPool.Value.Get(entity);
 
-                _gameData.Value.Controls._Player.Ability01_Tap.started
+                _gameData.Value.Input._Player.Ability01_Tap.started
                     += ctx => _abilityService.Value.TryActivateAbility(0, entity);
-                _gameData.Value.Controls._Player.Ability02_Tap.started
+                _gameData.Value.Input._Player.Ability02_Tap.started
                     += ctx => _abilityService.Value.TryActivateAbility(1, entity);
-                _gameData.Value.Controls._Player.Ability03_Tap.started
+                _gameData.Value.Input._Player.Ability03_Tap.started
                     += ctx => _abilityService.Value.TryActivateAbility(2, entity);
-                _gameData.Value.Controls._Player.Ability04_Tap.started
+                _gameData.Value.Input._Player.Ability04_Tap.started
                     += ctx => _abilityService.Value.TryActivateAbility(3, entity);
-                _gameData.Value.Controls._Player.Action01_Tap.started
+                _gameData.Value.Input._Player.Action01_Tap.started
                     += ctx => _abilityService.Value.TryActivateAbility(4, entity);
-                _gameData.Value.Controls._Player.Action02_Tap.started
+                _gameData.Value.Input._Player.Action02_Tap.started
                     += ctx => _abilityService.Value.TryActivateAbility(5, entity);
-                _gameData.Value.Controls._Player.Action03_Tap.started
+                _gameData.Value.Input._Player.Action03_Tap.started
                     += ctx => _abilityService.Value.TryActivateAbility(6, entity);
-                _gameData.Value.Controls._Player.Action04_Tap.started
+                _gameData.Value.Input._Player.Action04_Tap.started
                     += ctx => _abilityService.Value.TryActivateAbility(7, entity);
             }
         }

@@ -15,3 +15,32 @@ MonoBehaviour:
   enemies:
   - type: 10
     amount: 1
+    loot:
+      resources:
+      - type: 10
+        chance: 0.3
+        min: 50
+        max: 100
+      - type: 20
+        chance: 0.2
+        min: 25
+        max: 50
+      - type: 30
+        chance: 0.15
+        min: 10
+        max: 20
+      - type: 40
+        chance: 0.15
+        min: 10
+        max: 20
+      - type: 50
+        chance: 0.1
+        min: 5
+        max: 10
+      - type: 60
+        chance: 0.1
+        min: 5
+        max: 10
+      minResources: 1
+      maxResources: 3
+  debug_NoSpawnEnemies: 1

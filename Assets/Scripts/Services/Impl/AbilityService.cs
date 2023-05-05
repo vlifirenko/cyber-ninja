@@ -277,7 +277,7 @@ namespace CyberNinja.Services.Impl
                     continue;
                 if (hit.transform.parent.transform.parent == owner.View.Transform)
                     continue;
-                if (_layersConfig.attackLayer.value != 1 << hit.gameObject.layer)
+                if (_layersConfig.attackLayer.value != (_layersConfig.attackLayer.value | (1 << hit.gameObject.layer)))
                     continue;
 
                 var forward = owner.View.Transform.TransformDirection(Vector3.forward);
@@ -293,7 +293,7 @@ namespace CyberNinja.Services.Impl
                 var anglePercent = (180f - angle) / 180f;
                 if (dotProduct >= anglePercent)
                 {
-                    var targetView = hit.transform.parent.transform.parent.GetComponent<UnitView>();
+                    var targetView = hit.transform.GetComponent<UnitView>();
                     if (!targetView)
                         return;
                     if (!targetView.Entity.Unpack(_world, out var targetEntity))
@@ -301,7 +301,7 @@ namespace CyberNinja.Services.Impl
                     if (_unitService.HasState(targetEntity, EUnitState.Dead))
                         return;
 
-                    TargetHitLogic(ability.AbilityConfig, targetView.Transform, targetEntity);
+                    TargetHitLogic(ability.AbilityConfig, targetView.Transform, targetEntity, owner.View.Transform);
                 }
             }
         }
@@ -381,20 +381,6 @@ namespace CyberNinja.Services.Impl
                 if (_layersConfig.attackLayer.value != 1 << hit.gameObject.layer)
                     continue;
 
-                //var forward = owner.View.Transform.TransformDirection(Vector3.forward);
-                //var direction = (hit.transform.position - owner.View.Transform.position).normalized;
-                //var dotProduct = Vector3.Dot(forward, direction);
-
-                //float tempAngle;
-                //if (ability.AbilityConfig.useAngle)
-                //    tempAngle = ability.AbilityConfig.angle;
-                //else
-                //    tempAngle = 1;
-//
-                //var angle = tempAngle;
-                //var anglePercent = (180f - angle) / 180f;
-                //if (dotProduct >= anglePercent)
-                //{
                 var targetView = hit.transform.parent.transform.parent.GetComponent<UnitView>();
                 if (!targetView)
                     return;
@@ -403,14 +389,13 @@ namespace CyberNinja.Services.Impl
                 if (_unitService.HasState(targetEntity, EUnitState.Dead))
                     return;
 
-                TargetHitLogic(ability.AbilityConfig, targetView.Transform, targetEntity);
-                //}
+                TargetHitLogic(ability.AbilityConfig, targetView.Transform, targetEntity, owner.View.Transform);
             }
         }
 
-        private void TargetHitLogic(AbilityConfig abilityConfig, Transform ownerTransform, int targetEntity)
+        private void TargetHitLogic(AbilityConfig abilityConfig, Transform ownerTransform, int targetEntity, Transform attacker)
         {
-            _unitService.AddDamage(targetEntity, abilityConfig.damage, ownerTransform);
+            _unitService.AddDamage(targetEntity, abilityConfig.damage, ownerTransform, attacker);
 
             if (!_unitService.HasState(targetEntity, EUnitState.Dead) && abilityConfig.STUN)
             {

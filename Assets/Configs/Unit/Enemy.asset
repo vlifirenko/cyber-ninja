@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Enemy
   m_EditorClassIdentifier: 
   controlType: 1
-  lookRadius: 8
-  maxChaseDistance: 12
+  lookRadius: 18
+  maxChaseDistance: 16
   attackDistance: 2.5
   maxAttackDistance: 3.5
-  maxHealth: 100
+  maxHealth: 100000
   maxEnergy: 100
   healthRegeneration: 0
   energyRegeneration: 0

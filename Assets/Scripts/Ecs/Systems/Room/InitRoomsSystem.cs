@@ -24,6 +24,7 @@ namespace CyberNinja.Ecs.Systems.Room
         {
             SpawnRooms();
             SpawnPlayer();
+            //Debug_SpawnEnemies();
             InitStartRoom();
         }
 
@@ -110,6 +111,12 @@ namespace CyberNinja.Ecs.Systems.Room
 
             if (instance.Config.isHasDroid)
                 CreateDroid(entity);
+        }
+
+        private void Debug_SpawnEnemies()
+        {
+            foreach (var unitView in _sceneView.Value.UnitContainer.Items)
+                _unitService.Value.CreateUnit(unitView);
         }
 
         private void CreateDroid(int entity)

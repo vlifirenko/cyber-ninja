@@ -8,5 +8,7 @@ namespace CyberNinja.Models.Config
         public LayerMask attackLayer;
         public LayerMask playerLayerMask;
         public LayerMask lobbyMine;
+        public LayerMask door;
+        public LayerMask loot;
     }
 }

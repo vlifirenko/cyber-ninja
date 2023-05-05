@@ -1,5 +1,5 @@
-﻿using CyberNinja.Ecs.Systems.Army;
-using CyberNinja.Ecs.Systems.Game;
+﻿using CyberNinja.Ecs.Systems.Game;
+using CyberNinja.Ecs.Systems.Lobby.Army;
 using CyberNinja.Ecs.Systems.Lobby.Mine;
 using CyberNinja.Ecs.Systems.Lobby.Ui;
 using CyberNinja.Models;
@@ -61,7 +61,7 @@ namespace CyberNinja.Ecs
                 //.Add(new MineCellMouseSystem())
                 
                 // army
-                .Add(new AddFirstArmyUnitSystem())
+                .Add(new InitArmySystem())
                 
                 // enemy
                 .Add(new InitEnemyMinesSystem())

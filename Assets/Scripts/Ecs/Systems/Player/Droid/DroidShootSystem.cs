@@ -25,7 +25,7 @@ namespace CyberNinja.Ecs.Systems.Player.Droid
 
         public void Init(IEcsSystems systems)
         {
-            _gameData.Value.Controls._Player.Droid_Shoot.performed += OnDroidShoot;
+            _gameData.Value.Input._Player.Droid_Shoot.performed += OnDroidShoot;
         }
 
         public void Run(IEcsSystems systems)
@@ -94,7 +94,7 @@ namespace CyberNinja.Ecs.Systems.Player.Droid
 
             var damage = _globalConfig.Value.droidDamage;
             
-            _unitService.Value.AddDamage(targetEntity, damage, shoot.projectile.Transform);
+            _unitService.Value.AddDamage(targetEntity, damage, shoot.projectile.Transform, null);
             shoot.projectile.gameObject.SetActive(false);
             _shoots.Remove(shoot);
         }

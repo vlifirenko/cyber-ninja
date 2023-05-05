@@ -37,6 +37,7 @@ namespace CyberNinja.Ecs
         [SerializeField] private GlobalUnitConfig globalUnitConfig;
         [SerializeField] private AudioConfig audioConfig;
         [SerializeField] private InputConfig inputConfig;
+        [SerializeField] private GamePrefabsConfig gamePrefabsConfig;
 
         private EcsSystems _systems;
 
@@ -103,7 +104,7 @@ namespace CyberNinja.Ecs
                 .Add(new DashSystem())
 
                 // player
-                .Add(new PlayerActionSystem())
+                //.Add(new PlayerActionSystem())
 
                 // enemy
                 .Add(new OnKillEnemySystem())
@@ -143,6 +144,13 @@ namespace CyberNinja.Ecs
                 // items
                 //.Add(new TryPickupItemService())
                 .Add(new PickupSystem())
+                
+                // damage
+                .Add(new DamageSystem())
+                .Add(new PushSystem())
+                .Add(new SpawnLootSystem())
+                
+                .Add(new CollectLootSystem())
 
                 // ui
                 .Add(new PlayerUiSystem())
@@ -152,11 +160,12 @@ namespace CyberNinja.Ecs
                 //
                 .DelHere<PickupComponent>()
                 .DelHere<UpdateRoomComponent>()
+                .DelHere<SpawnLootComponent>()
 #if UNITY_EDITOR
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif
                 .Inject(_gameData, sceneView, canvasView)
-                .Inject(layersConfig, globalUnitConfig, audioConfig, inputConfig)
+                .Inject(layersConfig, globalUnitConfig, audioConfig, inputConfig, gamePrefabsConfig)
                 .Inject(_unitService, _aiService, _abilityService, _doorService, _vfxService, _sceneService,
                     _gameService, _timeService, _itemService, _playerService)
                 .Inject()

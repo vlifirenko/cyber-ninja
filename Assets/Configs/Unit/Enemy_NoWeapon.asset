@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f853a625a3414bebac9a57a99a37e2dd, type: 3}
+  m_Name: Enemy_NoWeapon
+  m_EditorClassIdentifier: 
+  controlType: 1
+  lookRadius: 18
+  maxChaseDistance: 22
+  attackDistance: 2.5
+  maxAttackDistance: 3.5
+  maxHealth: 50000000
+  maxEnergy: 100
+  healthRegeneration: 0
+  energyRegeneration: 0
+  moveSpeed: 10
+  speedFactor: 1
+  smoothMove: 0.1
+  smoothRotation: 0.4
+  abilitySmoothRotation: 1
+  rotateToLookVector: 1
+  diffVectorLerp: 0.12
+  minMouseMagnitude: 1.5
+  mouseMagnitudeOffset: 0.2
+  minMouseMagnitudeTemp: 1.7
+  abilities: []
+  abilityDamageConfig: {fileID: 11400000, guid: 996a32c765e145648b4b6bc3b6069be5, type: 2}
+  abilityStunOnConfig: {fileID: 11400000, guid: 08c8164129580c4458d36c00722ea171, type: 2}
+  abilityStunOffConfig: {fileID: 11400000, guid: 70c6a8822f0293b4e8cc53980c5f2bfd, type: 2}
+  abilityDeadConfig: {fileID: 11400000, guid: 6aed9abc74ddf234da313a1c220c5f1c, type: 2}
+  abilityReviveConfig: {fileID: 11400000, guid: 5503bce4d4d286744ae475667b53235e, type: 2}
+  defaultWeapon: {fileID: 11400000, guid: cf1b7d5a7d625d142a4158015ad69575, type: 2}
+  isHasDroid: 0

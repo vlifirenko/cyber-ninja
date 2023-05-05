@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbe57f63e0246898265a48f95fab746, type: 3}
   m_Name: Lobby
   m_EditorClassIdentifier: 
-  gameSceneName: Mine_Build_Rooms
+  gameSceneName: Game
   startResources:
   - type: 10
     value: 5000
@@ -25,10 +25,14 @@ MonoBehaviour:
     m_Bits: 512
   mineUpgrade2Cost: 200
   mineUpgrade3Cost: 500
-  unitPartLayer:
-    serializedVersion: 2
-    m_Bits: 2048
   zoomSpeed: 1.5
+  startArmy:
+  - {fileID: 11400000, guid: 16a86f9f41a31bf4383da15c40a0038a, type: 2}
+  - {fileID: 11400000, guid: 13167f104b249134e83fab8721f18e1b, type: 2}
+  - {fileID: 11400000, guid: 577dab87df1b09d4ab781243617860be, type: 2}
+  hangarCameraSpeed: 5
   startEnemyCount: {x: 5, y: 10}
   mineOffset: {x: 180, y: 85}
   enemyLevelRange: {x: 1, y: 5}
+  wormHoleSpeed: 2
+  minWormHoleTime: 2

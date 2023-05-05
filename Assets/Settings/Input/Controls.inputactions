@@ -753,6 +753,17 @@
                 },
                 {
                     "name": "",
+                    "id": "ea1c1429-c9db-4720-b2ec-ff21977492cd",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e5144f4a-c5b0-46ae-8350-9b6af22a08fc",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
@@ -824,6 +835,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Push",
+                    "type": "Button",
+                    "id": "ecf6c208-8af6-45ec-bbd8-a83310abcb17",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -846,6 +866,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ResetMine",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3bdaa10c-0b0c-43ab-a3f4-ea9f114ae57a",
+                    "path": "<Keyboard>/f5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Push",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

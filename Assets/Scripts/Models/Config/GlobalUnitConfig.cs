@@ -18,6 +18,7 @@ namespace CyberNinja.Models.Config
         public float layerWeightTreshold = 0.02f;
         [Space]
         public float defaultMoveSpeed = 5f;
+        public float lootRange = 7f;
 
         [Space]
         public float droidYSpawnPosition = 2f;
@@ -29,5 +30,9 @@ namespace CyberNinja.Models.Config
         public float droidShootSpeed = 2f;
         public float droidHitDistance = 1f;
         public float droidDamage = 10f;
+
+        [Header("Push")]
+        public float pushLength = 0.5f;
+        public float pushSpeed = 10f;
     }
 }

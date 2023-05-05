@@ -8,5 +8,7 @@ namespace CyberNinja.Models
     {
         public float value;
         public Transform damageOrigin;
+        public Vector3 push;
+        public Transform attacker;
     }
 }

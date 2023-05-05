@@ -34,7 +34,7 @@ namespace CyberNinja.Ecs.Systems.Mine
         public void Init(IEcsSystems systems)
         {
             var controls = new Controls();
-            _gameData.Value.Controls = controls;
+            _gameData.Value.Input = controls;
 
             controls.Mine.Enable();
             controls.Mine.Select.performed += OnMouseClick;

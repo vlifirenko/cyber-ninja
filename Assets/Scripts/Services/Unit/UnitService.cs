@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using CyberNinja.Ecs.Components.Ai;
+using CyberNinja.Ecs.Components.Debug;
 using CyberNinja.Ecs.Components.Unit;
 using CyberNinja.Events;
 using CyberNinja.Models;
+using CyberNinja.Models.Ability;
 using CyberNinja.Models.Config;
 using CyberNinja.Models.Enums;
 using CyberNinja.Services.Impl;
@@ -113,16 +115,24 @@ namespace CyberNinja.Services.Unit
 
             if (unit.Config.DefaultWeapon != null)
             {
-                var weaponEntity = _itemService.CreateItem(unit.Config.DefaultWeapon);
+                var weaponConfig = unit.Config.DefaultWeapon;
+                var weaponEntity = _itemService.CreateItem(weaponConfig);
                 _itemService.TryEquip(weaponEntity, _world.PackEntityWithWorld(entity));
 
-                var ability = unit.Config.Abilities[0];
-                AbilityService.CreateAbility(ability, entity);
-                _canvasView.AbilityImages[ability.slotIndex].sprite = ability.abilityConfig.icon;
+                var abilityItem = new AbilityItem()
+                {
+                    abilityConfig = weaponConfig.abilityConfig,
+                    slotIndex = 0    // todo debug
+                };
+                AbilityService.CreateAbility(abilityItem, entity);
+                _canvasView.AbilityImages[abilityItem.slotIndex].sprite = abilityItem.abilityConfig.icon;
             }
 
             if (view.IsFreeze)
                 _world.GetPool<FreezeComponent>().Add(entity);
+            
+            if (view.IsDebugSelected)
+                _world.GetPool<DebugSelectedComponent>().Add(entity);
 
             view.Entity = _world.PackEntity(entity);
 
@@ -131,78 +141,20 @@ namespace CyberNinja.Services.Unit
             return entity;
         }
 
-        public void AddDamage(int entity, float damage, Transform damageOrigin)
+        public void AddDamage(int entity, float damage, Transform damageOrigin, Transform attacker)
         {
             var damageFactor = _damageFactorPool.Get(entity);
-            // todo move to system
-            /*_world.GetPool<DamageComponent>().Add(entity) = new DamageComponent
+            var damageMath = damage - damage * damageFactor.PhysicalFactor / 100;
+            // in process
+            _world.GetPool<DamageComponent>().Add(entity) = new DamageComponent
             {
                 Value = new Damage
                 {
-                    value = damageFactor.PhysicalFactor,
-                    damageOrigin = damageOrigin
+                    value = damageMath,
+                    damageOrigin = damageOrigin,
+                    attacker =  attacker
                 }
-            };*/
-            //
-            ref var health = ref _healthPool.Get(entity);
-            var unit = _unitPool.Get(entity);
-
-            var damageMath = damage - damage * damageFactor.PhysicalFactor / 100;
-            var newHealth = Mathf.Clamp(health.Current - damageMath, 0f, health.Max);
-
-            UpdateHealth(entity, newHealth);
-
-            var damageClamped = Mathf.Clamp01(damageMath / _globalUnitConfig.maxDamage);
-            var healthClamped = Mathf.Clamp01(1 - health.Current / health.Max);
-
-            var abilityData = unit.View.Config.AbilityDamageConfig;
-            if (damageMath > 0)
-            {
-                if (abilityData.ANIMATOR)
-                    unit.View.Animator.TriggerAnimations(abilityData);
-                if (abilityData.VFX)
-                    _vfxService.SpawnVfx(entity, abilityData, true, damageClamped, healthClamped, damageOrigin.position);
-
-                var damageClampedLayer = Mathf.Clamp(damageClamped, _globalUnitConfig.minLayerHit, 1); // limit min layer weight
-                unit.View.Animator.SetLayerWeight(2, damageClampedLayer);
-            }
-
-            if (health.Current <= 0)
-                Dead(entity);
-        }
-
-        private void Dead(int entity)
-        {
-            // todo move to system
-            
-            AddState(entity, EUnitState.Dead);
-            AddState(entity, EUnitState.Knockout);
-
-            RemoveState(entity, EUnitState.Stun);
-            RemoveState(entity, EUnitState.Dash);
-            RemoveState(entity, EUnitState.Stationary);
-
-            var unit = _unitPool.Get(entity);
-
-            unit.View.NavMeshAgent.enabled = false;
-
-            if (unit.View.Config.AbilityDeadConfig.ANIMATOR)
-                unit.View.Animator.TriggerAnimations(unit.View.Config.AbilityDeadConfig);
-            if (unit.View.Config.AbilityDeadConfig.VFX)
-                _vfxService.SpawnVfx(entity, unit.View.Config.AbilityDeadConfig);
-
-            if (unit.Config.ControlType == EControlType.AI)
-            {
-                ref var aiTask = ref _world.GetPool<AiTaskComponent>().Get(entity);
-                aiTask.Value = EAiTaskType.Dead;
-                if (_world.GetPool<AiTargetComponent>().Has(entity))
-                    _world.GetPool<AiTargetComponent>().Del(entity);
-
-                ref var enemy = ref _world.GetPool<EnemyComponent>().Get(entity);
-                enemy.HealthSlider.gameObject.SetActive(false);
-            }
-            
-            EnemyEventsHolder.InvokeOnKillEnemy(entity);
+            };
         }
 
         public bool AddState(int entity, EUnitState state, float value = 0)
