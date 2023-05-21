@@ -18,7 +18,10 @@ MonoBehaviour:
   actionType: 0
   icon: {fileID: 21300000, guid: 5f68b2ee740951f41830ca17d222e8cb, type: 3}
   ATTRIBUTES: 1
-  damage: 33
+  damage:
+    items:
+    - type: 10
+      value: 10
   energyCost: 1
   TIME: 1
   charge: 0
@@ -56,3 +59,4 @@ MonoBehaviour:
   shieldDamagePhysicalFactor: 0
   shieldDamagePhysicalTime: 0
   inputBlockable: 0
+  debug: 0

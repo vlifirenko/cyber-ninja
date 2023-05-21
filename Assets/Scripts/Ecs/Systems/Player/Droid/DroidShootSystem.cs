@@ -96,7 +96,7 @@ namespace CyberNinja.Ecs.Systems.Player.Droid
 
             var damage = _globalConfig.Value.droidDamage;
             
-            _unitService.Value.AddDamage(targetEntity, damage, shoot.projectile.Transform, null);
+            //todo fix _unitService.Value.AddDamage(targetEntity, damage, shoot.projectile.Transform, null);
             shoot.projectile.gameObject.SetActive(false);
             _shoots.Remove(shoot);
         }

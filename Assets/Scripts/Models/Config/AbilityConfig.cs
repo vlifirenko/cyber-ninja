@@ -1,4 +1,5 @@
 using CyberNinja.Models.Enums;
+using CyberNinja.Models.Unit;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ namespace CyberNinja.Models.Config
         
         [FoldoutGroup("PARAMETERS", Expanded = true)]
         [ToggleGroup("PARAMETERS/ATTRIBUTES", CollapseOthersOnExpand = false)] public bool ATTRIBUTES;
-        [VerticalGroup("PARAMETERS/ATTRIBUTES/1")] public float damage;
+        [VerticalGroup("PARAMETERS/ATTRIBUTES/1")] public DamageValue damage;
         [VerticalGroup("PARAMETERS/ATTRIBUTES/1")] public float energyCost;
         
         [ToggleGroup("PARAMETERS/TIME", CollapseOthersOnExpand = false)] public bool TIME;

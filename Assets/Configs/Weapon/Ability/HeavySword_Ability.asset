@@ -10,25 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0585a09ee384f2da8eb2878a6cf1ce6, type: 3}
-  m_Name: HyperSword_Ability
+  m_Name: HeavySword_Ability
   m_EditorClassIdentifier: 
-  abilityName: HyperSword Attack
-  description: Sword Attack
+  abilityName: Sword Attack
+  description: Heavy Sword Attack
   abilityType: 30
   actionType: 0
-  icon: {fileID: 21300000, guid: 15f1143de01a0f9499e9d3af8034db7c, type: 3}
+  icon: {fileID: 21300000, guid: 5f68b2ee740951f41830ca17d222e8cb, type: 3}
   ATTRIBUTES: 1
   damage:
     items:
     - type: 10
-      value: 20
-    - type: 20
-      value: 10
+      value: 50
   energyCost: 1
   TIME: 1
   charge: 0
   duration: 0
-  cooldown: 0.4
+  cooldown: 2
   ANIMATOR: 1
   animParameter: 90
   animTrigger: 1

@@ -30,16 +30,22 @@ namespace CyberNinja.Ecs.Systems.Unit
 
                 ref var health = ref _world.Value.GetPool<HealthComponent>().Get(entity);
                 var unit = _world.Value.GetPool<UnitComponent>().Get(entity);
-                var newHealth = Mathf.Clamp(health.Current - damage.value, 0f, health.Max);
+
+                var resultDamage = 0f;
+                foreach (var item in damage.value.items)
+                {
+                }
+
+                var newHealth = Mathf.Clamp(health.Current - resultDamage, 0f, health.Max);
 
                 _unitService.Value.UpdateHealth(entity, newHealth);
 
-                var damageClamped = Mathf.Clamp01(damage.value / _globalUnitConfig.Value.maxDamage);
+                var damageClamped = Mathf.Clamp01(resultDamage / _globalUnitConfig.Value.maxDamage);
                 var healthClamped = Mathf.Clamp01(1 - health.Current / health.Max);
 
-                var abilityData = unit.View.Config.AbilityDamageConfig;
-                if (damage.value > 0)
+                if (resultDamage > 0)
                 {
+                    var abilityData = unit.View.Config.AbilityDamageConfig;
                     if (abilityData.ANIMATOR)
                         unit.View.Animator.TriggerAnimations(abilityData);
                     if (abilityData.VFX)
@@ -101,7 +107,7 @@ namespace CyberNinja.Ecs.Systems.Unit
 
                 ref var enemy = ref _world.Value.GetPool<EnemyComponent>().Get(entity);
                 enemy.HealthSlider.gameObject.SetActive(false);
-                
+
                 SpawnLoot(entity);
             }
 
